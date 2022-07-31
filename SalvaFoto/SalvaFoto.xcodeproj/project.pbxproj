@@ -8,18 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		AFE286D02897170F00865470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286CF2897170F00865470 /* AppDelegate.swift */; };
-		AFE286D42897170F00865470 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286D32897170F00865470 /* ViewController.swift */; };
+		AFE286D42897170F00865470 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286D32897170F00865470 /* MainViewController.swift */; };
 		AFE286D92897171100865470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE286D82897171100865470 /* Assets.xcassets */; };
 		AFE286DC2897171100865470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE286DA2897171100865470 /* LaunchScreen.storyboard */; };
+		AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286E528971CAF00865470 /* UIViewController+Utils.swift */; };
+		AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EA28971F3F00865470 /* SearchViewController.swift */; };
+		AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EC28971F5300865470 /* FavoriteViewController.swift */; };
+		AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EE28971F7D00865470 /* ProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AFE286CC2897170F00865470 /* SalvaFoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalvaFoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE286CF2897170F00865470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AFE286D32897170F00865470 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AFE286D32897170F00865470 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		AFE286D82897171100865470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AFE286DB2897171100865470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AFE286DD2897171100865470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFE286E528971CAF00865470 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		AFE286EA28971F3F00865470 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		AFE286EC28971F5300865470 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		AFE286EE28971F7D00865470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,9 +60,13 @@
 		AFE286CE2897170F00865470 /* SalvaFoto */ = {
 			isa = PBXGroup;
 			children = (
+				AFE286E428971C9700865470 /* Utils */,
 				AFE286E32897172B00865470 /* Files */,
 				AFE286CF2897170F00865470 /* AppDelegate.swift */,
-				AFE286D32897170F00865470 /* ViewController.swift */,
+				AFE286D32897170F00865470 /* MainViewController.swift */,
+				AFE286E728971E4000865470 /* Search */,
+				AFE286E828971E6D00865470 /* Favorite */,
+				AFE286E928971E7E00865470 /* Profile */,
 			);
 			path = SalvaFoto;
 			sourceTree = "<group>";
@@ -67,6 +79,38 @@
 				AFE286DD2897171100865470 /* Info.plist */,
 			);
 			name = Files;
+			sourceTree = "<group>";
+		};
+		AFE286E428971C9700865470 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286E528971CAF00865470 /* UIViewController+Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		AFE286E728971E4000865470 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EA28971F3F00865470 /* SearchViewController.swift */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		AFE286E828971E6D00865470 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EC28971F5300865470 /* FavoriteViewController.swift */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
+		AFE286E928971E7E00865470 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EE28971F7D00865470 /* ProfileViewController.swift */,
+			);
+			name = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -139,8 +183,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AFE286D42897170F00865470 /* ViewController.swift in Sources */,
+				AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */,
+				AFE286D42897170F00865470 /* MainViewController.swift in Sources */,
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
+				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
+				AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */,
+				AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
