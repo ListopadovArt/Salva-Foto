@@ -7,8 +7,6 @@
 
 import UIKit
 
-let appColor: UIColor = UIColor(red: 0.86, green: 0.96, blue: 0.02, alpha: 1.00)
-
 class MainViewController: UITabBarController {
     
     override func viewDidLoad() {
@@ -36,8 +34,8 @@ class MainViewController: UITabBarController {
     }
     
     private func setupTabBar() {
-        tabBar.backgroundColor = UIColor(red: 0.10, green: 0.11, blue: 0.13, alpha: 1.00)
-        tabBar.tintColor = appColor
+        tabBar.backgroundColor = Colors.backgroundColor
+        tabBar.tintColor = Colors.appColor
         tabBar.barTintColor = .systemGray
         tabBar.isTranslucent = true
     }

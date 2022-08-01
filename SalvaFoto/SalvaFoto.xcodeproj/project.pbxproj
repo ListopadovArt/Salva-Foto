@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE22FC2898663F00970AB5 /* Colors.swift */; };
 		AFE286D02897170F00865470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286CF2897170F00865470 /* AppDelegate.swift */; };
 		AFE286D42897170F00865470 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286D32897170F00865470 /* MainViewController.swift */; };
 		AFE286D92897171100865470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE286D82897171100865470 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AFAE22FC2898663F00970AB5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AFE286CC2897170F00865470 /* SalvaFoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalvaFoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE286CF2897170F00865470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AFE286D32897170F00865470 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				AFE286E428971C9700865470 /* Utils */,
 				AFE286E32897172B00865470 /* Files */,
 				AFE286CF2897170F00865470 /* AppDelegate.swift */,
+				AFAE22FC2898663F00970AB5 /* Colors.swift */,
 				AFE286D32897170F00865470 /* MainViewController.swift */,
 				AFE286E728971E4000865470 /* Search */,
 				AFE286E828971E6D00865470 /* Favorite */,
@@ -187,6 +190,7 @@
 				AFE286D42897170F00865470 /* MainViewController.swift in Sources */,
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
 				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
+				AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */,
 				AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */,
 				AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */,
 			);
