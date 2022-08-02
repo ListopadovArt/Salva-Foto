@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8925012899ABDD006ED79F /* ImageCell.swift */; };
 		AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE22FC2898663F00970AB5 /* Colors.swift */; };
 		AFE286D02897170F00865470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286CF2897170F00865470 /* AppDelegate.swift */; };
 		AFE286D42897170F00865470 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286D32897170F00865470 /* MainViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		AF8925012899ABDD006ED79F /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AFAE22FC2898663F00970AB5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AFE286CC2897170F00865470 /* SalvaFoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalvaFoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AFE286CF2897170F00865470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +98,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE286EA28971F3F00865470 /* SearchViewController.swift */,
+				AF8925012899ABDD006ED79F /* ImageCell.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
 				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
 				AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */,
+				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,
 				AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */,
 				AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */,
 			);
