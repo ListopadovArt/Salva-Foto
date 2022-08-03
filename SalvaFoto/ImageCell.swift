@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ImageCell: UICollectionViewCell {
     
@@ -79,8 +80,10 @@ extension ImageCell {
 
 extension ImageCell {
     func configure(with model: ImageData) {
-        let image = UIImage(named: model.imageName)
-        itemImage.image = image
-        nameLabel.text = model.name
+        let imageUrl = model.urls.small ?? ""
+        if let url = URL(string: imageUrl) {
+            itemImage.kf.setImage(with: url)
+        }
+        nameLabel.text = model.user?.username
     }
 }

@@ -7,11 +7,6 @@
 
 import UIKit
 
-struct ImageData {
-    let imageName: String
-    let name: String
-}
-
 class SearchViewController: UIViewController {
     
     let searchBar = UISearchBar()
@@ -20,26 +15,25 @@ class SearchViewController: UIViewController {
         let layout = UICollectionViewFlowLayout()
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), collectionViewLayout: layout)
         layout.scrollDirection = .vertical
-        collection.showsHorizontalScrollIndicator = false
-        collection.alwaysBounceVertical = true
-        collection.register(ImageCell.self, forCellWithReuseIdentifier: "ImageCell")
-        collection.translatesAutoresizingMaskIntoConstraints = false
-        collection.delegate = self
-        collection.dataSource = self
         return collection
     }()
     
-    var imageArray = [ImageData(imageName: "Iam.png", name: "Artem"),
-                      ImageData(imageName: "Iam.png", name: "Artem"),
-                      ImageData(imageName: "Iam.png", name: "Artem"),
-                      ImageData(imageName: "Iam.png", name: "Artem"),
-    ]
+    var imageArray = [ImageData]()
     
+    // https://unsplash.com/documentation#get-a-random-photo
     let accessKey = "f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
+    let url = "https://api.unsplash.com/photos/random/?count=30&client_id="
     
     override func viewDidLoad() {
         style()
         layout()
+        
+        PhotoManager.shared.performRequest(with: "\(url)\(accessKey)") { images in
+            self.imageArray = images
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
 }
 
@@ -49,6 +43,7 @@ extension SearchViewController {
         view.backgroundColor = Colors.backgroundColor
         self.navigationController?.isNavigationBarHidden = true
         
+        // Search Bar
         searchBar.translatesAutoresizingMaskIntoConstraints = false
         searchBar.searchTextField.backgroundColor = UIColor(red: 0.19, green: 0.19, blue: 0.22, alpha: 1.00)
         searchBar.searchTextField.textColor = .white
@@ -61,6 +56,15 @@ extension SearchViewController {
         searchBar.delegate = self
         searchBar.layer.cornerRadius = 5
         searchBar.clipsToBounds = true
+        
+        // Collection View
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.alwaysBounceVertical = true
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "ImageCell")
+        collectionView.backgroundColor = Colors.backgroundColor
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
     
     private func layout() {

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */; };
+		AF0E4041289AF4CC0016217D /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4040289AF4CC0016217D /* ImageData.swift */; };
+		AF0E4043289AF60A0016217D /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4042289AF60A0016217D /* PhotoManager.swift */; };
 		AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8925012899ABDD006ED79F /* ImageCell.swift */; };
 		AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE22FC2898663F00970AB5 /* Colors.swift */; };
 		AFE286D02897170F00865470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286CF2897170F00865470 /* AppDelegate.swift */; };
@@ -20,6 +23,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.release.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.release.xcconfig"; sourceTree = "<group>"; };
+		9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalvaFoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0E4040289AF4CC0016217D /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
+		AF0E4042289AF60A0016217D /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
 		AF8925012899ABDD006ED79F /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AFAE22FC2898663F00970AB5 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		AFE286CC2897170F00865470 /* SalvaFoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalvaFoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +39,7 @@
 		AFE286EA28971F3F00865470 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AFE286EC28971F5300865470 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		AFE286EE28971F7D00865470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.debug.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +47,63 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6E9AE7354B63322C23C05818 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */,
+				902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		937A6359D4F12D68956FC0E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF0E403D289AF4900016217D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EA28971F3F00865470 /* SearchViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AF0E403E289AF49E0016217D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF8925012899ABDD006ED79F /* ImageCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AF0E403F289AF4A60016217D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF0E4040289AF4CC0016217D /* ImageData.swift */,
+				AF0E4042289AF60A0016217D /* PhotoManager.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		AFE286C32897170F00865470 = {
 			isa = PBXGroup;
 			children = (
 				AFE286CE2897170F00865470 /* SalvaFoto */,
 				AFE286CD2897170F00865470 /* Products */,
+				6E9AE7354B63322C23C05818 /* Pods */,
+				937A6359D4F12D68956FC0E2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +151,9 @@
 		AFE286E728971E4000865470 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				AFE286EA28971F3F00865470 /* SearchViewController.swift */,
-				AF8925012899ABDD006ED79F /* ImageCell.swift */,
+				AF0E403F289AF4A60016217D /* Model */,
+				AF0E403E289AF49E0016217D /* View */,
+				AF0E403D289AF4900016217D /* Controller */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -126,9 +181,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AFE286E02897171100865470 /* Build configuration list for PBXNativeTarget "SalvaFoto" */;
 			buildPhases = (
+				C321F23F914C4FC522B435F3 /* [CP] Check Pods Manifest.lock */,
 				AFE286C82897170F00865470 /* Sources */,
 				AFE286C92897170F00865470 /* Frameworks */,
 				AFE286CA2897170F00865470 /* Resources */,
+				9E596C95A5385D7638BC2573 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -184,6 +241,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		9E596C95A5385D7638BC2573 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C321F23F914C4FC522B435F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalvaFoto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		AFE286C82897170F00865470 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -194,8 +293,10 @@
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
 				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
 				AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */,
+				AF0E4041289AF4CC0016217D /* ImageData.swift in Sources */,
 				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,
 				AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */,
+				AF0E4043289AF60A0016217D /* PhotoManager.swift in Sources */,
 				AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +431,7 @@
 		};
 		AFE286E12897171100865470 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -357,6 +459,7 @@
 		};
 		AFE286E22897171100865470 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
