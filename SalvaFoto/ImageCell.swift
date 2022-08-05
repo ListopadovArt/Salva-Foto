@@ -13,7 +13,7 @@ class ImageCell: UICollectionViewCell {
     var itemImage = UIImageView()
     let nameView = UIView()
     let nameLabel = UILabel()
-    let likeImage = UIImageView()
+    let likeButton = UIButton()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -46,15 +46,18 @@ extension ImageCell {
         nameLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         nameLabel.textColor = .white
         
-        likeImage.translatesAutoresizingMaskIntoConstraints = false
-        likeImage.contentMode = .scaleAspectFit
-        let likeEmptyImage = UIImage(systemName: "heart.fill")?.withTintColor(Colors.backViewColor, renderingMode: .alwaysOriginal)
-        likeImage.image = likeEmptyImage
+        likeButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        let configuration = UIImage.SymbolConfiguration(scale: .large)
+        let image = UIImage(systemName: "heart.fill", withConfiguration: configuration)
+        likeButton.tintColor = Colors.backViewColor
+        likeButton.setImage(image, for: .normal)
+        likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
     }
     
     private func layout() {
         contentView.addSubview(itemImage)
-        contentView.addSubview(likeImage)
+        contentView.addSubview(likeButton)
         contentView.addSubview(nameView)
         contentView.addSubview(nameLabel)
         
@@ -64,8 +67,8 @@ extension ImageCell {
             itemImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             itemImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            likeImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            likeImage.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            likeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            likeButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             
             nameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -84,6 +87,14 @@ extension ImageCell {
         if let url = URL(string: imageUrl) {
             itemImage.kf.setImage(with: url)
         }
-        nameLabel.text = model.user?.username
+        nameLabel.text = model.user?.name
+    }
+}
+
+// MARK: Actions
+extension ImageCell {
+    @objc func likeTapped() {
+        //TODO: - Calling the like function
+        print("Like")
     }
 }

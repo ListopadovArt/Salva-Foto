@@ -20,6 +20,7 @@
 		AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EA28971F3F00865470 /* SearchViewController.swift */; };
 		AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EC28971F5300865470 /* FavoriteViewController.swift */; };
 		AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EE28971F7D00865470 /* ProfileViewController.swift */; };
+		AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE56984289D390800F285F0 /* ShowImageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		AFE286EA28971F3F00865470 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		AFE286EC28971F5300865470 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		AFE286EE28971F7D00865470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AFE56984289D390800F285F0 /* ShowImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewController.swift; sourceTree = "<group>"; };
 		B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.debug.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,7 +62,6 @@
 				B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */,
 				902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -76,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE286EA28971F3F00865470 /* SearchViewController.swift */,
+				AFE56984289D390800F285F0 /* ShowImageViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -292,6 +294,7 @@
 				AFE286D42897170F00865470 /* MainViewController.swift in Sources */,
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
 				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
+				AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */,
 				AFAE22FD2898663F00970AB5 /* Colors.swift in Sources */,
 				AF0E4041289AF4CC0016217D /* ImageData.swift in Sources */,
 				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,

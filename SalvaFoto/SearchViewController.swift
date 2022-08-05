@@ -109,9 +109,20 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
             return UICollectionViewCell()
         }
         
-        item.configure(with: imageArray[indexPath.item])
+        let image = imageArray[indexPath.item]
+        item.configure(with: image)
         
         return item
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let controller = ShowImageViewController()
+        let image = imageArray[indexPath.item]
+        controller.configure(model: image)
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .crossDissolve
+        present(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
