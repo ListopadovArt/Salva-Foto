@@ -36,7 +36,7 @@ extension ImageCell {
         
         nameView.translatesAutoresizingMaskIntoConstraints = false
         nameView.alpha = 0.5
-        nameView.backgroundColor = Colors.backViewColor
+        nameView.backgroundColor = .backViewColor
         nameView.layer.cornerRadius = 5
         nameView.clipsToBounds = true
         
@@ -50,7 +50,7 @@ extension ImageCell {
         
         let configuration = UIImage.SymbolConfiguration(scale: .large)
         let image = UIImage(systemName: "heart.fill", withConfiguration: configuration)
-        likeButton.tintColor = Colors.backViewColor
+        likeButton.tintColor = .backViewColor
         likeButton.setImage(image, for: .normal)
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
     }

@@ -40,7 +40,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
     
     private func style() {
-        view.backgroundColor = Colors.backgroundColor
+        view.backgroundColor = .backgroundColor
         self.navigationController?.isNavigationBarHidden = true
         
         // Search Bar
@@ -52,7 +52,7 @@ extension SearchViewController {
             string: "Search",
             attributes: [.foregroundColor: UIColor(red: 0.56, green: 0.56, blue: 0.60, alpha: 1.00)]
         )
-        searchBar.barTintColor = Colors.backgroundColor
+        searchBar.barTintColor = .backgroundColor
         searchBar.delegate = self
         searchBar.layer.cornerRadius = 5
         searchBar.clipsToBounds = true
@@ -62,7 +62,7 @@ extension SearchViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.alwaysBounceVertical = true
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: "ImageCell")
-        collectionView.backgroundColor = Colors.backgroundColor
+        collectionView.backgroundColor = .backgroundColor
         collectionView.delegate = self
         collectionView.dataSource = self
     }

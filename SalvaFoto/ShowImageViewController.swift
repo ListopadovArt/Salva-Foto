@@ -28,10 +28,10 @@ class ShowImageViewController: UIViewController {
 
 extension ShowImageViewController {
     private func style() {
-        view.backgroundColor = Colors.backgroundColor
+        view.backgroundColor = .backgroundColor
         
         headerView.translatesAutoresizingMaskIntoConstraints = false
-        headerView.backgroundColor = Colors.backgroundColor
+        headerView.backgroundColor = .backgroundColor
         
         escapeButton.translatesAutoresizingMaskIntoConstraints = false
         let configuration = UIImage.SymbolConfiguration(scale: .large)
@@ -50,17 +50,11 @@ extension ShowImageViewController {
         itemImage.contentMode = .scaleAspectFill
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
-        let likeConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let likeImage = UIImage(systemName: "heart.circle.fill", withConfiguration: likeConfiguration)
-        likeButton.tintColor = .white
-        likeButton.setImage(likeImage, for: .normal)
+        makeButton(button: likeButton, systemName: "heart.circle.fill")
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
-        let saveConfiguration = UIImage.SymbolConfiguration(scale: .large)
-        let saveImage = UIImage(systemName: "arrow.down.to.line.alt", withConfiguration: saveConfiguration)
-        saveButton.tintColor = .white
-        saveButton.setImage(saveImage, for: .normal)
+        makeButton(button: saveButton, systemName: "arrow.down.to.line.alt")
         saveButton.addTarget(self, action: #selector(saveTapped), for: .primaryActionTriggered)
     }
     
@@ -94,13 +88,13 @@ extension ShowImageViewController {
             
             likeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: itemImage.leadingAnchor, multiplier: 5),
             likeButton.bottomAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: -20),
-            likeButton.heightAnchor.constraint(equalToConstant: 50),
-            likeButton.widthAnchor.constraint(equalToConstant: 50),
+            likeButton.heightAnchor.constraint(equalToConstant: 30),
+            likeButton.widthAnchor.constraint(equalToConstant: 30),
             
             itemImage.trailingAnchor.constraint(equalToSystemSpacingAfter: saveButton.trailingAnchor, multiplier: 5),
             saveButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
-            saveButton.heightAnchor.constraint(equalToConstant: 50),
-            saveButton.widthAnchor.constraint(equalToConstant: 50),
+            saveButton.heightAnchor.constraint(equalToConstant: 30),
+            saveButton.widthAnchor.constraint(equalToConstant: 30),
         ])
     }
     
