@@ -39,9 +39,6 @@ class PhotoManager {
             print(error)
             return nil
         }
-        
-        
     }
-    
 }
 

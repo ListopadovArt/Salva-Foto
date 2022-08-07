@@ -18,6 +18,11 @@ class ShowImageViewController: UIViewController {
     let likeButton = UIButton()
     let saveButton = UIButton()
     
+    lazy var alert: UIAlertController = {
+        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,6 +110,13 @@ extension ShowImageViewController {
         }
         titleLabel.text = model.user?.name
     }
+    
+    private func showAlert(title: String, message: String) {
+        alert.title = title
+        alert.message = message
+        
+        present(alert, animated: true, completion: nil)
+    }
 }
 
 // MARK: Actions
@@ -119,7 +131,25 @@ extension ShowImageViewController {
     }
     
     @objc func saveTapped() {
-        //TODO: - Calling the save image function
-        print("Save")
+        if let image = itemImage.image {
+            writeToPhotoAlbum(image: image)
+        }
+    }
+}
+
+//MARK: - Save photo
+extension ShowImageViewController {
+    
+    func writeToPhotoAlbum(image: UIImage) {
+        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
+    }
+    
+    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            print(error.localizedDescription)
+            showAlert(title: "Error!", message: "Something went wrong. Try again.")
+        } else {
+            showAlert(title: "Success!", message: "Photo uploaded to gallery.")
+        }
     }
 }
