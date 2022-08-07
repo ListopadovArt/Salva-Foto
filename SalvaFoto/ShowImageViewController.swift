@@ -23,11 +23,26 @@ class ShowImageViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
     }()
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         layout()
+    }
+    
+    func configure(model: ImageData){
+        let imageUrl = model.urls.small ?? ""
+        if let url = URL(string: imageUrl) {
+            itemImage.kf.setImage(with: url)
+        }
+        titleLabel.text = model.user?.name
+    }
+    
+    private func showAlert(title: String, message: String) {
+        alert.title = title
+        alert.message = message
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -101,21 +116,6 @@ extension ShowImageViewController {
             saveButton.heightAnchor.constraint(equalToConstant: 30),
             saveButton.widthAnchor.constraint(equalToConstant: 30),
         ])
-    }
-    
-    func configure(model: ImageData){
-        let imageUrl = model.urls.small ?? ""
-        if let url = URL(string: imageUrl) {
-            itemImage.kf.setImage(with: url)
-        }
-        titleLabel.text = model.user?.name
-    }
-    
-    private func showAlert(title: String, message: String) {
-        alert.title = title
-        alert.message = message
-        
-        present(alert, animated: true, completion: nil)
     }
 }
 

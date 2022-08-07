@@ -20,20 +20,25 @@ class SearchViewController: UIViewController {
     
     var imageArray = [ImageData]()
     
+    let refreshControl = UIRefreshControl()
+    
     // https://unsplash.com/documentation#get-a-random-photo
     let accessKey = "f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
     let url = "https://api.unsplash.com/photos/random/?count=30&client_id="
     
+    var isLoaded = false
+    
     override func viewDidLoad() {
         style()
         layout()
-        
-        PhotoManager.shared.performRequest(with: "\(url)\(accessKey)") { images in
-            self.imageArray = images
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+        fetchData()
+        setupRefreshControl()
+    }
+    
+    private func setupRefreshControl() {
+        refreshControl.tintColor = .appColor
+        refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
+        collectionView.refreshControl = refreshControl
     }
 }
 
@@ -105,14 +110,17 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else {
-            return UICollectionViewCell()
+        if isLoaded {
+            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else {
+                return UICollectionViewCell()
+            }
+            
+            let image = imageArray[indexPath.item]
+            item.configure(with: image)
+            
+            return item
         }
-        
-        let image = imageArray[indexPath.item]
-        item.configure(with: image)
-        
-        return item
+        return UICollectionViewCell()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -136,5 +144,37 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 1
+    }
+}
+
+// MARK: - Networking
+extension SearchViewController {
+    private func fetchData() {
+        PhotoManager.shared.performRequest(with: "\(url)\(accessKey)") { images in
+            self.imageArray = images
+            DispatchQueue.main.async {
+                self.reloadView()
+            }
+        }
+    }
+    
+    private func reloadView() {
+        self.collectionView.refreshControl?.endRefreshing()
+        self.isLoaded = true
+        self.collectionView.reloadData()
+    }
+}
+
+// MARK: Actions
+extension SearchViewController {
+    @objc func refreshContent() {
+        reset()
+        collectionView.reloadData()
+        fetchData()
+    }
+    
+    private func reset() {
+        imageArray = []
+        isLoaded = false
     }
 }
