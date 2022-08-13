@@ -47,11 +47,7 @@ extension ImageCell {
         nameLabel.textColor = .white
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
-        
-        let configuration = UIImage.SymbolConfiguration(scale: .large)
-        let image = UIImage(systemName: "heart.fill", withConfiguration: configuration)
-        likeButton.tintColor = .backViewColor
-        likeButton.setImage(image, for: .normal)
+        makeButton(button: likeButton, systemName: "heart")
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
     }
     
@@ -93,8 +89,13 @@ extension ImageCell {
 
 // MARK: Actions
 extension ImageCell {
-    @objc func likeTapped() {
-        //TODO: - Calling the like function
-        print("Like")
+    @objc func likeTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            makeButton(button: likeButton, systemName: "heart.fill")
+        }
+        else{
+            makeButton(button: likeButton, systemName: "heart")
+        }
     }
 }

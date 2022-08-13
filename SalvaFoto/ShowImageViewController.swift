@@ -23,7 +23,7 @@ class ShowImageViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
     }()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -70,7 +70,7 @@ extension ShowImageViewController {
         itemImage.contentMode = .scaleAspectFill
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
-        makeButton(button: likeButton, systemName: "heart.circle.fill")
+        makeButton(button: likeButton, systemName: "heart")
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
@@ -125,9 +125,14 @@ extension ShowImageViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    @objc func likeTapped() {
-        //TODO: - Calling the like function
-        print("Like")
+    @objc func likeTapped(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        if sender.isSelected{
+            makeButton(button: likeButton, systemName: "heart.fill")
+        }
+        else{
+            makeButton(button: likeButton, systemName: "heart")
+        }
     }
     
     @objc func saveTapped() {
