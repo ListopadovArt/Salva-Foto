@@ -14,7 +14,8 @@ class ImageCell: UICollectionViewCell {
     let nameView = UIView()
     let nameLabel = UILabel()
     let likeButton = UIButton()
-    
+    let likesLabel = UILabel()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -49,11 +50,18 @@ extension ImageCell {
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         makeButton(button: likeButton, systemName: "heart")
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
+        
+        likesLabel.translatesAutoresizingMaskIntoConstraints = false
+        likesLabel.textAlignment = .left
+        likesLabel.numberOfLines = 1
+        likesLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        likesLabel.textColor = .white
     }
     
     private func layout() {
         contentView.addSubview(itemImage)
         contentView.addSubview(likeButton)
+        contentView.addSubview(likesLabel)
         contentView.addSubview(nameView)
         contentView.addSubview(nameLabel)
         
@@ -63,8 +71,11 @@ extension ImageCell {
             itemImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             itemImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            likeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
+            likeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             likeButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            
+            likesLabel.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
+            likesLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 3),
             
             nameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             nameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
@@ -84,6 +95,7 @@ extension ImageCell {
             itemImage.kf.setImage(with: url)
         }
         nameLabel.text = model.user?.name
+        likesLabel.text = String(model.likes!)
     }
 }
 
