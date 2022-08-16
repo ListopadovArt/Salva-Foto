@@ -31,7 +31,7 @@ class ShowImageViewController: UIViewController {
     }
     
     func configure(model: ImageData){
-        let imageUrl = model.urls.small ?? ""
+        let imageUrl = model.urls.small 
         if let url = URL(string: imageUrl) {
             itemImage.kf.setImage(with: url)
         }

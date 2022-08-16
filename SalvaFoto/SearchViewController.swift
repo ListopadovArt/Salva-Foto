@@ -23,8 +23,10 @@ class SearchViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     
     // https://unsplash.com/documentation#get-a-random-photo
-    let accessKey = "f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
-    let url = "https://api.unsplash.com/photos/random/?count=30&client_id="
+    let accessKey = "&client_id=f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
+    let host = "https://api.unsplash.com/"
+    let randomPhotos = "photos/random/?count=30"
+    let searchPhotos = "search/photos?page=1"
     
     var isLoaded = false
     
@@ -59,6 +61,7 @@ extension SearchViewController {
         )
         searchBar.barTintColor = .backgroundColor
         searchBar.delegate = self
+        searchBar.searchTextField.delegate = self
         searchBar.layer.cornerRadius = 5
         searchBar.clipsToBounds = true
         
@@ -89,21 +92,23 @@ extension SearchViewController {
     }
 }
 
-extension SearchViewController: UISearchBarDelegate{
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        searchBar.endEditing(true)
-        return true
+// MARK: - Photo Search
+extension SearchViewController: UISearchBarDelegate, UITextFieldDelegate {
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
+        guard !textSearched.isEmpty else {
+            return
+        }
+        fetchSearchData(textSearched)
     }
     
-    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        self.fetchData()
         return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        
     }
 }
 
+//MARK: - Collection View Methods
 extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return imageArray.count
@@ -150,7 +155,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 // MARK: - Networking
 extension SearchViewController {
     private func fetchData() {
-        PhotoManager.shared.performRequest(with: "\(url)\(accessKey)") { images in
+        PhotoManager.shared.performRequest(with: "\(host)\(randomPhotos)\(accessKey)") { images in
             self.imageArray = images
             DispatchQueue.main.async {
                 self.reloadView()
@@ -163,6 +168,15 @@ extension SearchViewController {
         self.isLoaded = true
         self.collectionView.reloadData()
     }
+    
+    private func fetchSearchData(_ word: String) {
+        PhotoManager.shared.performSearchRequest(with: "\(host)\(searchPhotos)&query=\(word)\(accessKey)") { images in
+            self.imageArray = images
+            DispatchQueue.main.async {
+                self.reloadView()
+            }
+        }
+    }
 }
 
 // MARK: Actions
@@ -170,7 +184,12 @@ extension SearchViewController {
     @objc func refreshContent() {
         reset()
         collectionView.reloadData()
-        fetchData()
+        
+        if searchBar.text == ""{
+            fetchData()
+        } else {
+            fetchSearchData(searchBar.text!)
+        }
     }
     
     private func reset() {
