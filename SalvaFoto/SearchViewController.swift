@@ -28,8 +28,6 @@ class SearchViewController: UIViewController {
     let randomPhotos = "photos/random/?count=30"
     let searchPhotos = "search/photos?page=1"
     
-    var isLoaded = false
-    
     override func viewDidLoad() {
         style()
         layout()
@@ -115,17 +113,14 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if isLoaded {
-            guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else {
-                return UICollectionViewCell()
-            }
-            
-            let image = imageArray[indexPath.item]
-            item.configure(with: image)
-            
-            return item
+        guard let item = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCell", for: indexPath) as? ImageCell else {
+            return UICollectionViewCell()
         }
-        return UICollectionViewCell()
+        let image = imageArray[indexPath.item]
+        item.configure(with: image)
+        return item
+        
+        return item
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -165,7 +160,6 @@ extension SearchViewController {
     
     private func reloadView() {
         self.collectionView.refreshControl?.endRefreshing()
-        self.isLoaded = true
         self.collectionView.reloadData()
     }
     
@@ -194,6 +188,5 @@ extension SearchViewController {
     
     private func reset() {
         imageArray = []
-        isLoaded = false
     }
 }

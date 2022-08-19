@@ -15,7 +15,7 @@ class ImageCell: UICollectionViewCell {
     let nameLabel = UILabel()
     let likeButton = UIButton()
     let likesLabel = UILabel()
-
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
@@ -93,8 +93,16 @@ extension ImageCell {
         let imageUrl = model.urls.small
         
         if let url = URL(string: imageUrl) {
-            itemImage.kf.setImage(with: url)
+            if itemImage.image == nil {
+                if let blur = model.blurHash {
+                    let blurImage =  UIImage(blurHash: blur, size: CGSize(width: 32, height: 32))
+                    itemImage.image = blurImage
+                }
+            } else {
+                itemImage.kf.setImage(with: url)
+            }
         }
+        
         nameLabel.text = model.user?.name
         
         if let likes = model.likes {
