@@ -26,7 +26,7 @@ class SearchViewController: UIViewController {
     let accessKey = "&client_id=f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
     let host = "https://api.unsplash.com/"
     let randomPhotos = "photos/random/?count=30"
-    let searchPhotos = "search/photos?page=1"
+    let searchPhotos = "search/photos?per_page=100"
     
     override func viewDidLoad() {
         style()
@@ -118,8 +118,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         let image = imageArray[indexPath.item]
         item.configure(with: image)
-        return item
-        
         return item
     }
     

@@ -11,10 +11,10 @@ import Kingfisher
 class ImageCell: UICollectionViewCell {
     
     var itemImage = UIImageView()
-    let nameView = UIView()
     let nameLabel = UILabel()
     let likeButton = UIButton()
     let likesLabel = UILabel()
+    var avatarImage = UIImageView()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -35,11 +35,11 @@ extension ImageCell {
         itemImage.clipsToBounds = true
         itemImage.layer.cornerRadius = 5
         
-        nameView.translatesAutoresizingMaskIntoConstraints = false
-        nameView.alpha = 0.5
-        nameView.backgroundColor = .backViewColor
-        nameView.layer.cornerRadius = 5
-        nameView.clipsToBounds = true
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        avatarImage.contentMode = .scaleAspectFill
+        avatarImage.clipsToBounds = true
+        avatarImage.layer.cornerRadius = 10
+        avatarImage.backgroundColor = .red
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.textAlignment = .left
@@ -60,9 +60,9 @@ extension ImageCell {
     
     private func layout() {
         contentView.addSubview(itemImage)
+        contentView.addSubview(avatarImage)
         contentView.addSubview(likeButton)
         contentView.addSubview(likesLabel)
-        contentView.addSubview(nameView)
         contentView.addSubview(nameLabel)
         
         NSLayoutConstraint.activate([
@@ -77,13 +77,14 @@ extension ImageCell {
             likesLabel.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
             likesLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 3),
             
-            nameView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            nameView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10),
-            nameView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -2),
-            nameView.heightAnchor.constraint(equalToConstant: 20),
+            avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            avatarImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
+            avatarImage.heightAnchor.constraint(equalToConstant: 20),
+            avatarImage.widthAnchor.constraint(equalToConstant: 20),
             
-            nameLabel.centerYAnchor.constraint(equalTo: nameView.centerYAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: nameView.leadingAnchor, constant: 5),
+            nameLabel.centerYAnchor.constraint(equalTo: avatarImage.centerYAnchor),
+            nameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 5),
+            nameLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5)
         ])
     }
 }
@@ -107,6 +108,12 @@ extension ImageCell {
         
         if let likes = model.likes {
             likesLabel.text = String(likes)
+        }
+        
+        if let avatarUserUrl = model.user?.profileImage.small {
+            if let url = URL(string: avatarUserUrl) {
+                avatarImage.kf.setImage(with: url)
+            }
         }
     }
 }
