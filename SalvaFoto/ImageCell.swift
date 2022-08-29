@@ -39,7 +39,6 @@ extension ImageCell {
         avatarImage.contentMode = .scaleAspectFill
         avatarImage.clipsToBounds = true
         avatarImage.layer.cornerRadius = 10
-        avatarImage.backgroundColor = .red
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.textAlignment = .left
