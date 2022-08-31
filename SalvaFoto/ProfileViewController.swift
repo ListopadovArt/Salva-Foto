@@ -29,8 +29,11 @@ extension ProfileViewController {
         NSLayoutConstraint.activate([
             loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             loginView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginView.heightAnchor.constraint(equalToConstant: 300),
-            loginView.widthAnchor.constraint(equalToConstant: 200),
+            loginView.topAnchor.constraint(equalTo: view.topAnchor),
+            loginView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            loginView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            loginView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+           
         ])
     }
 }
