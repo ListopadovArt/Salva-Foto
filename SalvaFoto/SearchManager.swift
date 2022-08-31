@@ -13,16 +13,22 @@ class SearchManager {
     
     init() {}
     
-    func performRandomPhotosRequest(with urlString: String, complition: @escaping ([ImageData]) -> Void){
+    func performRandomPhotosRequest(with urlString: String, completion: @escaping (Result<[ImageData],NetworkError>) -> Void){
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    print(error)
-                }
-                if let safeData = data {
-                    if let image = self.parseJSON(safeData) {
-                        complition(image)
+                DispatchQueue.main.async {
+                    guard let data = data, error == nil else {
+                        completion(.failure(.serverError))
+                        return
+                    }
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .iso8601
+                        let image = try decoder.decode([ImageData].self, from: data)
+                        completion(.success(image))
+                    } catch {
+                        completion(.failure(.decodingError))
                     }
                 }
             }
@@ -30,48 +36,26 @@ class SearchManager {
         }
     }
     
-    func parseJSON(_ data: Data) -> [ImageData]? {
-        let decoder = JSONDecoder()
-        
-        decoder.dateDecodingStrategy = .iso8601
-        
-        do {
-            let decodedData = try decoder.decode([ImageData].self, from: data)
-            return decodedData
-        } catch {
-            print(error)
-            return nil
-        }
-    }
-    
-    func performSearchRequest(with urlString: String, complition: @escaping ([ImageData]) -> Void){
+    func performPhotoSearchRequest(with urlString: String, completion: @escaping (Result<SearchImages,NetworkError>) -> Void){
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
-                if let error = error {
-                    print(error)
-                }
-                if let safeData = data {
-                    if let image = self.parseSearchJSON(safeData) {
-                        complition(image.results)
+                DispatchQueue.main.async {
+                    guard let data = data, error == nil else {
+                        completion(.failure(.serverError))
+                        return
+                    }
+                    do {
+                        let decoder = JSONDecoder()
+                        decoder.dateDecodingStrategy = .iso8601
+                        let image = try decoder.decode(SearchImages.self, from: data)
+                        completion(.success(image))
+                    } catch {
+                        completion(.failure(.decodingError))
                     }
                 }
             }
             task.resume()
-        }
-    }
-    
-    func parseSearchJSON(_ data: Data) -> SearchImages? {
-        let decoder = JSONDecoder()
-        
-        decoder.dateDecodingStrategy = .iso8601
-        
-        do {
-            let decodedData = try decoder.decode(SearchImages.self, from: data)
-            return decodedData
-        } catch {
-            print(error)
-            return nil
         }
     }
 }
