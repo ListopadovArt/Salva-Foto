@@ -155,7 +155,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 // MARK: - Networking
 extension SearchViewController {
     private func fetchData() {
-        PhotoManager.shared.performRequest(with: "\(host)\(randomPhotos)\(accessKey)") { images in
+        SearchManager.shared.performRandomPhotosRequest(with: "\(host)\(randomPhotos)\(accessKey)") { images in
             self.imageArray = images
             DispatchQueue.main.async {
                 self.reloadView()
@@ -169,7 +169,7 @@ extension SearchViewController {
     }
     
     private func fetchSearchData(_ word: String) {
-        PhotoManager.shared.performSearchRequest(with: "\(host)\(searchPhotos)&query=\(word)\(accessKey)") { images in
+        SearchManager.shared.performSearchRequest(with: "\(host)\(searchPhotos)&query=\(word)\(accessKey)") { images in
             self.imageArray = images
             DispatchQueue.main.async {
                 self.reloadView()

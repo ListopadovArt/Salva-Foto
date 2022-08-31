@@ -7,13 +7,13 @@
 
 import Foundation
 
-class PhotoManager {
+class SearchManager {
     
-    static let shared = PhotoManager()
+    static let shared = SearchManager()
     
     init() {}
     
-    func performRequest(with urlString: String, complition: @escaping ([ImageData]) -> Void){
+    func performRandomPhotosRequest(with urlString: String, complition: @escaping ([ImageData]) -> Void){
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in

@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */; };
 		AF0E4041289AF4CC0016217D /* ImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4040289AF4CC0016217D /* ImageData.swift */; };
-		AF0E4043289AF60A0016217D /* PhotoManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4042289AF60A0016217D /* PhotoManager.swift */; };
+		AF0E4043289AF60A0016217D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4042289AF60A0016217D /* SearchManager.swift */; };
+		AF203D7828BFF66F000BD4D7 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */; };
+		AF203D7A28BFF706000BD4D7 /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */; };
 		AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8925012899ABDD006ED79F /* ImageCell.swift */; };
 		AF93A2DB289EEE2200AEC85B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93A2DA289EEE2200AEC85B /* Buttons.swift */; };
 		AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */; };
@@ -30,7 +32,9 @@
 		902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.release.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.release.xcconfig"; sourceTree = "<group>"; };
 		9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalvaFoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0E4040289AF4CC0016217D /* ImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageData.swift; sourceTree = "<group>"; };
-		AF0E4042289AF60A0016217D /* PhotoManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoManager.swift; sourceTree = "<group>"; };
+		AF0E4042289AF60A0016217D /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
 		AF8925012899ABDD006ED79F /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AF93A2DA289EEE2200AEC85B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
@@ -101,9 +105,18 @@
 			isa = PBXGroup;
 			children = (
 				AF0E4040289AF4CC0016217D /* ImageData.swift */,
-				AF0E4042289AF60A0016217D /* PhotoManager.swift */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		AF203D7628BFF5F0000BD4D7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AF0E4042289AF60A0016217D /* SearchManager.swift */,
+				AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */,
+				AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */,
+			);
+			name = Networking;
 			sourceTree = "<group>";
 		};
 		AFE286C32897170F00865470 = {
@@ -134,6 +147,7 @@
 				AFE286E728971E4000865470 /* Search */,
 				AFE286E828971E6D00865470 /* Favorite */,
 				AFE286E928971E7E00865470 /* Profile */,
+				AF203D7628BFF5F0000BD4D7 /* Networking */,
 			);
 			path = SalvaFoto;
 			sourceTree = "<group>";
@@ -300,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */,
+				AF203D7828BFF66F000BD4D7 /* ProfileManager.swift in Sources */,
 				AFE286D42897170F00865470 /* MainViewController.swift in Sources */,
 				AFD27AA128B02ED300E45A54 /* BlurHashLoadable.swift in Sources */,
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
@@ -309,9 +324,10 @@
 				AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */,
 				AFC2856D28BEABEA00916141 /* LoginView.swift in Sources */,
 				AF0E4041289AF4CC0016217D /* ImageData.swift in Sources */,
+				AF203D7A28BFF706000BD4D7 /* FavoriteManager.swift in Sources */,
 				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,
 				AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */,
-				AF0E4043289AF60A0016217D /* PhotoManager.swift in Sources */,
+				AF0E4043289AF60A0016217D /* SearchManager.swift in Sources */,
 				AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
