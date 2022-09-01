@@ -7,11 +7,17 @@
 
 import UIKit
 
+protocol LoginViewDelegate: AnyObject {
+    func getProfile(profile: User)
+}
+
 class LoginView: UIView {
     
     let titleLabel = UILabel()
     let signButton = UIButton(type: .system)
     let errorMessageLabel = UILabel()
+    
+    weak var delegate: LoginViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -49,9 +55,7 @@ extension LoginView {
         errorMessageLabel.textAlignment = .center
         errorMessageLabel.textColor = .systemRed
         errorMessageLabel.numberOfLines = 0
-        //        errorMessageLabel.isHidden = true
-        errorMessageLabel.text = "Error example..."
-        
+        errorMessageLabel.text = ""
     }
     
     func layout() {
@@ -84,11 +88,54 @@ extension LoginView {
 
 extension LoginView {
     @objc func signInTapped(sender: UIButton){
-        // errorMessageLabel.isHidden = true
         login()
     }
     
     private func login() {
-        print("Login")
+        let bundleIdentifier = Bundle.main.bundleIdentifier!
+        let host = "https://unsplash.com"
+        let authorizeURL = "\(host)/oauth/authorize"
+        let tokenURL = "\(host)/oauth/token"
+        let clientId = "f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
+        let clientSecret = "7FHZh8Q_0E0B19tj8X6ywRYRzQFEdOFtC4sDgzmBook"
+        let redirectUri = "\(bundleIdentifier)://localhost/redirect"
+        
+        let parameters = OAuthParameters(authorizeUrl: authorizeURL,
+                                         tokenUrl:tokenURL,
+                                         clientId: clientId,
+                                         clientSecret: clientSecret,
+                                         redirectUri: redirectUri,
+                                         callbackURLScheme: bundleIdentifier)
+        
+        authorization(parameters: parameters)
+    }
+    
+    private func authorization(parameters: OAuthParameters){
+        let authenticator = Authenticator()
+        authenticator.authenticate(parameters: parameters) { result in
+            var message: String = ""
+            switch result {
+            case .success(let accessTokenResponse):
+                
+                //TODO: - Save token (accessTokenResponse.accessToken) in KeyChain
+                
+                let url = "https://api.unsplash.com/me?access_token=\(accessTokenResponse.accessToken)"
+                ProfileManager.shared.fetchProfile(with: url) { result in
+                    switch result {
+                    case .success(let profile):
+                        self.isHidden = true
+                        self.delegate?.getProfile(profile: profile)
+                    case .failure(let error):
+                        message = error.localizedDescription
+                        self.errorMessageLabel.text = message
+                    }
+                }
+            case .failure(let error):
+                message = error.localizedDescription
+            }
+            DispatchQueue.main.async {
+                self.errorMessageLabel.text = message
+            }
+        }
     }
 }
