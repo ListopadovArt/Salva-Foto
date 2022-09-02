@@ -6,12 +6,17 @@
 //
 
 import UIKit
+import SwiftyKeychainKit
 
 protocol LoginViewDelegate: AnyObject {
     func getProfile(profile: User)
 }
 
-class LoginView: UIView {
+class LoginViewController: UIViewController {
+    
+    // Keychain
+    let keychain = Keychain(service: "storage")
+    let accessTokenKey = KeychainKey<String>(key: "key")
     
     let titleLabel = UILabel()
     let signButton = UIButton(type: .system)
@@ -19,22 +24,16 @@ class LoginView: UIView {
     
     weak var delegate: LoginViewDelegate?
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override func viewDidLoad() {
+        super.viewDidLoad()
         style()
         layout()
     }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
-extension LoginView {
+extension LoginViewController {
     func style() {
-        translatesAutoresizingMaskIntoConstraints = false
-        layer.cornerRadius = 5
-        clipsToBounds = true
+        self.view.backgroundColor = .backgroundColor
         
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textAlignment = .center
@@ -59,20 +58,20 @@ extension LoginView {
     }
     
     func layout() {
-        addSubview(titleLabel)
-        addSubview(signButton)
-        addSubview(errorMessageLabel)
+        view.addSubview(titleLabel)
+        view.addSubview(signButton)
+        view.addSubview(errorMessageLabel)
         
         // Title
         NSLayoutConstraint.activate([
             signButton.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 5),
-            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 5),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 5),
+            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 5),
         ])
         
         // SignButton
         NSLayoutConstraint.activate([
-            signButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            signButton.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             signButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             signButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
         ])
@@ -86,7 +85,7 @@ extension LoginView {
     }
 }
 
-extension LoginView {
+extension LoginViewController {
     @objc func signInTapped(sender: UIButton){
         login()
     }
@@ -117,13 +116,14 @@ extension LoginView {
             switch result {
             case .success(let accessTokenResponse):
                 
-                //TODO: - Save token (accessTokenResponse.accessToken) in KeyChain
+                //Save token in KeyChain
+                try? self.keychain.set(accessTokenResponse.accessToken, for : self.accessTokenKey)
                 
                 let url = "https://api.unsplash.com/me?access_token=\(accessTokenResponse.accessToken)"
                 ProfileManager.shared.fetchProfile(with: url) { result in
                     switch result {
                     case .success(let profile):
-                        self.isHidden = true
+                        self.dismiss(animated: true, completion: nil)
                         self.delegate?.getProfile(profile: profile)
                     case .failure(let error):
                         message = error.localizedDescription

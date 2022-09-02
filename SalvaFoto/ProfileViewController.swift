@@ -6,37 +6,45 @@
 //
 
 import UIKit
+import SwiftyKeychainKit
 
 class ProfileViewController: UIViewController {
     
-    let loginView = LoginView()
+    // Profile
+    let profile: User? = nil
+    let imageView = UIImageView()
+    
+    // Keychain
+    let keychain = Keychain(service: "storage")
+    let accessTokenKey = KeychainKey<String>(key: "key")
     
     override func viewDidLoad() {
-        
-        //TODO: - Check the token in KeyChain
-        
         style()
-        layout()
+        checkProfile()
     }
 }
 
 extension ProfileViewController {
     private func style() {
         self.view.backgroundColor = .backgroundColor
-        loginView.delegate = self
+        
+        // Image
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.backgroundColor = .green
+        imageView.clipsToBounds = true
+        imageView.layer.cornerRadius = 100
     }
     
-    private func layout() {
-        view.addSubview(loginView)
+    private func layoutProfile() {
+        view.addSubview(imageView)
         
-        // LoginView
+        // ImageView
         NSLayoutConstraint.activate([
-            loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            loginView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginView.topAnchor.constraint(equalTo: view.topAnchor),
-            loginView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            loginView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            loginView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            imageView.heightAnchor.constraint(equalToConstant: 200),
+            imageView.widthAnchor.constraint(equalToConstant: 200),
         ])
     }
 }
@@ -44,6 +52,29 @@ extension ProfileViewController {
 extension ProfileViewController: LoginViewDelegate {
     func getProfile(profile: User) {
         configureProfile(with: profile)
+    }
+    
+    func checkProfile() {
+        let token = try? keychain.get(accessTokenKey)
+        if  let token = token {
+            let url = "https://api.unsplash.com/me?access_token=\(token)"
+            ProfileManager.shared.fetchProfile(with: url) { result in
+                switch result {
+                case .success(let profile):
+                    self.layoutProfile()
+                    self.getProfile(profile: profile)
+                    print(profile)
+                case .failure(let error):
+                    print(error.localizedDescription)
+                }
+            }
+        } else {
+            let controller = LoginViewController()
+            controller.modalPresentationStyle = .currentContext
+            controller.modalTransitionStyle = .crossDissolve
+            controller.delegate = self
+            self.present(controller,animated: true, completion: nil)
+        }
     }
     
     func configureProfile(with profile: User) {

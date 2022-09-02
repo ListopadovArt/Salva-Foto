@@ -24,11 +24,11 @@ class MainViewController: UITabBarController {
         favoriteVC.setTabBarImage(imageName: "heart.fill", title: "Favorite")
         profileVC.setTabBarImage(imageName: "person.crop.circle", title: "Profile")
         
-        let summaryNC = UINavigationController(rootViewController: searchVC)
-        let moneyNC = UINavigationController(rootViewController: favoriteVC)
-        let moreNC = UINavigationController(rootViewController: profileVC)
+        let searchNC = UINavigationController(rootViewController: searchVC)
+        let favoriteNC = UINavigationController(rootViewController: favoriteVC)
+        let profileNC = UINavigationController(rootViewController: profileVC)
         
-        let tabBarList = [summaryNC, moneyNC, moreNC]
+        let tabBarList = [searchNC, favoriteNC, profileNC]
         
         viewControllers = tabBarList
     }
