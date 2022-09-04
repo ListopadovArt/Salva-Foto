@@ -9,7 +9,7 @@ import UIKit
 import SwiftyKeychainKit
 
 protocol LoginViewDelegate: AnyObject {
-    func getProfile(profile: User)
+    func configureProfile(with profile: User)
 }
 
 class LoginViewController: UIViewController {
@@ -39,7 +39,7 @@ extension LoginViewController {
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         titleLabel.numberOfLines = 1
-        titleLabel.text = "Login to Unsplash"
+        titleLabel.text = "Login by Unsplash"
         titleLabel.textColor = .white
         
         signButton.translatesAutoresizingMaskIntoConstraints = false
@@ -115,7 +115,6 @@ extension LoginViewController {
             var message: String = ""
             switch result {
             case .success(let accessTokenResponse):
-                
                 //Save token in KeyChain
                 try? self.keychain.set(accessTokenResponse.accessToken, for : self.accessTokenKey)
                 
@@ -123,8 +122,9 @@ extension LoginViewController {
                 ProfileManager.shared.fetchProfile(with: url) { result in
                     switch result {
                     case .success(let profile):
-                        self.dismiss(animated: true, completion: nil)
-                        self.delegate?.getProfile(profile: profile)
+                        self.dismiss(animated: true) {
+                            self.delegate?.configureProfile(with: profile)
+                        }
                     case .failure(let error):
                         message = error.localizedDescription
                         self.errorMessageLabel.text = message

@@ -8,7 +8,9 @@
 import UIKit
 
 class FavoriteViewController: UIViewController {
+    
     override func viewDidLoad() {
-        view.backgroundColor = .systemCyan
+        view.backgroundColor = .backgroundColor
     }
+    
 }
