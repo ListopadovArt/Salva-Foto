@@ -128,17 +128,17 @@ struct Urls: Codable {
 
 // MARK: - User
 struct User: Codable {
-    let id: String
+    let id: String?
     let updatedAt: Date
-    let username, name, firstName: String
+    let username, name, firstName: String?
     let lastName, twitterUsername: String?
     let portfolioURL: String?
     let bio, location: String?
     let links: UserLinks
     let profileImage: ProfileImage
     let instagramUsername: String?
-    let totalCollections, totalLikes, totalPhotos: Int
-    let acceptedTos, forHire: Bool
+    let totalCollections, totalLikes, totalPhotos: Int?
+    let acceptedTos, forHire: Bool?
     let social: Social
     
     enum CodingKeys: String, CodingKey {
@@ -163,8 +163,8 @@ struct User: Codable {
 
 // MARK: - UserLinks
 struct UserLinks: Codable {
-    let linksSelf, html, photos, likes: String
-    let portfolio, following, followers: String
+    let linksSelf, html, photos, likes: String?
+    let portfolio, following, followers: String?
     
     enum CodingKeys: String, CodingKey {
         case linksSelf = "self"
@@ -174,7 +174,7 @@ struct UserLinks: Codable {
 
 // MARK: - ProfileImage
 struct ProfileImage: Codable {
-    let small, medium, large: String
+    let small, medium, large: String?
 }
 
 // MARK: - Social

@@ -13,8 +13,34 @@ class ProfileViewController: UIViewController {
     
     // Profile
     let profile: User? = nil
-    let imageView = UIImageView()
-    let logOutButton = UIButton(type: .system)
+    let titleLabel = UILabel()
+    let avatarImage = UIImageView()
+    let bioLabel = UILabel()
+    let locationImage = UIImageView()
+    let locationLabel = UILabel()
+    let usernameImage = UIImageView()
+    let usernameLabel = UILabel()
+    let likeImage = UIImageView()
+    let likeLabel = UILabel()
+    let photoImage = UIImageView()
+    let photoLabel = UILabel()
+    let collectionImage = UIImageView()
+    let collectionLabel = UILabel()
+    
+    lazy var infoBarButtonItem: UIBarButtonItem = {
+        let image = UIImage(systemName: "info.circle")
+        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(infoTapped))
+        barButtonItem.tintColor = .white
+        return barButtonItem
+    }()
+    
+    lazy var menuBarButton: UIBarButtonItem = {
+        let image = UIImage(systemName: "ellipsis.circle")
+        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(menuTapped))
+        barButtonItem.tintColor = .white
+        return barButtonItem
+    }()
+    
     
     // Keychain
     let keychain = Keychain(service: "storage")
@@ -30,6 +56,11 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         style()
         checkProfile()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
+        navigationItem.rightBarButtonItems = [menuBarButton, infoBarButtonItem]
     }
 }
 
@@ -37,39 +68,170 @@ extension ProfileViewController {
     private func style() {
         self.view.backgroundColor = .backgroundColor
         
-        // Image
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.clipsToBounds = true
-        imageView.layer.cornerRadius = 100
+        // Title
+        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        titleLabel.textColor = .white
+        titleLabel.numberOfLines = 1
         
-        // Button
-        logOutButton.translatesAutoresizingMaskIntoConstraints = false
-        logOutButton.configuration = .filled()
-        logOutButton.configuration?.imagePadding = 8
-        logOutButton.setTitle("Log Out", for: [])
-        logOutButton.addTarget(self, action: #selector(logOutTapped), for: .primaryActionTriggered)
-        logOutButton.tintColor = .appColor
-        logOutButton.setTitleColor(.black, for: .normal)
+        // Image
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        avatarImage.clipsToBounds = true
+        avatarImage.contentMode = .scaleAspectFill
+        avatarImage.layer.cornerRadius = 5
+        
+        // Location
+        locationImage.translatesAutoresizingMaskIntoConstraints = false
+        locationImage.image = UIImage(systemName: "location.fill")
+        locationImage.tintColor = UIColor(red: 0.56, green: 0.56, blue: 0.60, alpha: 1.00)
+        
+        locationLabel.translatesAutoresizingMaskIntoConstraints = false
+        locationLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        locationLabel.textColor = .white
+        locationLabel.numberOfLines = 1
+        
+        // Username
+        usernameImage.translatesAutoresizingMaskIntoConstraints = false
+        usernameImage.image = UIImage(systemName: "person.fill")
+        usernameImage.tintColor = UIColor(red: 0.56, green: 0.56, blue: 0.60, alpha: 1.00)
+        
+        usernameLabel.translatesAutoresizingMaskIntoConstraints = false
+        usernameLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        usernameLabel.textColor = .white
+        usernameLabel.numberOfLines = 1
+        
+        // Email
+        likeImage.translatesAutoresizingMaskIntoConstraints = false
+        likeImage.image = UIImage(systemName: "heart.fill")
+        likeImage.tintColor = UIColor(red: 0.56, green: 0.56, blue: 0.60, alpha: 1.00)
+        
+        likeLabel.translatesAutoresizingMaskIntoConstraints = false
+        likeLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        likeLabel.textColor = .white
+        likeLabel.numberOfLines = 1
+        
+        // Photos
+        photoImage.translatesAutoresizingMaskIntoConstraints = false
+        photoImage.image = UIImage(systemName: "photo.fill")
+        photoImage.tintColor = UIColor(red: 0.56, green: 0.56, blue: 0.60, alpha: 1.00)
+        
+        photoLabel.translatesAutoresizingMaskIntoConstraints = false
+        photoLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        photoLabel.textColor = .white
+        photoLabel.numberOfLines = 1
+        
+        // Collections
+        collectionImage.translatesAutoresizingMaskIntoConstraints = false
+        collectionImage.image = UIImage(systemName: "photo.on.rectangle")
+        collectionImage.tintColor = UIColor(red: 0.56, green: 0.56, blue: 0.60, alpha: 1.00)
+        
+        collectionLabel.translatesAutoresizingMaskIntoConstraints = false
+        collectionLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        collectionLabel.textColor = .white
+        collectionLabel.numberOfLines = 1
+        
+        // Bio
+        bioLabel.translatesAutoresizingMaskIntoConstraints = false
+        bioLabel.font = UIFont.preferredFont(forTextStyle: .body)
+        bioLabel.textColor = .white
+        bioLabel.numberOfLines = 0
     }
     
     private func layoutProfile() {
-        view.addSubview(imageView)
-        view.addSubview(logOutButton)
+        view.addSubview(titleLabel)
+        view.addSubview(avatarImage)
+        view.addSubview(locationImage)
+        view.addSubview(locationLabel)
+        view.addSubview(usernameImage)
+        view.addSubview(usernameLabel)
+        view.addSubview(likeImage)
+        view.addSubview(likeLabel)
+        view.addSubview(photoImage)
+        view.addSubview(photoLabel)
+        view.addSubview(collectionImage)
+        view.addSubview(collectionLabel)
+        view.addSubview(bioLabel)
+        
+        // Title
+        NSLayoutConstraint.activate([
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 2),
+        ])
         
         // ImageView
         NSLayoutConstraint.activate([
-            imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-            imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            imageView.heightAnchor.constraint(equalToConstant: 200),
-            imageView.widthAnchor.constraint(equalToConstant: 200),
+            avatarImage.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2),
+            avatarImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            avatarImage.widthAnchor.constraint(equalToConstant: 100),
+            avatarImage.heightAnchor.constraint(equalToConstant: 150),
         ])
         
-        // LogOutButton
+        // Location
         NSLayoutConstraint.activate([
-            logOutButton.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 5),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: logOutButton.trailingAnchor, multiplier: 5),
-            view.bottomAnchor.constraint(equalToSystemSpacingBelow: logOutButton.bottomAnchor, multiplier: 10)
+            locationImage.topAnchor.constraint(equalTo: avatarImage.topAnchor),
+            locationImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            locationImage.heightAnchor.constraint(equalToConstant: 15),
+            locationImage.widthAnchor.constraint(equalToConstant: 15),
+            
+            locationLabel.centerYAnchor.constraint(equalTo: locationImage.centerYAnchor),
+            locationLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: locationImage.trailingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: locationLabel.trailingAnchor, multiplier: 2),
+        ])
+        
+        // Username
+        NSLayoutConstraint.activate([
+            usernameImage.topAnchor.constraint(equalToSystemSpacingBelow: locationImage.bottomAnchor, multiplier: 2),
+            usernameImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            usernameImage.heightAnchor.constraint(equalToConstant: 15),
+            usernameImage.widthAnchor.constraint(equalToConstant: 15),
+            
+            usernameLabel.centerYAnchor.constraint(equalTo: usernameImage.centerYAnchor),
+            usernameLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: usernameImage.trailingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: usernameLabel.trailingAnchor, multiplier: 2),
+        ])
+        
+        // Likes
+        NSLayoutConstraint.activate([
+            likeImage.topAnchor.constraint(equalToSystemSpacingBelow: usernameImage.bottomAnchor, multiplier: 2),
+            likeImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            likeImage.heightAnchor.constraint(equalToConstant: 15),
+            likeImage.widthAnchor.constraint(equalToConstant: 15),
+            
+            likeLabel.centerYAnchor.constraint(equalTo: likeImage.centerYAnchor),
+            likeLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: usernameImage.trailingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: usernameLabel.trailingAnchor, multiplier: 2),
+        ])
+        
+        // Photos
+        NSLayoutConstraint.activate([
+            photoImage.topAnchor.constraint(equalToSystemSpacingBelow: likeImage.bottomAnchor, multiplier: 2),
+            photoImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            photoImage.heightAnchor.constraint(equalToConstant: 15),
+            photoImage.widthAnchor.constraint(equalToConstant: 15),
+            
+            photoLabel.centerYAnchor.constraint(equalTo: photoImage.centerYAnchor),
+            photoLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: likeImage.trailingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: likeLabel.trailingAnchor, multiplier: 2),
+        ])
+        
+        // Collections
+        NSLayoutConstraint.activate([
+            collectionImage.topAnchor.constraint(equalToSystemSpacingBelow: photoImage.bottomAnchor, multiplier: 2),
+            collectionImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            collectionImage.heightAnchor.constraint(equalToConstant: 15),
+            collectionImage.widthAnchor.constraint(equalToConstant: 15),
+            
+            collectionLabel.centerYAnchor.constraint(equalTo: collectionImage.centerYAnchor),
+            collectionLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: photoImage.trailingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: photoLabel.trailingAnchor, multiplier: 2),
+        ])
+        
+        //Bio Label
+        NSLayoutConstraint.activate([
+            bioLabel.topAnchor.constraint(equalToSystemSpacingBelow: avatarImage.bottomAnchor, multiplier: 2),
+            bioLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: bioLabel.trailingAnchor, multiplier: 2),
         ])
     }
     
@@ -101,15 +263,51 @@ extension ProfileViewController: LoginViewDelegate {
     func configureProfile(with profile: User) {
         self.layoutProfile()
         
-        let imageUrl = profile.profileImage.small
+        // Avatar Image
+        if let imageUrl = profile.profileImage.medium {
+            if let url = URL(string: imageUrl) {
+                self.avatarImage.kf.setImage(with: url)
+            }
+        }
         
-        if let url = URL(string: imageUrl) {
-            self.imageView.kf.setImage(with: url)
+        // Title Label
+        if let name = profile.name {
+            titleLabel.text = "\(name)"
+        }
+        
+        // Bio Label
+        if let bio = profile.bio {
+            bioLabel.text = "\(bio)"
+        }
+        
+        // Location
+        if let location = profile.location {
+            locationLabel.text = "\(location)"
+        }
+        
+        // Username
+        if let username = profile.username {
+            usernameLabel.text = "@\(username)"
+        }
+        
+        // Likes
+        if let likes = profile.totalLikes {
+            likeLabel.text = "\(likes)"
+        }
+        
+        // Photos
+        if let photos = profile.totalPhotos {
+            photoLabel.text = "\(photos)"
+        }
+        
+        // Collections
+        if let collection = profile.totalCollections {
+            collectionLabel.text = "\(collection)"
         }
     }
 }
 
-// Network
+// MARK: - Network
 extension ProfileViewController {
     
     private func displayError(_ error: NetworkError) {
@@ -134,14 +332,22 @@ extension ProfileViewController {
     private func showErrorAlert(title: String, message: String) {
         errorAlert.title = title
         errorAlert.message = message
-        
         present(errorAlert, animated: true, completion: nil)
     }
 }
 
+// MARK: - Actions
 extension ProfileViewController {
-    @objc func logOutTapped(sender: UIButton){
-        try? keychain.removeAll()
-        checkProfile()
+    
+    @objc func plusTapped(sender: UIButton) {
+        //TODO: - Add Plus button functionality
+    }
+    
+    @objc func infoTapped(sender: UIButton) {
+        //TODO: - Add Info button functionality
+    }
+    
+    @objc func menuTapped(sender: UIButton) {
+        //TODO: - Add Menu button functionality
     }
 }
