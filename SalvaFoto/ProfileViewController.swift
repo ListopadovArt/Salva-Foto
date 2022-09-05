@@ -264,7 +264,7 @@ extension ProfileViewController: LoginViewDelegate {
         self.layoutProfile()
         
         // Avatar Image
-        if let imageUrl = profile.profileImage.medium {
+        if let imageUrl = profile.profileImage.large {
             if let url = URL(string: imageUrl) {
                 self.avatarImage.kf.setImage(with: url)
             }
@@ -339,15 +339,43 @@ extension ProfileViewController {
 // MARK: - Actions
 extension ProfileViewController {
     
-    @objc func plusTapped(sender: UIButton) {
-        //TODO: - Add Plus button functionality
-    }
-    
     @objc func infoTapped(sender: UIButton) {
         //TODO: - Add Info button functionality
     }
     
     @objc func menuTapped(sender: UIButton) {
-        //TODO: - Add Menu button functionality
+        showMenuAlert()
+    }
+    
+    private func showMenuAlert() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .alert)
+        
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) in
+            self.settings()
+        }
+        settingsAction.setValue(UIColor.white, forKey: "titleTextColor")
+        
+        let logOutAction = UIAlertAction(title: "Log Out", style: .default) { (_) in
+            self.logOut()
+        }
+        logOutAction.setValue(UIColor.white, forKey: "titleTextColor")
+        
+        let canсelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        canсelAction.setValue(UIColor.white, forKey: "titleTextColor")
+        
+        alert.addAction(settingsAction)
+        alert.addAction(logOutAction)
+        alert.addAction(canсelAction)
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func logOut(){
+        try? keychain.remove(accessTokenKey)
+        checkProfile()
+    }
+    
+    private func settings(){
+        //TODO: - Add Settings button functionality
     }
 }
