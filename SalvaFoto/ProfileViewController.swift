@@ -243,7 +243,6 @@ extension ProfileViewController {
                 switch result {
                 case .success(let profile):
                     self.configureProfile(with: profile)
-                    print(profile)
                 case .failure(let error):
                     self.displayError(error)
                 }
@@ -261,7 +260,6 @@ extension ProfileViewController {
 extension ProfileViewController: LoginViewDelegate {
     
     func configureProfile(with profile: User) {
-        self.layoutProfile()
         
         // Avatar Image
         if let imageUrl = profile.profileImage.large {
@@ -304,6 +302,7 @@ extension ProfileViewController: LoginViewDelegate {
         if let collection = profile.totalCollections {
             collectionLabel.text = "\(collection)"
         }
+        self.layoutProfile()
     }
 }
 

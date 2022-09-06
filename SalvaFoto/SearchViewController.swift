@@ -126,12 +126,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         let image = imageArray[indexPath.item]
         item.configure(with: image)
         
-        if image.likedByUser! {
-            makeButton(button: item.likeButton, systemName: "heart.fill")
-        } else {
-            makeButton(button: item.likeButton, systemName: "heart")
-        }
-        
         return item
     }
     

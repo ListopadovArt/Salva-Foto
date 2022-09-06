@@ -12,7 +12,7 @@ class ImageCell: UICollectionViewCell {
     
     var itemImage = UIImageView()
     let nameLabel = UILabel()
-    let likeButton = UIButton()
+    let likeImage = UIImageView()
     let likesLabel = UILabel()
     var avatarImage = UIImageView()
     
@@ -46,9 +46,10 @@ extension ImageCell {
         nameLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
         nameLabel.textColor = .white
         
-        likeButton.translatesAutoresizingMaskIntoConstraints = false
-        makeButton(button: likeButton, systemName: "heart")
-        likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
+        likeImage.translatesAutoresizingMaskIntoConstraints = false
+        let image = UIImage(systemName: "heart.fill")
+        likeImage.image = image
+        likeImage.tintColor = .white
         
         likesLabel.translatesAutoresizingMaskIntoConstraints = false
         likesLabel.textAlignment = .left
@@ -60,7 +61,7 @@ extension ImageCell {
     private func layout() {
         contentView.addSubview(itemImage)
         contentView.addSubview(avatarImage)
-        contentView.addSubview(likeButton)
+        contentView.addSubview(likeImage)
         contentView.addSubview(likesLabel)
         contentView.addSubview(nameLabel)
         
@@ -70,11 +71,13 @@ extension ImageCell {
             itemImage.trailingAnchor.constraint(equalTo: trailingAnchor),
             itemImage.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            likeButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
-            likeButton.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            likeImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
+            likeImage.topAnchor.constraint(equalTo: topAnchor, constant: 10),
+            likeImage.heightAnchor.constraint(equalToConstant: 15),
+            likeImage.widthAnchor.constraint(equalToConstant: 15),
             
-            likesLabel.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
-            likesLabel.leadingAnchor.constraint(equalTo: likeButton.trailingAnchor, constant: 3),
+            likesLabel.centerYAnchor.constraint(equalTo: likeImage.centerYAnchor),
+            likesLabel.leadingAnchor.constraint(equalTo: likeImage.trailingAnchor, constant: 3),
             
             avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
             avatarImage.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -5),
@@ -113,19 +116,6 @@ extension ImageCell {
             if let url = URL(string: avatarUserUrl) {
                 avatarImage.kf.setImage(with: url)
             }
-        }
-    }
-}
-
-// MARK: Actions
-extension ImageCell {
-    @objc func likeTapped(_ sender: UIButton) {
-        sender.isSelected = !sender.isSelected
-        if sender.isSelected{
-            makeButton(button: likeButton, systemName: "heart.fill")
-        }
-        else{
-            makeButton(button: likeButton, systemName: "heart")
         }
     }
 }
