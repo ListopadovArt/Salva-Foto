@@ -7,6 +7,7 @@
 
 import UIKit
 import Kingfisher
+import SwiftyKeychainKit
 
 class ShowImageViewController: UIViewController {
     
@@ -18,7 +19,19 @@ class ShowImageViewController: UIViewController {
     let likeButton = UIButton()
     let saveButton = UIButton()
     
+    // Keychain
+    let keychain = Keychain(service: "storage")
+    let accessTokenKey = KeychainKey<String>(key: "key")
+    
+    // Alert
     lazy var alert: UIAlertController = {
+        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }()
+    
+    // Error alert
+    lazy var errorAlert: UIAlertController = {
         let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
@@ -28,21 +41,54 @@ class ShowImageViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
+        fetchData()
+        configure(model: image)
     }
     
     func configure(model: ImageData){
-        let imageUrl = model.urls.small 
-        if let url = URL(string: imageUrl) {
-            itemImage.kf.setImage(with: url)
-        }
         titleLabel.text = model.user?.name
+        
+        if let like = model.likedByUser {
+            if like {
+                makeButton(button: likeButton, systemName: "heart.fill")
+                likeButton.isSelected = true
+            } else {
+                makeButton(button: likeButton, systemName: "heart")
+                likeButton.isSelected = false
+            }
+        }
     }
     
     private func showAlert(title: String, message: String) {
         alert.title = title
         alert.message = message
-        
         present(alert, animated: true, completion: nil)
+    }
+    
+    private func displayError(_ error: NetworkError) {
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    
+    private func titleAndMessage(for error: NetworkError) -> (String, String) {
+        let title: String
+        let message: String
+        switch error {
+        case .serverError:
+            title = "Server Error"
+            message = "We could not process your request. Please try again."
+        case .decodingError:
+            title = "Network Error"
+            message = "Ensure you are connected to the internet. Please try again."
+        }
+        return (title, message)
+    }
+    
+    private func showErrorAlert(title: String, message: String) {
+        errorAlert.title = title
+        errorAlert.message = message
+        
+        present(errorAlert, animated: true, completion: nil)
     }
 }
 
@@ -70,7 +116,6 @@ extension ShowImageViewController {
         itemImage.contentMode = .scaleAspectFill
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
-        makeButton(button: likeButton, systemName: "heart")
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
         
         saveButton.translatesAutoresizingMaskIntoConstraints = false
@@ -105,7 +150,6 @@ extension ShowImageViewController {
             itemImage.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             itemImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            
             likeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: itemImage.leadingAnchor, multiplier: 5),
             likeButton.bottomAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: -20),
             likeButton.heightAnchor.constraint(equalToConstant: 30),
@@ -127,11 +171,30 @@ extension ShowImageViewController {
     
     @objc func likeTapped(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        if sender.isSelected{
-            makeButton(button: likeButton, systemName: "heart.fill")
-        }
-        else{
-            makeButton(button: likeButton, systemName: "heart")
+        
+        let token = try? keychain.get(accessTokenKey)
+        if  let token = token {
+            if sender.isSelected{
+                makeButton(button: likeButton, systemName: "heart.fill")
+                if let id = image.id {
+                    ShowManager.shared.setLikeToPhoto(id: id, token: token, user: image.user!, photo: image) { result in
+                        switch result {
+                        case .success(let image):
+                            if let photo = image.photo {
+                                self.image = photo
+                            }
+                        case .failure(let error):
+                            self.displayError(error)
+                        }
+                    }
+                }
+            }
+            else{
+                makeButton(button: likeButton, systemName: "heart")
+                if let id = image.id {
+                    ShowManager.shared.removeLikeFromPhoto(id: id, token: token)
+                }
+            }
         }
     }
     
@@ -156,5 +219,13 @@ extension ShowImageViewController {
         } else {
             showAlert(title: "Success!", message: "Photo uploaded to gallery.")
         }
+    }
+}
+
+// MARK: - Networking
+extension ShowImageViewController {
+    private func fetchData() {
+        //TODO: - Implement image loading
+        // https://unsplash.com/documentation#get-a-photo
     }
 }

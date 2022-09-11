@@ -125,7 +125,6 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         }
         let image = imageArray[indexPath.item]
         item.configure(with: image)
-        
         return item
     }
     
@@ -133,7 +132,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         let controller = ShowImageViewController()
         let image = imageArray[indexPath.item]
-        controller.configure(model: image)
+        controller.image = image
         controller.modalPresentationStyle = .fullScreen
         controller.modalTransitionStyle = .crossDissolve
         present(controller, animated: true)

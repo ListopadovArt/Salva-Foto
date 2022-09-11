@@ -16,6 +16,7 @@
 		AF783EE628C13A3100650D68 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF783EE528C13A3100650D68 /* Authenticator.swift */; };
 		AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8925012899ABDD006ED79F /* ImageCell.swift */; };
 		AF93A2DB289EEE2200AEC85B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93A2DA289EEE2200AEC85B /* Buttons.swift */; };
+		AFA46A2E28C7CF29004141A7 /* ShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA46A2D28C7CF29004141A7 /* ShowManager.swift */; };
 		AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */; };
 		AFC2856D28BEABEA00916141 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC2856C28BEABEA00916141 /* LoginViewController.swift */; };
 		AFD27AA128B02ED300E45A54 /* BlurHashLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD27AA028B02ED300E45A54 /* BlurHashLoadable.swift */; };
@@ -41,6 +42,7 @@
 		AF783EE528C13A3100650D68 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
 		AF8925012899ABDD006ED79F /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		AF93A2DA289EEE2200AEC85B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		AFA46A2D28C7CF29004141A7 /* ShowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManager.swift; sourceTree = "<group>"; };
 		AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
 		AFC2856C28BEABEA00916141 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		AFD27AA028B02ED300E45A54 /* BlurHashLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHashLoadable.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			children = (
 				AF0E4042289AF60A0016217D /* SearchManager.swift */,
 				AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */,
+				AFA46A2D28C7CF29004141A7 /* ShowManager.swift */,
 				AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */,
 				AF203D7B28BFF884000BD4D7 /* Errors.swift */,
 				AF783EE528C13A3100650D68 /* Authenticator.swift */,
@@ -330,6 +333,7 @@
 				AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */,
 				AFC2856D28BEABEA00916141 /* LoginViewController.swift in Sources */,
 				AF0E4041289AF4CC0016217D /* ImageData.swift in Sources */,
+				AFA46A2E28C7CF29004141A7 /* ShowManager.swift in Sources */,
 				AF203D7A28BFF706000BD4D7 /* FavoriteManager.swift in Sources */,
 				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,
 				AF203D7C28BFF884000BD4D7 /* Errors.swift in Sources */,
