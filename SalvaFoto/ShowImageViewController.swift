@@ -11,7 +11,7 @@ import SwiftyKeychainKit
 
 class ShowImageViewController: UIViewController {
     
-    var image: ImageData!
+    var image: Photo!
     let itemImage = UIImageView()
     let headerView = UIView()
     let escapeButton = UIButton()
@@ -45,7 +45,7 @@ class ShowImageViewController: UIViewController {
         configure(model: image)
     }
     
-    func configure(model: ImageData){
+    func configure(model: Photo){
         titleLabel.text = model.user?.name
         
         if let like = model.likedByUser {
@@ -180,9 +180,9 @@ extension ShowImageViewController {
                     ShowManager.shared.setLikeToPhoto(id: id, token: token, user: image.user!, photo: image) { result in
                         switch result {
                         case .success(let image):
-                            if let photo = image.photo {
-                                self.image = photo
-                            }
+//                            if let photo = image.photo {
+                            self.image = image.photo
+//                            }
                         case .failure(let error):
                             self.displayError(error)
                         }

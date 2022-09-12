@@ -92,19 +92,19 @@ extension ImageCell {
 }
 
 extension ImageCell {
-    func configure(with model: ImageData) {
-        let imageUrl = model.urls.small
+    func configure(with model: Photo) {
+        let imageUrl = model.urls?.small
         
-        if let url = URL(string: imageUrl) {
+//        if let url = URL(string: imageUrl) {
             if itemImage.image == nil {
                 if let blur = model.blurHash {
                     let blurImage =  UIImage(blurHash: blur, size: CGSize(width: 32, height: 32))
                     itemImage.image = blurImage
                 }
             } else {
-                itemImage.kf.setImage(with: url)
+                itemImage.kf.setImage(with: imageUrl)
             }
-        }
+//        }
         
         nameLabel.text = model.user?.name
         
@@ -112,10 +112,10 @@ extension ImageCell {
             likesLabel.text = String(likes)
         }
         
-        if let avatarUserUrl = model.user?.profileImage.small {
-            if let url = URL(string: avatarUserUrl) {
-                avatarImage.kf.setImage(with: url)
-            }
+        if let avatarUserUrl = model.user?.profileImage?.small {
+//            if let url = avatarUserUrl {
+                avatarImage.kf.setImage(with: avatarUserUrl)
+//            }
         }
     }
 }

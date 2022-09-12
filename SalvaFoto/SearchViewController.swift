@@ -25,7 +25,7 @@ class SearchViewController: UIViewController {
         return alert
     }()
     
-    var imageArray = [ImageData]()
+    var imageArray = [Photo]()
     
     let refreshControl = UIRefreshControl()
     
@@ -177,7 +177,9 @@ extension SearchViewController {
         SearchManager.shared.performPhotoSearchRequest(with: "\(host)\(searchPhotos)&query=\(word)\(accessKey)") { result in
             switch result {
             case .success(let images):
-                self.imageArray = images.results
+                if let photos = images.photos {
+                    self.imageArray = photos
+                }
             case .failure(let error):
                 self.displayError(error)
             }

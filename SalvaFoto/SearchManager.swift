@@ -13,7 +13,7 @@ class SearchManager {
     
     init() {}
     
-    func performRandomPhotosRequest(with urlString: String, completion: @escaping (Result<[ImageData],NetworkError>) -> Void){
+    func performRandomPhotosRequest(with urlString: String, completion: @escaping (Result<[Photo],NetworkError>) -> Void){
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -25,7 +25,7 @@ class SearchManager {
                     do {
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .iso8601
-                        let image = try decoder.decode([ImageData].self, from: data)
+                        let image = try decoder.decode([Photo].self, from: data)
                         completion(.success(image))
                     } catch {
                         completion(.failure(.decodingError))
@@ -36,7 +36,7 @@ class SearchManager {
         }
     }
     
-    func performPhotoSearchRequest(with urlString: String, completion: @escaping (Result<SearchImages,NetworkError>) -> Void){
+    func performPhotoSearchRequest(with urlString: String, completion: @escaping (Result<Search,NetworkError>) -> Void){
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -48,7 +48,7 @@ class SearchManager {
                     do {
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .iso8601
-                        let image = try decoder.decode(SearchImages.self, from: data)
+                        let image = try decoder.decode(Search.self, from: data)
                         completion(.success(image))
                     } catch {
                         completion(.failure(.decodingError))

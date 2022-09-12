@@ -262,10 +262,10 @@ extension ProfileViewController: LoginViewDelegate {
     func configureProfile(with profile: User) {
         
         // Avatar Image
-        if let imageUrl = profile.profileImage.large {
-            if let url = URL(string: imageUrl) {
-                self.avatarImage.kf.setImage(with: url)
-            }
+        if let imageUrl = profile.profileImage?.large {
+//            if let url = URL(string: imageUrl) {
+                self.avatarImage.kf.setImage(with: imageUrl)
+//            }
         }
         
         // Title Label

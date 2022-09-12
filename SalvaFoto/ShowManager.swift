@@ -13,7 +13,7 @@ class ShowManager {
     
     init() {}
     
-    func setLikeToPhoto(id: String, token: String, user: User, photo: ImageData, completion: @escaping (Result<Like,NetworkError>) -> Void) {
+    func setLikeToPhoto(id: String, token: String, user: User, photo: Photo, completion: @escaping (Result<Like,NetworkError>) -> Void) {
         var photo = photo
         photo.likedByUser = true
         let uploadDataModel = Like(photo: photo, user: user)
