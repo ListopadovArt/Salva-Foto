@@ -41,12 +41,15 @@ class ShowImageViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        fetchData()
-        configure(model: image)
+        fetchData(id: image.id!)
     }
     
     func configure(model: Photo){
         titleLabel.text = model.user?.name
+        
+        //TODO: - Implement a loading spinner
+        
+        itemImage.kf.setImage(with: model.urls?.small)
         
         if let like = model.likedByUser {
             if like {
@@ -173,6 +176,7 @@ extension ShowImageViewController {
         sender.isSelected = !sender.isSelected
         
         let token = try? keychain.get(accessTokenKey)
+        
         if  let token = token {
             if sender.isSelected{
                 makeButton(button: likeButton, systemName: "heart.fill")
@@ -180,9 +184,7 @@ extension ShowImageViewController {
                     ShowManager.shared.setLikeToPhoto(id: id, token: token, user: image.user!, photo: image) { result in
                         switch result {
                         case .success(let image):
-//                            if let photo = image.photo {
                             self.image = image.photo
-//                            }
                         case .failure(let error):
                             self.displayError(error)
                         }
@@ -224,8 +226,19 @@ extension ShowImageViewController {
 
 // MARK: - Networking
 extension ShowImageViewController {
-    private func fetchData() {
-        //TODO: - Implement image loading
-        // https://unsplash.com/documentation#get-a-photo
+    private func fetchData(id: String) {
+        
+        let token = try? keychain.get(accessTokenKey)
+        if let token = token {
+           
+            ShowManager.shared.getPhoto(id: id, token: token) { result in
+                switch result {
+                case .success(let image):
+                    self.configure(model: image)
+                case .failure(let error):
+                    self.displayError(error)
+                }
+            }
+        }
     }
 }
