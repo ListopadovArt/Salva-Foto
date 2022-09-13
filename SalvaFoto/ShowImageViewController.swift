@@ -45,11 +45,8 @@ class ShowImageViewController: UIViewController {
     }
     
     func configure(model: Photo){
+        
         titleLabel.text = model.user?.name
-        
-        //TODO: - Implement a loading spinner
-        
-        itemImage.kf.setImage(with: model.urls?.small)
         
         if let like = model.likedByUser {
             if like {
@@ -60,6 +57,19 @@ class ShowImageViewController: UIViewController {
                 likeButton.isSelected = false
             }
         }
+        
+        let url = model.urls?.small
+        
+        let blurImage =  UIImage(blurHash: model.blurHash!, size: CGSize(width: 32, height: 32))
+        
+        itemImage.kf.setImage(
+            with: url,
+            placeholder: blurImage,
+            options: [
+                .scaleFactor(UIScreen.main.scale),
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
     }
     
     private func showAlert(title: String, message: String) {
@@ -194,7 +204,14 @@ extension ShowImageViewController {
             else{
                 makeButton(button: likeButton, systemName: "heart")
                 if let id = image.id {
-                    ShowManager.shared.removeLikeFromPhoto(id: id, token: token)
+                    ShowManager.shared.removeLikeFromPhoto(id: id, token: token) { result in
+                        switch result {
+                        case .success(let image):
+                            self.image = image.photo
+                        case .failure(let error):
+                            self.displayError(error)
+                        }
+                    }
                 }
             }
         }
@@ -230,7 +247,7 @@ extension ShowImageViewController {
         
         let token = try? keychain.get(accessTokenKey)
         if let token = token {
-           
+            
             ShowManager.shared.getPhoto(id: id, token: token) { result in
                 switch result {
                 case .success(let image):

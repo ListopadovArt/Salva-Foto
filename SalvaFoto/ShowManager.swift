@@ -70,8 +70,31 @@ class ShowManager {
         task.resume()
     }
     
-    func removeLikeFromPhoto(id: String, token: String){
+    func removeLikeFromPhoto(id: String, token: String, completion: @escaping (Result<Like,NetworkError>) -> Void) {
         
+        var request = URLRequest(url: URL(string: "https://api.unsplash.com/photos/\(id)/like")!,timeoutInterval: Double.infinity)
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "DELETE"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    completion(.failure(.serverError))
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let image = try decoder.decode(Like.self, from: data)
+                    completion(.success(image))
+                } catch {
+                    completion(.failure(.decodingError))
+                }
+            }
+        }
+        task.resume()
     }
 }
 
