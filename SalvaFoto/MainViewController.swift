@@ -34,10 +34,22 @@ class MainViewController: UITabBarController {
     }
     
     private func setupTabBar() {
-        tabBar.backgroundColor = .backgroundColor
         tabBar.tintColor = .appColor
-        tabBar.barTintColor = .systemGray
-        tabBar.isTranslucent = true
+        
+        if #available(iOS 15.0, *) {
+            let appearance = UITabBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = .backgroundColor
+            appearance.shadowImage = nil
+            appearance.shadowColor = nil
+            
+            tabBar.standardAppearance = appearance
+            tabBar.scrollEdgeAppearance = tabBar.standardAppearance
+        } else {
+            tabBar.backgroundColor = .backgroundColor
+            tabBar.barTintColor = .backgroundColor
+            tabBar.isTranslucent = false
+        }
     }
 }
 
