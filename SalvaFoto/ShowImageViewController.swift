@@ -252,10 +252,14 @@ extension ShowImageViewController {
                 switch result {
                 case .success(let image):
                     self.configure(model: image)
+                    self.likeButton.isHidden = false
                 case .failure(let error):
                     self.displayError(error)
                 }
             }
+        } else {
+            self.configure(model: self.image)
+            likeButton.isHidden = true
         }
     }
 }
