@@ -96,16 +96,18 @@ extension ImageCell {
         
         let url = model.urls?.small
         
-        let blurImage =  UIImage(blurHash: model.blurHash!, size: CGSize(width: 32, height: 32))
-        
-        itemImage.kf.setImage(
-            with: url,
-            placeholder: blurImage,
-            options: [
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
+        if let blur =  model.blurHash {
+            let blurImage =  UIImage(blurHash: blur, size: CGSize(width: 32, height: 32))
+
+            itemImage.kf.setImage(
+                with: url,
+                placeholder: blurImage,
+                options: [
+                    .scaleFactor(UIScreen.main.scale),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ])
+        }
         
         nameLabel.text = model.user?.name
         

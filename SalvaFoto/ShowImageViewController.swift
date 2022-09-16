@@ -18,6 +18,7 @@ class ShowImageViewController: UIViewController {
     let titleLabel = UILabel()
     let likeButton = UIButton()
     let saveButton = UIButton()
+    let infoButton = UIButton()
     
     // Keychain
     let keychain = Keychain(service: "storage")
@@ -134,6 +135,10 @@ extension ShowImageViewController {
         saveButton.translatesAutoresizingMaskIntoConstraints = false
         makeButton(button: saveButton, systemName: "arrow.down.to.line.alt")
         saveButton.addTarget(self, action: #selector(saveTapped), for: .primaryActionTriggered)
+        
+        infoButton.translatesAutoresizingMaskIntoConstraints = false
+        makeButton(button: infoButton, systemName: "info.circle")
+        infoButton.addTarget(self, action: #selector(infoTapped), for: .primaryActionTriggered)
     }
     
     private func layout() {
@@ -143,6 +148,7 @@ extension ShowImageViewController {
         view.addSubview(itemImage)
         view.addSubview(likeButton)
         view.addSubview(saveButton)
+        view.addSubview(infoButton)
         
         NSLayoutConstraint.activate([
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -172,6 +178,10 @@ extension ShowImageViewController {
             saveButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
             saveButton.heightAnchor.constraint(equalToConstant: 30),
             saveButton.widthAnchor.constraint(equalToConstant: 30),
+            
+            infoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            infoButton.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
+            
         ])
     }
 }
@@ -221,6 +231,17 @@ extension ShowImageViewController {
         if let image = itemImage.image {
             writeToPhotoAlbum(image: image)
         }
+    }
+    
+    @objc func infoTapped() {
+        print("Show Information")
+        let sheetViewController = InformPhotoViewController()
+        if let sheet = sheetViewController.sheetPresentationController {
+            sheet.detents = [.medium()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 32
+        }
+        present(sheetViewController, animated: true)
     }
 }
 
