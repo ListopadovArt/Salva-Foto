@@ -33,6 +33,7 @@ class FavoriteViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         style()
         layout()
@@ -174,8 +175,8 @@ extension FavoriteViewController {
 extension FavoriteViewController {
     @objc func refreshContent() {
         reset()
-        collectionView.reloadData()
         checkProfile()
+        collectionView.reloadData()
     }
     
     private func reset() {

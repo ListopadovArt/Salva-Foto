@@ -36,6 +36,7 @@ class SearchViewController: UIViewController {
     let searchPhotos = "search/photos?per_page=100"
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         style()
         layout()
         fetchData()

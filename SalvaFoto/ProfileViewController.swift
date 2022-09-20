@@ -53,9 +53,14 @@ class ProfileViewController: UIViewController {
         return alert
     }()
     
-    override func viewDidLoad() {
-        style()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         checkProfile()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        style()
         setupNavigationBar()
     }
     
@@ -260,49 +265,40 @@ extension ProfileViewController {
 extension ProfileViewController: LoginViewDelegate {
     
     func configureProfile(with profile: User) {
-        
         // Avatar Image
         if let imageUrl = profile.profileImage?.large {
-//            if let url = URL(string: imageUrl) {
                 self.avatarImage.kf.setImage(with: imageUrl)
-//            }
         }
-        
         // Title Label
         if let name = profile.name {
             titleLabel.text = "\(name)"
         }
-        
         // Bio Label
         if let bio = profile.bio {
             bioLabel.text = "\(bio)"
         }
-        
         // Location
         if let location = profile.location {
             locationLabel.text = "\(location)"
         }
-        
         // Username
         if let username = profile.username {
             usernameLabel.text = "@\(username)"
         }
-        
         // Likes
         if let likes = profile.totalLikes {
             likeLabel.text = "\(likes)"
         }
-        
         // Photos
         if let photos = profile.totalPhotos {
             photoLabel.text = "\(photos)"
         }
-        
         // Collections
         if let collection = profile.totalCollections {
             collectionLabel.text = "\(collection)"
         }
         self.layoutProfile()
+        self.loadViewIfNeeded()
     }
 }
 
