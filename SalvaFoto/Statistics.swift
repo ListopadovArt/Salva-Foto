@@ -21,15 +21,15 @@ public struct Stat: Codable {
 }
 
 public struct Historical: Codable {
-    public let change: UInt32
-    public let resolution: String
-    public let quantity: UInt32
+    public let change: UInt32?
+    public let resolution: String?
+    public let quantity: UInt32?
     public let values: [HistoricalValue]?
 }
 
 public struct HistoricalValue: Codable {
-    public let date: Date
-    public let value: UInt32
+    public let date: Date?
+    public let value: UInt32?
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)

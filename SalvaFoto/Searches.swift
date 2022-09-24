@@ -9,8 +9,8 @@ import Foundation
 
 public struct Search: Codable {
     
-    public let total: UInt32
-    public let totalPages: UInt32
+    public let total: UInt32?
+    public let totalPages: UInt32?
     public let photos: [Photo]?
     public let collections: [Collection]?
     public let users: [User]?

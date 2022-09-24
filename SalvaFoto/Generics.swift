@@ -8,8 +8,8 @@
 import Foundation
 
 public struct ResponseError: Codable {
-    public let error: String
-    public let description: String
+    public let error: String?
+    public let description: String?
     
     private enum CodingKeys: String, CodingKey {
         case error
@@ -22,7 +22,7 @@ public struct Link: Codable {
 }
 
 public struct Links: Codable {
-    public let main: URL
+    public let main: URL?
     public let html: URL?
     public let download: URL?
     public let downloadLocation: URL?
@@ -46,9 +46,9 @@ public struct Links: Codable {
 }
 
 public struct Category: Codable {
-    public let id: UInt32
-    public let title: String
-    public let photoCount: UInt32
+    public let id: UInt32?
+    public let title: String?
+    public let photoCount: UInt32?
     public let links: Links?
     
     private enum CodingKeys: String, CodingKey {
@@ -60,6 +60,6 @@ public struct Category: Codable {
 }
 
 public struct StatusCode: Codable {
-    public let code: Int
+    public let code: Int?
 }
 

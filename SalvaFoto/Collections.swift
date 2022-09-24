@@ -8,15 +8,15 @@
 import Foundation
 
 public struct Collection: Codable {
-    public let id: UInt32
-    public var title: String
+    public let id: UInt32?
+    public var title: String?
     public var description: String?
     public let curated: Bool?
     public let featured: Bool?
     public var isPrivate: Bool?
     public let shareKey: String?
     public let coverPhoto: Photo?
-    public let publishedAt: Date
+    public let publishedAt: Date?
     public let user: User?
     public let totalPhotos: UInt32?
     public let urls: PhotoURL?
@@ -42,8 +42,8 @@ public struct Collection: Codable {
 }
 
 public struct CollectionPhotoUpdate: Codable {
-    public let photo: Photo
-    public let collection: Collection
-    public let user: User
+    public let photo: Photo?
+    public let collection: Collection?
+    public let user: User?
 }
 
