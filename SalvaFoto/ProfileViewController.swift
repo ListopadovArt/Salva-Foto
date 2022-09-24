@@ -61,6 +61,7 @@ class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
+        layoutProfile()
         setupNavigationBar()
     }
     
@@ -297,8 +298,6 @@ extension ProfileViewController: LoginViewDelegate {
         if let collection = profile.totalCollections {
             collectionLabel.text = "\(collection)"
         }
-        self.layoutProfile()
-        self.loadViewIfNeeded()
     }
 }
 

@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import SwiftyKeychainKit
+import Loaf
 
 class ShowImageViewController: UIViewController {
     
@@ -59,8 +60,7 @@ class ShowImageViewController: UIViewController {
             }
         }
         
-        let url = model.urls?.small
-        
+        let url = model.urls?.regular
         let blurImage =  UIImage(blurHash: model.blurHash!, size: CGSize(width: 32, height: 32))
         
         itemImage.kf.setImage(
@@ -228,8 +228,8 @@ extension ShowImageViewController {
     }
     
     @objc func saveTapped() {
-        if let image = itemImage.image {
-            writeToPhotoAlbum(image: image)
+        if let imageString = image.urls?.regular {
+            saveImage(url: imageString)
         }
     }
     
@@ -248,16 +248,14 @@ extension ShowImageViewController {
 //MARK: - Save photo
 extension ShowImageViewController {
     
-    func writeToPhotoAlbum(image: UIImage) {
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(saveCompleted), nil)
-    }
-    
-    @objc func saveCompleted(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
-        if let error = error {
-            print(error.localizedDescription)
-            showAlert(title: "Error!", message: "Something went wrong. Try again.")
-        } else {
-            showAlert(title: "Success!", message: "Photo uploaded to gallery.")
+    private func saveImage(url: URL) {
+        DispatchQueue.global().async {
+            let data = try? Data(contentsOf: url)
+            let savedImage = UIImage(data: data!)
+            DispatchQueue.main.async {
+                UIImageWriteToSavedPhotosAlbum(savedImage!, nil, nil, nil)
+                Loaf("Image successfully saved to your photos!", state: .success, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+            }
         }
     }
 }
