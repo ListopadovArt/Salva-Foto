@@ -32,12 +32,16 @@ class FavoriteViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkProfile()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .backgroundColor
         style()
         layout()
-        checkProfile()
         setupRefreshControl()
     }
     

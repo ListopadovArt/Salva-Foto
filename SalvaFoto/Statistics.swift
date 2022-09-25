@@ -36,7 +36,7 @@ public struct HistoricalValue: Codable {
         value = try container.decode(UInt32.self, forKey: .value)
         
         let dateString = try container.decode(String.self, forKey: .date)
-        let formatter = DateFormatter.yyyyMMdd
+        let formatter = Date.salvaFotoDateFormatter
         if let decodedDate = formatter.date(from: dateString) {
             date = decodedDate
         } else {

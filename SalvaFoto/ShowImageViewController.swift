@@ -22,18 +22,18 @@ class ShowImageViewController: UIViewController {
     let infoButton = UIButton()
     
     // Keychain
-    let keychain = Keychain(service: "storage")
-    let accessTokenKey = KeychainKey<String>(key: "key")
+    private let keychain = Keychain(service: "storage")
+    private let accessTokenKey = KeychainKey<String>(key: "key")
     
     // Alert
-    lazy var alert: UIAlertController = {
+    private lazy var alert: UIAlertController = {
         let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
     }()
     
     // Error alert
-    lazy var errorAlert: UIAlertController = {
+    private lazy var errorAlert: UIAlertController = {
         let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         return alert
@@ -234,13 +234,13 @@ extension ShowImageViewController {
     }
     
     @objc func infoTapped() {
-        print("Show Information")
         let sheetViewController = InformPhotoViewController()
         if let sheet = sheetViewController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 32
         }
+        sheetViewController.configure(image: image)
         present(sheetViewController, animated: true)
     }
 }
