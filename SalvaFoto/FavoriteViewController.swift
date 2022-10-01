@@ -139,7 +139,7 @@ extension FavoriteViewController {
             controller.modalPresentationStyle = .currentContext
             controller.modalTransitionStyle = .crossDissolve
             controller.delegate = self
-            self.present(controller, animated: true, completion: nil)
+            navigationController?.pushViewController(controller, animated: false)
         }
     }
     

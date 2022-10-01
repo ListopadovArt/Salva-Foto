@@ -24,6 +24,11 @@ class LoginViewController: UIViewController {
     
     weak var delegate: LoginViewDelegate?
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        authorizationVerification()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -122,9 +127,8 @@ extension LoginViewController {
                 ProfileManager.shared.fetchProfile(with: url) { result in
                     switch result {
                     case .success(let profile):
-                        self.dismiss(animated: true) {
-                            self.delegate?.configureProfile(with: profile)
-                        }
+                        self.navigationController?.popViewController(animated: false)
+                        self.delegate?.configureProfile(with: profile)
                     case .failure(let error):
                         message = error.localizedDescription
                         self.errorMessageLabel.text = message
@@ -135,6 +139,23 @@ extension LoginViewController {
             }
             DispatchQueue.main.async {
                 self.errorMessageLabel.text = message
+            }
+        }
+    }
+    
+    private func authorizationVerification(){
+        let token = try? keychain.get(accessTokenKey)
+        if  let token = token {
+            let url = "https://api.unsplash.com/me?access_token=\(token)"
+            ProfileManager.shared.fetchProfile(with: url) { result in
+                switch result {
+                case .success(let profile):
+                    self.navigationController?.popViewController(animated: false)
+                    self.delegate?.configureProfile(with: profile)
+                case .failure(let error):
+                    let message = error.localizedDescription
+                    self.errorMessageLabel.text = message
+                }
             }
         }
     }

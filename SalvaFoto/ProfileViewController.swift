@@ -244,6 +244,7 @@ extension ProfileViewController {
     private func checkProfile() {
         let token = try? keychain.get(accessTokenKey)
         if  let token = token {
+            navigationController?.isNavigationBarHidden = false
             let url = "https://api.unsplash.com/me?access_token=\(token)"
             ProfileManager.shared.fetchProfile(with: url) { result in
                 switch result {
@@ -258,7 +259,8 @@ extension ProfileViewController {
             controller.modalPresentationStyle = .currentContext
             controller.modalTransitionStyle = .crossDissolve
             controller.delegate = self
-            self.present(controller, animated: true, completion: nil)
+            navigationController?.isNavigationBarHidden = true
+            navigationController?.pushViewController(controller, animated: false)
         }
     }
 }
