@@ -37,6 +37,7 @@
 		AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EC28971F5300865470 /* FavoriteViewController.swift */; };
 		AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EE28971F7D00865470 /* ProfileViewController.swift */; };
 		AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE56984289D390800F285F0 /* ShowImageViewController.swift */; };
+		AFEC839D28EA08A000E37985 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEC839C28EA08A000E37985 /* SettingsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,6 +74,7 @@
 		AFE286EC28971F5300865470 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
 		AFE286EE28971F7D00865470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AFE56984289D390800F285F0 /* ShowImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewController.swift; sourceTree = "<group>"; };
+		AFEC839C28EA08A000E37985 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.debug.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -178,6 +180,7 @@
 				AFE286E728971E4000865470 /* Search */,
 				AFE286E828971E6D00865470 /* Favorite */,
 				AFE286E928971E7E00865470 /* Profile */,
+				AFEC839B28EA078300E37985 /* Settings */,
 				AF203D7628BFF5F0000BD4D7 /* Networking */,
 			);
 			path = SalvaFoto;
@@ -226,10 +229,18 @@
 			isa = PBXGroup;
 			children = (
 				AFE286EE28971F7D00865470 /* ProfileViewController.swift */,
-				AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */,
 				AFC2856C28BEABEA00916141 /* LoginViewController.swift */,
 			);
 			name = Profile;
+			sourceTree = "<group>";
+		};
+		AFEC839B28EA078300E37985 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */,
+				AFEC839C28EA08A000E37985 /* SettingsCell.swift */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +371,7 @@
 				AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */,
 				AFC2856D28BEABEA00916141 /* LoginViewController.swift in Sources */,
 				AFA46A2E28C7CF29004141A7 /* ShowManager.swift in Sources */,
+				AFEC839D28EA08A000E37985 /* SettingsCell.swift in Sources */,
 				AF203D7A28BFF706000BD4D7 /* FavoriteManager.swift in Sources */,
 				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,
 				AF203D7C28BFF884000BD4D7 /* Errors.swift in Sources */,
