@@ -17,12 +17,6 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        self.navigationItem.backButtonTitle = ""
-        
-    }
-    
-    @objc func backTapped(sender: UIButton) {
-        //TODO: - Add Info button functionality
     }
 }
 

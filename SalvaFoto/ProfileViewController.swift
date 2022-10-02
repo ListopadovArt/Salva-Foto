@@ -27,15 +27,8 @@ class ProfileViewController: UIViewController {
     let collectionImage = UIImageView()
     let collectionLabel = UILabel()
     
-    lazy var infoBarButtonItem: UIBarButtonItem = {
-        let image = UIImage(systemName: "info.circle")
-        let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(infoTapped))
-        barButtonItem.tintColor = .white
-        return barButtonItem
-    }()
-    
     lazy var menuBarButton: UIBarButtonItem = {
-        let image = UIImage(systemName: "ellipsis.circle")
+        let image = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(menuTapped))
         barButtonItem.tintColor = .white
         return barButtonItem
@@ -66,7 +59,7 @@ class ProfileViewController: UIViewController {
     }
     
     private func setupNavigationBar() {
-        navigationItem.rightBarButtonItems = [menuBarButton, infoBarButtonItem]
+        navigationItem.rightBarButtonItem = menuBarButton
     }
 }
 
@@ -270,7 +263,7 @@ extension ProfileViewController: LoginViewDelegate {
     func configureProfile(with profile: User) {
         // Avatar Image
         if let imageUrl = profile.profileImage?.large {
-                self.avatarImage.kf.setImage(with: imageUrl)
+            self.avatarImage.kf.setImage(with: imageUrl)
         }
         // Title Label
         if let name = profile.name {
@@ -334,10 +327,6 @@ extension ProfileViewController {
 
 // MARK: - Actions
 extension ProfileViewController {
-    
-    @objc func infoTapped(sender: UIButton) {
-        //TODO: - Add Info button functionality
-    }
     
     @objc func menuTapped(sender: UIButton) {
         showMenuAlert()
