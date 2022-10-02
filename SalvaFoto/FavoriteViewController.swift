@@ -43,7 +43,6 @@ class FavoriteViewController: UIViewController {
         style()
         layout()
         setupRefreshControl()
-        checkProfile()
     }
     
     private func setupRefreshControl() {
