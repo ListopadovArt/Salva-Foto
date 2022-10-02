@@ -372,6 +372,9 @@ extension ProfileViewController {
     }
     
     private func settings(){
-        //TODO: - Add Settings button functionality
+        let controller = SettingsViewController()
+        controller.modalPresentationStyle = .currentContext
+        controller.modalTransitionStyle = .crossDissolve
+        navigationController?.pushViewController(controller, animated: true)
     }
 }

@@ -13,6 +13,7 @@ class MainViewController: UITabBarController {
         super.viewDidLoad()
         setupViews()
         setupTabBar()
+        setupNavBar()
     }
     
     private func setupViews() {
@@ -50,6 +51,11 @@ class MainViewController: UITabBarController {
             tabBar.barTintColor = .backgroundColor
             tabBar.isTranslucent = false
         }
+    }
+    
+    private func setupNavBar() {
+        let appearance =  UIBarButtonItem.appearance()
+        appearance.tintColor = .white
     }
 }
 

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */; };
 		AF0E4043289AF60A0016217D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4042289AF60A0016217D /* SearchManager.swift */; };
+		AF1C4C3328E96EA000B8A107 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */; };
 		AF1C9F5928CFAA23006BADFE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5828CFAA23006BADFE /* Photo.swift */; };
 		AF1C9F5B28CFAA44006BADFE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5A28CFAA44006BADFE /* User.swift */; };
 		AF1C9F5D28CFAA63006BADFE /* Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5C28CFAA63006BADFE /* Generics.swift */; };
@@ -42,6 +43,7 @@
 		902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.release.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.release.xcconfig"; sourceTree = "<group>"; };
 		9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalvaFoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0E4042289AF60A0016217D /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AF1C9F5828CFAA23006BADFE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		AF1C9F5A28CFAA44006BADFE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AF1C9F5C28CFAA63006BADFE /* Generics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generics.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE286EE28971F7D00865470 /* ProfileViewController.swift */,
+				AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */,
 				AFC2856C28BEABEA00916141 /* LoginViewController.swift */,
 			);
 			name = Profile;
@@ -369,6 +372,7 @@
 				AF783EE628C13A3100650D68 /* Authenticator.swift in Sources */,
 				AF1C9F6128CFAA82006BADFE /* Statistics.swift in Sources */,
 				AF1C9F5B28CFAA44006BADFE /* User.swift in Sources */,
+				AF1C4C3328E96EA000B8A107 /* SettingsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
