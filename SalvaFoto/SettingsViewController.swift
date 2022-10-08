@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyKeychainKit
 
 struct SettingsMenuModel {
     var header: String?
@@ -14,8 +15,12 @@ struct SettingsMenuModel {
 
 class SettingsViewController: UIViewController {
     
-    var tableView = UITableView()
+    // Keychain
+    let keychain = Keychain(service: "storage")
+    let accessTokenKey = KeychainKey<String>(key: "key")
     
+    // Table
+    var tableView = UITableView()
     var tableModel: [SettingsMenuModel] = [SettingsMenuModel(header: "Support", numberOfCell: 1),
                                            SettingsMenuModel(header: "Account", numberOfCell: 1),
                                            SettingsMenuModel(header: "Other", numberOfCell: 3),
@@ -113,6 +118,22 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: - Add action functionality
+        switch indexPath.section {
+        case 0:
+            print("Give us Feedback")
+        case 1:
+            print("Edit Profile")
+        default:
+            switch indexPath.row {
+            case 0:
+                print("Privacy Policy")
+            case 1:
+                try? keychain.remove(accessTokenKey)
+                self.navigationController?.popToRootViewController(animated: false)
+            default:
+                print("Delete account")
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
