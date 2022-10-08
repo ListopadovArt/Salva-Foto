@@ -122,7 +122,9 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 0:
             print("Give us Feedback")
         case 1:
-            print("Edit Profile")
+            let controller = EditProfileViewController()
+            controller.modalTransitionStyle = .crossDissolve
+            navigationController?.pushViewController(controller, animated: true)
         default:
             switch indexPath.row {
             case 0:

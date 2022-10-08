@@ -366,7 +366,6 @@ extension ProfileViewController {
     
     private func settings(){
         let controller = SettingsViewController()
-        controller.modalPresentationStyle = .currentContext
         controller.modalTransitionStyle = .crossDissolve
         navigationController?.pushViewController(controller, animated: true)
     }

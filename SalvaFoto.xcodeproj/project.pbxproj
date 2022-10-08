@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */; };
 		AF0E4043289AF60A0016217D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4042289AF60A0016217D /* SearchManager.swift */; };
+		AF120C4028F1FF9D00C8D5D7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF120C3F28F1FF9D00C8D5D7 /* EditProfileViewController.swift */; };
 		AF1C4C3328E96EA000B8A107 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */; };
 		AF1C9F5928CFAA23006BADFE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5828CFAA23006BADFE /* Photo.swift */; };
 		AF1C9F5B28CFAA44006BADFE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5A28CFAA44006BADFE /* User.swift */; };
@@ -44,6 +45,7 @@
 		902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.release.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.release.xcconfig"; sourceTree = "<group>"; };
 		9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalvaFoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF0E4042289AF60A0016217D /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		AF120C3F28F1FF9D00C8D5D7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		AF1C9F5828CFAA23006BADFE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		AF1C9F5A28CFAA44006BADFE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -139,6 +141,14 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		AF120C3C28F1FF6400C8D5D7 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				AF120C3F28F1FF9D00C8D5D7 /* EditProfileViewController.swift */,
+			);
+			name = EditProfile;
+			sourceTree = "<group>";
+		};
 		AF203D7628BFF5F0000BD4D7 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
@@ -181,6 +191,7 @@
 				AFE286E828971E6D00865470 /* Favorite */,
 				AFE286E928971E7E00865470 /* Profile */,
 				AFEC839B28EA078300E37985 /* Settings */,
+				AF120C3C28F1FF6400C8D5D7 /* EditProfile */,
 				AF203D7628BFF5F0000BD4D7 /* Networking */,
 			);
 			path = SalvaFoto;
@@ -365,6 +376,7 @@
 				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
 				AF1C9F5F28CFAA6D006BADFE /* Collections.swift in Sources */,
 				AF93A2DB289EEE2200AEC85B /* Buttons.swift in Sources */,
+				AF120C4028F1FF9D00C8D5D7 /* EditProfileViewController.swift in Sources */,
 				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
 				AF31B99B28D4AB9E00A4885E /* InformPhotoViewController.swift in Sources */,
 				AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */,
