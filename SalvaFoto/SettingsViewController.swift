@@ -117,7 +117,6 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: - Add action functionality
         switch indexPath.section {
         case 0:
             print("Give us Feedback")

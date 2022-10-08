@@ -30,7 +30,6 @@ class ProfileViewController: UIViewController {
     lazy var menuBarButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(menuTapped))
-        barButtonItem.tintColor = .white
         return barButtonItem
     }()
     
