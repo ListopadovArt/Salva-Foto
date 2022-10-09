@@ -8,7 +8,6 @@
 import UIKit
 import Kingfisher
 import SwiftyKeychainKit
-import Loaf
 
 class ShowImageViewController: UIViewController {
     
@@ -20,6 +19,8 @@ class ShowImageViewController: UIViewController {
     let likeButton = UIButton()
     let saveButton = UIButton()
     let infoButton = UIButton()
+    let percentLabel = UILabel()
+    var progressView = UIProgressView()
     
     // Keychain
     private let keychain = Keychain(service: "storage")
@@ -28,7 +29,13 @@ class ShowImageViewController: UIViewController {
     // Alert
     private lazy var alert: UIAlertController = {
         let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let okAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.percentLabel.isHidden = true
+                self.progressView.progress = 0.0
+            }
+        }
+        alert.addAction(okAction)
         return alert
     }()
     
@@ -44,6 +51,11 @@ class ShowImageViewController: UIViewController {
         style()
         layout()
         fetchData(id: image.id!)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        percentLabel.isHidden = false
     }
     
     func configure(model: Photo){
@@ -142,6 +154,15 @@ extension ShowImageViewController {
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         makeButton(button: infoButton, systemName: "info.circle")
         infoButton.addTarget(self, action: #selector(infoTapped), for: .primaryActionTriggered)
+        
+        progressView.translatesAutoresizingMaskIntoConstraints = false
+        progressView.progressTintColor = .appColor
+        
+        percentLabel.translatesAutoresizingMaskIntoConstraints = false
+        percentLabel.font = UIFont.preferredFont(forTextStyle: .footnote)
+        percentLabel.textAlignment = .center
+        percentLabel.numberOfLines = 1
+        percentLabel.textColor = .white
     }
     
     private func layout() {
@@ -152,6 +173,8 @@ extension ShowImageViewController {
         view.addSubview(likeButton)
         view.addSubview(saveButton)
         view.addSubview(infoButton)
+        view.addSubview(percentLabel)
+        view.addSubview(progressView)
         
         NSLayoutConstraint.activate([
             headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
@@ -173,7 +196,7 @@ extension ShowImageViewController {
             itemImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
             likeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: itemImage.leadingAnchor, multiplier: 5),
-            likeButton.bottomAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: -20),
+            likeButton.bottomAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: -25),
             likeButton.heightAnchor.constraint(equalToConstant: 30),
             likeButton.widthAnchor.constraint(equalToConstant: 30),
             
@@ -185,6 +208,13 @@ extension ShowImageViewController {
             infoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             infoButton.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
             
+            progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            progressView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            progressView.heightAnchor.constraint(equalToConstant: 5),
+            
+            percentLabel.bottomAnchor.constraint(equalTo: progressView.topAnchor, constant: -5),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: percentLabel.trailingAnchor, multiplier: 1),
         ])
     }
 }
@@ -248,17 +278,37 @@ extension ShowImageViewController {
     }
 }
 
-//MARK: - Save photo
-extension ShowImageViewController {
+//MARK: - Save photo to Gallery
+extension ShowImageViewController: URLSessionDelegate, URLSessionDownloadDelegate {
     
     private func saveImage(url: URL) {
-        DispatchQueue.global().async {
-            let data = try? Data(contentsOf: url)
-            let savedImage = UIImage(data: data!)
+        let configuration = URLSessionConfiguration.default
+        let urlSession = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+        let downloadTask = urlSession.downloadTask(with: url)
+        downloadTask.resume()
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+        if let data = try? Data(contentsOf: location), let savedImage = UIImage(data: data) {
             DispatchQueue.main.async {
-                UIImageWriteToSavedPhotosAlbum(savedImage!, nil, nil, nil)
-                Loaf("Image successfully saved to your photos!", state: .success, location: .bottom, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+                UIImageWriteToSavedPhotosAlbum(savedImage, self, #selector(self.image(_:didFinishSavingWithError:contextInfo:)), nil)
             }
+        }
+    }
+    
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+        let percentage = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        DispatchQueue.main.async {
+            self.progressView.progress = percentage
+            self.percentLabel.text = "\(Int(percentage) * 100)%"
+        }
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            showAlert(title: "Save error", message: error.localizedDescription)
+        } else {
+            showAlert(title: "Saved", message: "Image successfully saved to your photos!")
         }
     }
 }

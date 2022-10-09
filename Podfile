@@ -9,6 +9,5 @@ target 'SalvaFoto' do
 
   pod 'Kingfisher'
   pod 'SwiftyKeychainKit', '1.0.0-beta.2'
-  pod 'Loaf'
   
 end
