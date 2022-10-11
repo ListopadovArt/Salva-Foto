@@ -98,7 +98,7 @@ extension ImageCell {
         
         if let blur =  model.blurHash {
             let blurImage =  UIImage(blurHash: blur, size: CGSize(width: 32, height: 32))
-
+            
             itemImage.kf.setImage(
                 with: url,
                 placeholder: blurImage,
@@ -115,8 +115,11 @@ extension ImageCell {
             likesLabel.text = String(likes)
         }
         
+        let image = UIImage(named: "user-placeholder")
+        
         if let avatarUserUrl = model.user?.profileImage?.small {
-            avatarImage.kf.setImage(with: avatarUserUrl)
+            avatarImage.kf.indicatorType = .activity
+            avatarImage.kf.setImage(with: avatarUserUrl, placeholder: image, options: [.transition(.fade(0.2))])
         }
     }
 }

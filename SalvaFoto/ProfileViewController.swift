@@ -261,8 +261,10 @@ extension ProfileViewController: LoginViewDelegate {
     
     func configureProfile(with profile: User) {
         // Avatar Image
+        let image = UIImage(named: "user-placeholder")
         if let imageUrl = profile.profileImage?.large {
-            self.avatarImage.kf.setImage(with: imageUrl)
+            avatarImage.kf.indicatorType = .activity
+            avatarImage.kf.setImage(with: imageUrl, placeholder: image, options: [.transition(.fade(0.2))])
         }
         // Title Label
         if let name = profile.name {
