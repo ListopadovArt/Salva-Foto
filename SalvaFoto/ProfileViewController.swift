@@ -76,7 +76,7 @@ extension ProfileViewController {
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
         avatarImage.clipsToBounds = true
         avatarImage.contentMode = .scaleAspectFill
-        avatarImage.layer.cornerRadius = 5
+        avatarImage.layer.cornerRadius = 70
         
         // Location
         locationImage.translatesAutoresizingMaskIntoConstraints = false
@@ -160,15 +160,15 @@ extension ProfileViewController {
         // ImageView
         NSLayoutConstraint.activate([
             avatarImage.topAnchor.constraint(equalToSystemSpacingBelow: titleLabel.bottomAnchor, multiplier: 2),
-            avatarImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
-            avatarImage.widthAnchor.constraint(equalToConstant: 100),
-            avatarImage.heightAnchor.constraint(equalToConstant: 150),
+            avatarImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            avatarImage.widthAnchor.constraint(equalToConstant: 140),
+            avatarImage.heightAnchor.constraint(equalToConstant: 140),
         ])
         
         // Location
         NSLayoutConstraint.activate([
-            locationImage.topAnchor.constraint(equalTo: avatarImage.topAnchor),
-            locationImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            locationImage.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 20),
+            locationImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             locationImage.heightAnchor.constraint(equalToConstant: 15),
             locationImage.widthAnchor.constraint(equalToConstant: 15),
             
@@ -180,7 +180,7 @@ extension ProfileViewController {
         // Username
         NSLayoutConstraint.activate([
             usernameImage.topAnchor.constraint(equalToSystemSpacingBelow: locationImage.bottomAnchor, multiplier: 2),
-            usernameImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            usernameImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             usernameImage.heightAnchor.constraint(equalToConstant: 15),
             usernameImage.widthAnchor.constraint(equalToConstant: 15),
             
@@ -192,7 +192,7 @@ extension ProfileViewController {
         // Likes
         NSLayoutConstraint.activate([
             likeImage.topAnchor.constraint(equalToSystemSpacingBelow: usernameImage.bottomAnchor, multiplier: 2),
-            likeImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            likeImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             likeImage.heightAnchor.constraint(equalToConstant: 15),
             likeImage.widthAnchor.constraint(equalToConstant: 15),
             
@@ -204,7 +204,7 @@ extension ProfileViewController {
         // Photos
         NSLayoutConstraint.activate([
             photoImage.topAnchor.constraint(equalToSystemSpacingBelow: likeImage.bottomAnchor, multiplier: 2),
-            photoImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            photoImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             photoImage.heightAnchor.constraint(equalToConstant: 15),
             photoImage.widthAnchor.constraint(equalToConstant: 15),
             
@@ -216,7 +216,7 @@ extension ProfileViewController {
         // Collections
         NSLayoutConstraint.activate([
             collectionImage.topAnchor.constraint(equalToSystemSpacingBelow: photoImage.bottomAnchor, multiplier: 2),
-            collectionImage.leadingAnchor.constraint(equalToSystemSpacingAfter: avatarImage.trailingAnchor, multiplier: 1),
+            collectionImage.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             collectionImage.heightAnchor.constraint(equalToConstant: 15),
             collectionImage.widthAnchor.constraint(equalToConstant: 15),
             
@@ -227,7 +227,7 @@ extension ProfileViewController {
         
         //Bio Label
         NSLayoutConstraint.activate([
-            bioLabel.topAnchor.constraint(equalToSystemSpacingBelow: avatarImage.bottomAnchor, multiplier: 2),
+            bioLabel.topAnchor.constraint(equalToSystemSpacingBelow: collectionLabel.bottomAnchor, multiplier: 2),
             bioLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: bioLabel.trailingAnchor, multiplier: 2),
         ])
