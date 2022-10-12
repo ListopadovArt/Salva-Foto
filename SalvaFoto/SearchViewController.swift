@@ -101,6 +101,10 @@ extension SearchViewController {
 // MARK: - Photo Search
 extension SearchViewController: UISearchBarDelegate, UITextFieldDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
     func searchBar(_ searchBar: UISearchBar, textDidChange textSearched: String) {
         guard !textSearched.isEmpty else {
             return
