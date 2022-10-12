@@ -233,6 +233,7 @@ extension ShowImageViewController {
         if  let token = token {
             if sender.isSelected{
                 makeButton(button: likeButton, systemName: "heart.fill")
+                UIImpactFeedbackGenerator(style: .light).impactOccurred()
                 if let id = image.id {
                     ShowManager.shared.setLikeToPhoto(id: id, token: token, user: image.user!, photo: image) { result in
                         switch result {
