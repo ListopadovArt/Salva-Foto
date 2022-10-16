@@ -8,12 +8,27 @@
 
 import UIKit
 
+enum TextFieldData: Int {
+    case firstName = 0
+    case lastName = 1
+    case username = 2
+    case email = 3
+    case location = 4
+}
+
 class EditCell: UITableViewCell {
     
-    let titleLabel = UILabel()
+    let titleTextField = UITextField()
     
     static let reuseID = "EditCell"
     static let rowHeight:CGFloat = 44
+    
+    var placeholder: String? {
+        didSet {
+            guard let item = placeholder else {return}
+            titleTextField.placeholder = item
+        }
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,23 +45,37 @@ class EditCell: UITableViewCell {
 extension EditCell {
     
     private func setup() {
-        // Title
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.textColor = UIColor(red: 1.00, green: 1.00, blue: 1.00, alpha: 1.00)
-        titleLabel.numberOfLines = 1
-        titleLabel.textAlignment = .left
+        titleTextField.translatesAutoresizingMaskIntoConstraints = false
+        titleTextField.textColor = .white
+        titleTextField.delegate = self
+        titleTextField.attributedPlaceholder = NSAttributedString(
+            string: "Enter your text",
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.backgroundColor]
+        )
     }
     
     private func layout() {
-        contentView.addSubview(titleLabel)
+        contentView.addSubview(titleTextField)
         
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 3),
-            titleLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor),
-            trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 3),
+            titleTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: leadingAnchor, multiplier: 3),
+            titleTextField.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            trailingAnchor.constraint(equalToSystemSpacingAfter: titleTextField.trailingAnchor, multiplier: 3),
         ])
     }
 }
 
+//MARK: - UITextFieldDelegate
+extension EditCell: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        titleTextField.endEditing(true)
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        return true
+    }
+}
 
 

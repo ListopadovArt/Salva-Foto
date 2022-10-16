@@ -193,8 +193,6 @@
 				AFE286E728971E4000865470 /* Search */,
 				AFE286E828971E6D00865470 /* Favorite */,
 				AFE286E928971E7E00865470 /* Profile */,
-				AFEC839B28EA078300E37985 /* Settings */,
-				AF120C3C28F1FF6400C8D5D7 /* EditProfile */,
 				AF203D7628BFF5F0000BD4D7 /* Networking */,
 			);
 			path = SalvaFoto;
@@ -244,6 +242,8 @@
 			children = (
 				AFE286EE28971F7D00865470 /* ProfileViewController.swift */,
 				AFC2856C28BEABEA00916141 /* LoginViewController.swift */,
+				AFEC839B28EA078300E37985 /* Settings */,
+				AF120C3C28F1FF6400C8D5D7 /* EditProfile */,
 			);
 			name = Profile;
 			sourceTree = "<group>";

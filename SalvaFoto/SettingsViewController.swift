@@ -10,7 +10,8 @@ import SwiftyKeychainKit
 
 struct SettingsMenuModel {
     var header: String?
-    var numberOfCell: Int
+    var placeholder: [String]?
+    var tags: [Int]?
 }
 
 class SettingsViewController: UIViewController {
@@ -21,17 +22,19 @@ class SettingsViewController: UIViewController {
     
     // Table
     var tableView = UITableView()
-    var tableModel: [SettingsMenuModel] = [SettingsMenuModel(header: "Support", numberOfCell: 1),
-                                           SettingsMenuModel(header: "Account", numberOfCell: 1),
-                                           SettingsMenuModel(header: "Other", numberOfCell: 3),
+    var tableModel: [SettingsMenuModel] = [SettingsMenuModel(header: "Support", tags: [1]),
+                                           SettingsMenuModel(header: "Account", tags: [1]),
+                                           SettingsMenuModel(header: "Other", tags: [0, 1, 2]),
     ]
     
+    var profile: User? = nil
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
         layout()
+        loadProfile() 
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,6 +45,23 @@ class SettingsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    private func loadProfile() {
+        let token = try? keychain.get(accessTokenKey)
+        if  let token = token {
+            navigationController?.isNavigationBarHidden = false
+            let url = "https://api.unsplash.com/me?access_token=\(token)"
+            ProfileManager.shared.fetchProfile(with: url) { result in
+                switch result {
+                case .success(let profile):
+                    self.profile = profile
+                case .failure(let error):
+                    print(error)
+//                    self.displayError(error)
+                }
+            }
+        }
     }
 }
 
@@ -84,8 +104,8 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowsInSection = tableModel[section].numberOfCell
-        return rowsInSection
+        let rowsInSection = tableModel[section].tags?.count
+        return rowsInSection!
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -135,6 +155,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         case 1:
             let controller = EditProfileViewController()
             controller.modalTransitionStyle = .crossDissolve
+            controller.profile = self.profile
             navigationController?.pushViewController(controller, animated: true)
         default:
             switch indexPath.row {

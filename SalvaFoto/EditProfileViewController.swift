@@ -9,17 +9,24 @@ import UIKit
 
 class EditProfileViewController: UIViewController {
     
+    var profile: User? = nil
+    
     // Table
     var tableView = UITableView()
-    var tableModel: [SettingsMenuModel] = [SettingsMenuModel(header: "Profile", numberOfCell: 4),
-                                           SettingsMenuModel(header: "Location", numberOfCell: 1),
-                                           SettingsMenuModel(header: "Website", numberOfCell: 1),
+    var tableModel: [SettingsMenuModel] = [SettingsMenuModel(header: "Profile", placeholder: ["First name", "Last name", "Username", "Email"], tags: [0, 1, 2, 3]),
+                                           SettingsMenuModel(header: "Location", placeholder: ["City"], tags: [4]),
     ]
     
     lazy var saveBarButton: UIBarButtonItem = {
         let barButtonItem = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(saveTapped))
         return barButtonItem
     }()
+    
+    var firstName: String?
+    var lastName: String?
+    var username: String?
+    var email: String?
+    var location: String?
     
     
     // MARK: - View Life Cycle
@@ -84,8 +91,8 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let rowsInSection = tableModel[section].numberOfCell
-        return rowsInSection
+        let rowsInSection = tableModel[section].tags?.count
+        return rowsInSection!
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -105,22 +112,25 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
             return UITableViewCell()
         }
         
+        cell.selectionStyle = .none
+        cell.titleTextField.tag = (tableModel[indexPath.section].tags?[indexPath.row])!
+        cell.placeholder = tableModel[indexPath.section].placeholder?[indexPath.row]
+        cell.titleTextField.addTarget(self, action: #selector(valueChanged), for: .editingChanged)
+        
         switch indexPath.section {
         case 0:
             switch indexPath.row {
             case 0:
-                cell.titleLabel.text = "Name"
+                cell.titleTextField.text = profile?.firstName
             case 1:
-                cell.titleLabel.text = "Surname"
+                cell.titleTextField.text = profile?.lastName
             case 2:
-                cell.titleLabel.text = "Username"
+                cell.titleTextField.text = profile?.username
             default:
-                cell.titleLabel.text = "email@gmail.ru"
+                cell.titleTextField.text = profile?.email
             }
-        case 1:
-            cell.titleLabel.text = "City"
         default:
-            cell.titleLabel.text = "Website_Website_Website_Website_Website_Website"
+            cell.titleTextField.text = profile?.location
         }
         return cell
     }
@@ -176,6 +186,51 @@ extension EditProfileViewController {
     
     @objc func saveTapped(sender: UIButton) {
         //TODO: - Add action functionality
-        print("Save")
+        
+        if let text = firstName {
+            profile?.firstName = text
+            print(text)
+        }
+        if let text = lastName {
+            profile?.lastName = text
+            print(text)
+        }
+        if let text = username {
+            profile?.username = text
+            print(text)
+        }
+        if let text = email {
+            profile?.email = text
+            print(text)
+        }
+        if let text = location {
+            profile?.location = text
+            print(text)
+        }
+        print(profile)
+    }
+    
+    @objc func valueChanged(_ textField: UITextField){
+        print("TextField: \(String(describing: textField.text)) Tag : \(textField.tag)")
+        
+        switch textField.tag {
+        case TextFieldData.firstName.rawValue:
+            firstName = textField.text
+            
+        case TextFieldData.lastName.rawValue:
+            lastName = textField.text
+            
+        case TextFieldData.username.rawValue:
+            username = textField.text
+            
+        case TextFieldData.email.rawValue:
+            email = textField.text
+            
+        case TextFieldData.location.rawValue:
+            location = textField.text
+            
+        default:
+            break
+        }
     }
 }
