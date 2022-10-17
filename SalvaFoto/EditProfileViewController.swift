@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftyKeychainKit
 
 class EditProfileViewController: UIViewController {
     
@@ -28,6 +29,16 @@ class EditProfileViewController: UIViewController {
     var email: String?
     var location: String?
     
+    // Keychain
+    let keychain = Keychain(service: "storage")
+    let accessTokenKey = KeychainKey<String>(key: "key")
+    
+    // Error alert
+    lazy var errorAlert: UIAlertController = {
+        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -207,7 +218,25 @@ extension EditProfileViewController {
             profile?.location = text
             print(text)
         }
-        print(profile)
+        
+        let token = try? keychain.get(accessTokenKey)
+        if  let token = token {
+            navigationController?.isNavigationBarHidden = false
+            let url = "https://api.unsplash.com/me?access_token=\(token)"
+            ProfileManager.shared.updateProfile(with: url, profile: profile!) { result in
+                switch result {
+                case .success(let profile):
+                    self.profile = profile
+                    if profile.username == nil {
+                        self.showErrorAlert(title: "", message: "Username has already been taken")
+                    }
+                    self.navigationController?.popViewController(animated: true)
+                case .failure(let error):
+                    self.displayError(error)
+                    print(error)
+                }
+            }
+        }
     }
     
     @objc func valueChanged(_ textField: UITextField){
@@ -231,6 +260,39 @@ extension EditProfileViewController {
             
         default:
             break
+        }
+    }
+}
+
+// MARK: - Network
+extension EditProfileViewController {
+    
+    private func displayError(_ error: NetworkError) {
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    
+    private func titleAndMessage(for error: NetworkError) -> (String, String) {
+        let title: String
+        let message: String
+        switch error {
+        case .serverError:
+            title = "Server Error"
+            message = "We could not process your request. Please try again."
+        case .decodingError:
+            title = "Network Error"
+            message = "Ensure you are connected to the internet. Please try again."
+        }
+        return (title, message)
+    }
+    
+    private func showErrorAlert(title: String, message: String) {
+        errorAlert.title = title
+        errorAlert.message = message
+        
+        // Don't present one error if another has already been presented
+        if !errorAlert.isBeingPresented {
+            present(errorAlert, animated: true, completion: nil)
         }
     }
 }
