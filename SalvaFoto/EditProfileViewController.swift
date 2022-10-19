@@ -200,23 +200,18 @@ extension EditProfileViewController {
         
         if let text = firstName {
             profile?.firstName = text
-            print(text)
         }
         if let text = lastName {
             profile?.lastName = text
-            print(text)
         }
         if let text = username {
             profile?.username = text
-            print(text)
         }
         if let text = email {
             profile?.email = text
-            print(text)
         }
         if let text = location {
             profile?.location = text
-            print(text)
         }
         
         let token = try? keychain.get(accessTokenKey)
@@ -233,15 +228,12 @@ extension EditProfileViewController {
                     self.navigationController?.popViewController(animated: true)
                 case .failure(let error):
                     self.displayError(error)
-                    print(error)
                 }
             }
         }
     }
     
     @objc func valueChanged(_ textField: UITextField){
-        print("TextField: \(String(describing: textField.text)) Tag : \(textField.tag)")
-        
         switch textField.tag {
         case TextFieldData.firstName.rawValue:
             firstName = textField.text

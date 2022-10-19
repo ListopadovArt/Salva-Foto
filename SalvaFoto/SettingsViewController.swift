@@ -27,6 +27,13 @@ class SettingsViewController: UIViewController {
                                            SettingsMenuModel(header: "Other", tags: [0, 1, 2]),
     ]
     
+    // Error alert
+    private lazy var errorAlert: UIAlertController = {
+        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        return alert
+    }()
+    
     var profile: User? = nil
     
     // MARK: - View Life Cycle
@@ -34,7 +41,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         style()
         layout()
-        loadProfile() 
+        loadProfile()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,8 +64,7 @@ class SettingsViewController: UIViewController {
                 case .success(let profile):
                     self.profile = profile
                 case .failure(let error):
-                    print(error)
-//                    self.displayError(error)
+                    self.displayError(error)
                 }
             }
         }
@@ -213,5 +219,38 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
+    }
+}
+
+// MARK: - Networking
+extension SettingsViewController {
+    
+    private func displayError(_ error: NetworkError) {
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    
+    private func titleAndMessage(for error: NetworkError) -> (String, String) {
+        let title: String
+        let message: String
+        switch error {
+        case .serverError:
+            title = "Server Error"
+            message = "We could not process your request. Please try again."
+        case .decodingError:
+            title = "Network Error"
+            message = "Ensure you are connected to the internet. Please try again."
+        }
+        return (title, message)
+    }
+    
+    private func showErrorAlert(title: String, message: String) {
+        errorAlert.title = title
+        errorAlert.message = message
+        
+        // Don't present one error if another has already been presented
+        if !errorAlert.isBeingPresented {
+            present(errorAlert, animated: true, completion: nil)
+        }
     }
 }

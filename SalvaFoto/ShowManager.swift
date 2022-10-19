@@ -96,5 +96,31 @@ class ShowManager {
         }
         task.resume()
     }
+    
+    func downloadLocation(id: String, token: String, completion: @escaping (Result<Download,NetworkError>) -> Void){
+        
+        var request = URLRequest(url: URL(string: "https://api.unsplash.com/photos/\(id)/download")!,timeoutInterval: Double.infinity)
+        request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            DispatchQueue.main.async {
+                guard let data = data, error == nil else {
+                    completion(.failure(.serverError))
+                    return
+                }
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .iso8601
+                    let url = try decoder.decode(Download.self, from: data)
+                    completion(.success(url))
+                } catch {
+                    completion(.failure(.decodingError))
+                }
+            }
+        }
+        task.resume()
+    }
 }
 

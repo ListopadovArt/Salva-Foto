@@ -25,6 +25,7 @@ public struct Photo: Codable {
     public let exif: Exif?
     public let location: Location?
     public let views, downloads: Int?
+    public let tags: [Tag]?
     
     enum CodingKeys: String, CodingKey {
         case id
@@ -38,7 +39,7 @@ public struct Photo: Codable {
         case urls, links, categories, likes
         case likedByUser = "liked_by_user"
         case currentUserCollections = "current_user_collections"
-        case sponsorship, topicSubmissions, user, exif, location, views, downloads
+        case sponsorship, topicSubmissions, user, exif, location, views, downloads, tags
     }
 }
 
@@ -138,3 +139,14 @@ public struct The3_DRenders: Codable {
         case approvedOn = "approved_on"
     }
 }
+
+// MARK: - Tag
+public struct Tag: Codable {
+    let title: String
+}
+
+// MARK: - Download
+struct Download: Codable {
+    let url: String
+}
+

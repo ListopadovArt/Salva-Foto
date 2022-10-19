@@ -71,52 +71,17 @@ class ShowImageViewController: UIViewController {
                 likeButton.isSelected = false
             }
         }
-        
-        let url = model.urls?.regular
-        let blurImage =  UIImage(blurHash: model.blurHash!, size: CGSize(width: 32, height: 32))
-        
-        itemImage.kf.setImage(
-            with: url,
-            placeholder: blurImage,
-            options: [
-                .scaleFactor(UIScreen.main.scale),
-                .transition(.fade(1)),
-                .cacheOriginalImage
-            ])
-    }
-    
-    private func showAlert(title: String, message: String) {
-        alert.title = title
-        alert.message = message
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func displayError(_ error: NetworkError) {
-        let titleAndMessage = titleAndMessage(for: error)
-        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
-    }
-    
-    private func titleAndMessage(for error: NetworkError) -> (String, String) {
-        let title: String
-        let message: String
-        switch error {
-        case .serverError:
-            title = "Server Error"
-            message = "We could not process your request. Please try again."
-        case .decodingError:
-            title = "Network Error"
-            message = "Ensure you are connected to the internet. Please try again."
-        }
-        return (title, message)
-    }
-    
-    private func showErrorAlert(title: String, message: String) {
-        errorAlert.title = title
-        errorAlert.message = message
-        
-        // Don't present one error if another has already been presented
-        if !errorAlert.isBeingPresented {
-            present(errorAlert, animated: true, completion: nil)
+        if let blur = model.blurHash {
+            let url = model.urls?.regular
+            let blurImage =  UIImage(blurHash: blur, size: CGSize(width: 32, height: 32))
+            itemImage.kf.setImage(
+                with: url,
+                placeholder: blurImage,
+                options: [
+                    .scaleFactor(UIScreen.main.scale),
+                    .transition(.fade(1)),
+                    .cacheOriginalImage
+                ])
         }
     }
 }
@@ -262,8 +227,22 @@ extension ShowImageViewController {
     }
     
     @objc func saveTapped() {
-        if let imageString = image.urls?.regular {
-            saveImage(url: imageString)
+        let token = try? keychain.get(accessTokenKey)
+        if  let token = token {
+            if let id = image.id {
+                /// Track a photo download
+                /// https://unsplash.com/documentation#track-a-photo-download
+                ShowManager.shared.downloadLocation(id: id, token: token) { result in
+                    switch result {
+                    case .success(let urlString):
+                        if let url = URL(string: urlString.url){
+                            self.saveImage(url: url)
+                        }
+                    case .failure(let error):
+                        self.displayError(error)
+                    }
+                }
+            }
         }
     }
     
@@ -301,7 +280,7 @@ extension ShowImageViewController: URLSessionDelegate, URLSessionDownloadDelegat
         let percentage = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
         DispatchQueue.main.async {
             self.progressView.progress = percentage
-            self.percentLabel.text = "\(Int(percentage) * 100)%"
+            self.percentLabel.text = "\(Int(percentage * 100))%"
         }
     }
     
@@ -333,6 +312,41 @@ extension ShowImageViewController {
         } else {
             self.configure(model: self.image)
             likeButton.isHidden = true
+        }
+    }
+    
+    private func showAlert(title: String, message: String) {
+        alert.title = title
+        alert.message = message
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func displayError(_ error: NetworkError) {
+        let titleAndMessage = titleAndMessage(for: error)
+        self.showErrorAlert(title: titleAndMessage.0, message: titleAndMessage.1)
+    }
+    
+    private func titleAndMessage(for error: NetworkError) -> (String, String) {
+        let title: String
+        let message: String
+        switch error {
+        case .serverError:
+            title = "Server Error"
+            message = "We could not process your request. Please try again."
+        case .decodingError:
+            title = "Network Error"
+            message = "Ensure you are connected to the internet. Please try again."
+        }
+        return (title, message)
+    }
+    
+    private func showErrorAlert(title: String, message: String) {
+        errorAlert.title = title
+        errorAlert.message = message
+        
+        // Don't present one error if another has already been presented
+        if !errorAlert.isBeingPresented {
+            present(errorAlert, animated: true, completion: nil)
         }
     }
 }
