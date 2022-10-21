@@ -40,6 +40,8 @@ class EditProfileViewController: UIViewController {
         return alert
     }()
     
+    var activityView: UIActivityIndicatorView?
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -218,6 +220,7 @@ extension EditProfileViewController {
         if  let token = token {
             navigationController?.isNavigationBarHidden = false
             let url = "https://api.unsplash.com/me?access_token=\(token)"
+            showActivityIndicator()
             ProfileManager.shared.updateProfile(with: url, profile: profile!) { result in
                 switch result {
                 case .success(let profile):
@@ -225,6 +228,7 @@ extension EditProfileViewController {
                     if profile.username == nil {
                         self.showErrorAlert(title: "", message: "Username has already been taken")
                     }
+                    self.hideActivityIndicator()
                     self.navigationController?.popViewController(animated: true)
                 case .failure(let error):
                     self.displayError(error)
@@ -252,6 +256,20 @@ extension EditProfileViewController {
             
         default:
             break
+        }
+    }
+    
+    func showActivityIndicator() {
+        activityView = UIActivityIndicatorView(style: .large)
+        activityView?.center = self.view.center
+        activityView?.color = .appColor
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+
+    func hideActivityIndicator(){
+        if (activityView != nil){
+            activityView?.stopAnimating()
         }
     }
 }
