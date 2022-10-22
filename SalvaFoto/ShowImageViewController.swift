@@ -16,8 +16,9 @@ class ShowImageViewController: UIViewController {
     let headerView = UIView()
     let escapeButton = UIButton()
     let titleLabel = UILabel()
+    let avatarImage = UIImageView()
     let likeButton = UIButton()
-    let saveButton = UIButton()
+    let downloadButton = UIButton()
     let infoButton = UIButton()
     let percentLabel = UILabel()
     var progressView = UIProgressView()
@@ -83,6 +84,12 @@ class ShowImageViewController: UIViewController {
                     .cacheOriginalImage
                 ])
         }
+        let image = UIImage(named: "user-placeholder")
+        
+        if let avatarUserUrl = model.user?.profileImage?.small {
+            avatarImage.kf.indicatorType = .activity
+            avatarImage.kf.setImage(with: avatarUserUrl, placeholder: image, options: [.transition(.fade(0.2))])
+        }
     }
 }
 
@@ -109,12 +116,19 @@ extension ShowImageViewController {
         itemImage.translatesAutoresizingMaskIntoConstraints = false
         itemImage.contentMode = .scaleAspectFill
         
+        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        avatarImage.contentMode = .scaleAspectFill
+        avatarImage.clipsToBounds = true
+        avatarImage.layer.cornerRadius = 25
+        avatarImage.layer.borderWidth = 1
+        avatarImage.layer.borderColor = UIColor.white.cgColor
+        
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
         
-        saveButton.translatesAutoresizingMaskIntoConstraints = false
-        makeButton(button: saveButton, systemName: "arrow.down.to.line.alt")
-        saveButton.addTarget(self, action: #selector(saveTapped), for: .primaryActionTriggered)
+        downloadButton.translatesAutoresizingMaskIntoConstraints = false
+        makeButton(button: downloadButton, systemName: "arrow.down.to.line.alt")
+        downloadButton.addTarget(self, action: #selector(saveTapped), for: .primaryActionTriggered)
         
         infoButton.translatesAutoresizingMaskIntoConstraints = false
         makeButton(button: infoButton, systemName: "info.circle")
@@ -135,8 +149,9 @@ extension ShowImageViewController {
         view.addSubview(escapeButton)
         view.addSubview(titleLabel)
         view.addSubview(itemImage)
+        view.addSubview(avatarImage)
         view.addSubview(likeButton)
-        view.addSubview(saveButton)
+        view.addSubview(downloadButton)
         view.addSubview(infoButton)
         view.addSubview(percentLabel)
         view.addSubview(progressView)
@@ -160,18 +175,25 @@ extension ShowImageViewController {
             itemImage.topAnchor.constraint(equalTo: headerView.bottomAnchor),
             itemImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            likeButton.leadingAnchor.constraint(equalToSystemSpacingAfter: itemImage.leadingAnchor, multiplier: 5),
-            likeButton.bottomAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: -25),
-            likeButton.heightAnchor.constraint(equalToConstant: 30),
-            likeButton.widthAnchor.constraint(equalToConstant: 30),
+            avatarImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            avatarImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -10),
+            avatarImage.heightAnchor.constraint(equalToConstant: 50),
+            avatarImage.widthAnchor.constraint(equalToConstant: 50),
             
-            itemImage.trailingAnchor.constraint(equalToSystemSpacingAfter: saveButton.trailingAnchor, multiplier: 5),
-            saveButton.centerYAnchor.constraint(equalTo: likeButton.centerYAnchor),
-            saveButton.heightAnchor.constraint(equalToConstant: 30),
-            saveButton.widthAnchor.constraint(equalToConstant: 30),
+            infoButton.centerXAnchor.constraint(equalTo: avatarImage.centerXAnchor),
+            infoButton.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 15),
+            infoButton.heightAnchor.constraint(equalToConstant: 50),
+            infoButton.widthAnchor.constraint(equalToConstant: 50),
             
-            infoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            infoButton.bottomAnchor.constraint(equalTo: likeButton.bottomAnchor),
+            downloadButton.centerXAnchor.constraint(equalTo: avatarImage.centerXAnchor),
+            downloadButton.topAnchor.constraint(equalTo: infoButton.bottomAnchor, constant: 10),
+            downloadButton.heightAnchor.constraint(equalToConstant: 50),
+            downloadButton.widthAnchor.constraint(equalToConstant: 50),
+            
+            likeButton.centerXAnchor.constraint(equalTo: avatarImage.centerXAnchor),
+            likeButton.topAnchor.constraint(equalTo: downloadButton.bottomAnchor, constant: 10),
+            likeButton.heightAnchor.constraint(equalToConstant: 50),
+            likeButton.widthAnchor.constraint(equalToConstant: 50),
             
             progressView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             progressView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -305,6 +327,7 @@ extension ShowImageViewController {
                 case .success(let image):
                     self.configure(model: image)
                     self.likeButton.isHidden = false
+                    self.downloadButton.isHidden = false
                 case .failure(let error):
                     self.displayError(error)
                 }
@@ -312,6 +335,7 @@ extension ShowImageViewController {
         } else {
             self.configure(model: self.image)
             likeButton.isHidden = true
+            downloadButton.isHidden = true
         }
     }
     

@@ -8,8 +8,8 @@
 import Foundation
 import UIKit
 
-func makeButton(button: UIButton, scale: UIImage.SymbolScale = .large, systemName: String) {
-    let configuration = UIImage.SymbolConfiguration(scale: scale)
+func makeButton(button: UIButton, size: CGFloat = 30, systemName: String) {
+    let configuration = UIImage.SymbolConfiguration(pointSize: size)
     let saveImage = UIImage(systemName: systemName, withConfiguration: configuration)
     button.tintColor = .appColor
     button.setImage(saveImage, for: .normal)
