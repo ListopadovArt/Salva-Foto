@@ -17,6 +17,10 @@ class FavoriteViewController: UIViewController {
         return collection
     }()
     
+    let noItemImage = UIImageView()
+    let noItemLable = UILabel()
+    var activityView: UIActivityIndicatorView?
+    
     // Error alert
     lazy var errorAlert: UIAlertController = {
         let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
@@ -33,9 +37,9 @@ class FavoriteViewController: UIViewController {
     let refreshControl = UIRefreshControl()
     
     override func viewDidAppear(_ animated: Bool) {
-           super.viewDidAppear(animated)
-           checkProfile()
-       }
+        super.viewDidAppear(animated)
+        checkProfile()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,6 +53,31 @@ class FavoriteViewController: UIViewController {
         refreshControl.tintColor = .appColor
         refreshControl.addTarget(self, action: #selector(refreshContent), for: .valueChanged)
         collectionView.refreshControl = refreshControl
+    }
+    
+    private func checkFavorite() {
+        hideActivityIndicator()
+        if imageArray.isEmpty {
+            noItemImage.isHidden = false
+            noItemLable.isHidden = false
+        } else {
+            noItemImage.isHidden = true
+            noItemLable.isHidden = true
+        }
+    }
+    
+    func showActivityIndicator() {
+        activityView = UIActivityIndicatorView(style: .large)
+        activityView?.center = self.view.center
+        activityView?.color = .appColor
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+    
+    func hideActivityIndicator(){
+        if (activityView != nil){
+            activityView?.stopAnimating()
+        }
     }
 }
 
@@ -66,12 +95,33 @@ extension FavoriteViewController {
         collectionView.backgroundColor = .backgroundColor
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        //         No Item
+        noItemImage.translatesAutoresizingMaskIntoConstraints = false
+        noItemImage.image = UIImage(named: "No Favorite illustration")
+        noItemImage.isHidden = true
+        
+        noItemLable.translatesAutoresizingMaskIntoConstraints = false
+        noItemLable.textAlignment = .center
+        noItemLable.font = UIFont.preferredFont(forTextStyle: .title3)
+        noItemLable.numberOfLines = 1
+        noItemLable.textColor = .white
+        noItemLable.text = "No Favorites Photos Yet"
+        noItemLable.isHidden = true
     }
     
     private func layout() {
         view.addSubview(collectionView)
+        view.addSubview(noItemImage)
+        view.addSubview(noItemLable)
         
         NSLayoutConstraint.activate([
+            noItemImage.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            noItemImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            
+            noItemLable.centerXAnchor.constraint(equalTo: noItemImage.centerXAnchor),
+            noItemLable.topAnchor.constraint(equalTo: noItemImage.bottomAnchor, constant: 20),
+            
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
@@ -200,10 +250,12 @@ extension FavoriteViewController: LoginViewDelegate {
         }
         
         if let username = profile.username {
+            showActivityIndicator()
             FavoriteManager.shared.fetchFavoritePhotos(username: username, token: token) { result in
                 switch result {
                 case .success(let images):
                     self.imageArray = images
+                    self.checkFavorite()
                 case .failure(let error):
                     self.displayError(error)
                 }
