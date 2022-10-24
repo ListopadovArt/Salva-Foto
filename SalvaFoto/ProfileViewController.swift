@@ -26,13 +26,13 @@ class ProfileViewController: UIViewController {
     let photoLabel = UILabel()
     let collectionImage = UIImageView()
     let collectionLabel = UILabel()
+    var isMyProfile = true
     
     lazy var menuBarButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(menuTapped))
         return barButtonItem
     }()
-    
     
     // Keychain
     let keychain = Keychain(service: "storage")
@@ -47,7 +47,9 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        checkProfile()
+        if isMyProfile {
+            checkProfile()
+        }
     }
     
     override func viewDidLoad() {
@@ -68,7 +70,7 @@ extension ProfileViewController {
         
         // Title
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        titleLabel.font = UIFont.preferredFont(forTextStyle: .title1)
+        titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         titleLabel.textColor = .white
         titleLabel.numberOfLines = 1
         
@@ -152,7 +154,7 @@ extension ProfileViewController {
         
         // Title
         NSLayoutConstraint.activate([
-            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            titleLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
             titleLabel.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
             view.trailingAnchor.constraint(equalToSystemSpacingAfter: titleLabel.trailingAnchor, multiplier: 2),
         ])

@@ -49,6 +49,7 @@ class ShowImageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        gestureConfigure()
         style()
         layout()
         fetchData(id: image.id!)
@@ -91,6 +92,12 @@ class ShowImageViewController: UIViewController {
             avatarImage.kf.setImage(with: avatarUserUrl, placeholder: image, options: [.transition(.fade(0.2))])
         }
     }
+    
+    private func gestureConfigure(){
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(tapToAvatarImage(_:)))
+        avatarImage.addGestureRecognizer(tapRecognizer)
+        tapRecognizer.numberOfTouchesRequired  = 1
+    }
 }
 
 extension ShowImageViewController {
@@ -122,6 +129,7 @@ extension ShowImageViewController {
         avatarImage.layer.cornerRadius = 25
         avatarImage.layer.borderWidth = 1
         avatarImage.layer.borderColor = UIColor.white.cgColor
+        avatarImage.isUserInteractionEnabled = true
         
         likeButton.translatesAutoresizingMaskIntoConstraints = false
         likeButton.addTarget(self, action: #selector(likeTapped), for: .primaryActionTriggered)
@@ -273,9 +281,21 @@ extension ShowImageViewController {
         if let sheet = sheetViewController.sheetPresentationController {
             sheet.detents = [.medium()]
             sheet.prefersGrabberVisible = true
-            sheet.preferredCornerRadius = 32
+            sheet.preferredCornerRadius = 15
         }
         sheetViewController.configure(image: image)
+        present(sheetViewController, animated: true)
+    }
+    
+    @objc func tapToAvatarImage(_ sender: UITapGestureRecognizer) {
+        let sheetViewController = ProfileViewController()
+        if let sheet = sheetViewController.sheetPresentationController {
+            sheet.detents = [.large()]
+            sheet.prefersGrabberVisible = true
+            sheet.preferredCornerRadius = 15
+        }
+        sheetViewController.isMyProfile = false
+        sheetViewController.configureProfile(with: image.user!)
         present(sheetViewController, animated: true)
     }
 }
