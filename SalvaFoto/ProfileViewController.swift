@@ -28,6 +28,8 @@ class ProfileViewController: UIViewController {
     let collectionLabel = UILabel()
     var isMyProfile = true
     
+    var activityView: UIActivityIndicatorView?
+    
     lazy var menuBarButton: UIBarButtonItem = {
         let image = UIImage(systemName: "ellipsis")
         let barButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(menuTapped))
@@ -61,6 +63,20 @@ class ProfileViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.rightBarButtonItem = menuBarButton
+    }
+    
+    func showActivityIndicator() {
+        activityView = UIActivityIndicatorView(style: .large)
+        activityView?.center = self.view.center
+        activityView?.color = .appColor
+        self.view.addSubview(activityView!)
+        activityView?.startAnimating()
+    }
+    
+    func hideActivityIndicator(){
+        if (activityView != nil){
+            activityView?.stopAnimating()
+        }
     }
 }
 
@@ -240,11 +256,14 @@ extension ProfileViewController {
         if  let token = token {
             navigationController?.isNavigationBarHidden = false
             let url = "https://api.unsplash.com/me?access_token=\(token)"
+            showActivityIndicator()
             ProfileManager.shared.fetchProfile(with: url) { result in
                 switch result {
                 case .success(let profile):
+                    self.hideActivityIndicator()
                     self.configureProfile(with: profile)
                 case .failure(let error):
+                    self.hideActivityIndicator()
                     self.displayError(error)
                 }
             }
