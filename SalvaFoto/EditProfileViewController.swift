@@ -198,8 +198,11 @@ extension EditProfileViewController: UITableViewDelegate, UITableViewDataSource 
 extension EditProfileViewController {
     
     @objc func saveTapped(sender: UIButton) {
-        //TODO: - Add action functionality
-        
+        configure()
+        uploadData()
+    }
+    
+    private func configure(){
         if let text = firstName {
             profile?.firstName = text
         }
@@ -215,7 +218,9 @@ extension EditProfileViewController {
         if let text = location {
             profile?.location = text
         }
-        
+    }
+    
+    private func uploadData(){
         let token = try? keychain.get(accessTokenKey)
         if  let token = token {
             navigationController?.isNavigationBarHidden = false
@@ -266,7 +271,7 @@ extension EditProfileViewController {
         self.view.addSubview(activityView!)
         activityView?.startAnimating()
     }
-
+    
     func hideActivityIndicator(){
         if (activityView != nil){
             activityView?.stopAnimating()
