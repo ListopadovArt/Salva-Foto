@@ -290,7 +290,7 @@ extension ShowImageViewController {
     @objc func tapToAvatarImage(_ sender: UITapGestureRecognizer) {
         let sheetViewController = ProfileViewController()
         if let sheet = sheetViewController.sheetPresentationController {
-            sheet.detents = [.large()]
+            sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
             sheet.preferredCornerRadius = 15
         }
