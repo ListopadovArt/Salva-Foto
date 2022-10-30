@@ -266,3 +266,10 @@ extension FavoriteViewController: LoginViewDelegate {
         }
     }
 }
+
+// MARK: Unit testing
+extension FavoriteViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+}

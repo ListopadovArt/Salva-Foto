@@ -40,7 +40,23 @@
 		AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EE28971F7D00865470 /* ProfileViewController.swift */; };
 		AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE56984289D390800F285F0 /* ShowImageViewController.swift */; };
 		AFEC839D28EA08A000E37985 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEC839C28EA08A000E37985 /* SettingsCell.swift */; };
+		AFFCC092290EDE240032F9B1 /* SearchViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC091290EDE240032F9B1 /* SearchViewControllerTests.swift */; };
+		AFFCC094290EE28B0032F9B1 /* ShowImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC093290EE28B0032F9B1 /* ShowImageViewControllerTests.swift */; };
+		AFFCC096290EE2E10032F9B1 /* FavoriteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC095290EE2E10032F9B1 /* FavoriteViewControllerTests.swift */; };
+		AFFCC098290EE3350032F9B1 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC097290EE3350032F9B1 /* ProfileViewControllerTests.swift */; };
+		AFFCC09A290EE3E20032F9B1 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC099290EE3E20032F9B1 /* SettingsViewControllerTests.swift */; };
+		AFFCC09C290EE4520032F9B1 /* EditProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC09B290EE4520032F9B1 /* EditProfileViewControllerTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFFCC08B290EDAFD0032F9B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFE286C42897170F00865470 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFE286CB2897170F00865470;
+			remoteInfo = SalvaFoto;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.release.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.release.xcconfig"; sourceTree = "<group>"; };
@@ -79,6 +95,13 @@
 		AFE286EE28971F7D00865470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		AFE56984289D390800F285F0 /* ShowImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewController.swift; sourceTree = "<group>"; };
 		AFEC839C28EA08A000E37985 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		AFFCC087290EDAFD0032F9B1 /* SalvaFotoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalvaFotoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFFCC091290EDE240032F9B1 /* SearchViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC093290EE28B0032F9B1 /* ShowImageViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC095290EE2E10032F9B1 /* FavoriteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC097290EE3350032F9B1 /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC099290EE3E20032F9B1 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC09B290EE4520032F9B1 /* EditProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewControllerTests.swift; sourceTree = "<group>"; };
 		B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.debug.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -88,6 +111,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFCC084290EDAFD0032F9B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE286CE2897170F00865470 /* SalvaFoto */,
+				AFFCC088290EDAFD0032F9B1 /* SalvaFotoUnitTests */,
 				AFE286CD2897170F00865470 /* Products */,
 				6E9AE7354B63322C23C05818 /* Pods */,
 				937A6359D4F12D68956FC0E2 /* Frameworks */,
@@ -179,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				AFE286CC2897170F00865470 /* SalvaFoto.app */,
+				AFFCC087290EDAFD0032F9B1 /* SalvaFotoUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -257,6 +289,27 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		AFFCC088290EDAFD0032F9B1 /* SalvaFotoUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFCC090290EDD730032F9B1 /* ViewControllerTests */,
+			);
+			path = SalvaFotoUnitTests;
+			sourceTree = "<group>";
+		};
+		AFFCC090290EDD730032F9B1 /* ViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFCC091290EDE240032F9B1 /* SearchViewControllerTests.swift */,
+				AFFCC093290EE28B0032F9B1 /* ShowImageViewControllerTests.swift */,
+				AFFCC095290EE2E10032F9B1 /* FavoriteViewControllerTests.swift */,
+				AFFCC097290EE3350032F9B1 /* ProfileViewControllerTests.swift */,
+				AFFCC099290EE3E20032F9B1 /* SettingsViewControllerTests.swift */,
+				AFFCC09B290EE4520032F9B1 /* EditProfileViewControllerTests.swift */,
+			);
+			path = ViewControllerTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -279,6 +332,24 @@
 			productReference = AFE286CC2897170F00865470 /* SalvaFoto.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AFFCC086290EDAFD0032F9B1 /* SalvaFotoUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFFCC08F290EDAFD0032F9B1 /* Build configuration list for PBXNativeTarget "SalvaFotoUnitTests" */;
+			buildPhases = (
+				AFFCC083290EDAFD0032F9B1 /* Sources */,
+				AFFCC084290EDAFD0032F9B1 /* Frameworks */,
+				AFFCC085290EDAFD0032F9B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFFCC08C290EDAFD0032F9B1 /* PBXTargetDependency */,
+			);
+			name = SalvaFotoUnitTests;
+			productName = SalvaFotoUnitTests;
+			productReference = AFFCC087290EDAFD0032F9B1 /* SalvaFotoUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -286,11 +357,16 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
 					AFE286CB2897170F00865470 = {
 						CreatedOnToolsVersion = 13.3;
+					};
+					AFFCC086290EDAFD0032F9B1 = {
+						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
+						TestTargetID = AFE286CB2897170F00865470;
 					};
 				};
 			};
@@ -308,6 +384,7 @@
 			projectRoot = "";
 			targets = (
 				AFE286CB2897170F00865470 /* SalvaFoto */,
+				AFFCC086290EDAFD0032F9B1 /* SalvaFotoUnitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -319,6 +396,13 @@
 			files = (
 				AFE286DC2897171100865470 /* LaunchScreen.storyboard in Resources */,
 				AFE286D92897171100865470 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFCC085290EDAFD0032F9B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,7 +488,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AFFCC083290EDAFD0032F9B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFCC09A290EE3E20032F9B1 /* SettingsViewControllerTests.swift in Sources */,
+				AFFCC098290EE3350032F9B1 /* ProfileViewControllerTests.swift in Sources */,
+				AFFCC092290EDE240032F9B1 /* SearchViewControllerTests.swift in Sources */,
+				AFFCC096290EE2E10032F9B1 /* FavoriteViewControllerTests.swift in Sources */,
+				AFFCC09C290EE4520032F9B1 /* EditProfileViewControllerTests.swift in Sources */,
+				AFFCC094290EE28B0032F9B1 /* ShowImageViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFFCC08C290EDAFD0032F9B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFE286CB2897170F00865470 /* SalvaFoto */;
+			targetProxy = AFFCC08B290EDAFD0032F9B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		AFE286DA2897171100865470 /* LaunchScreen.storyboard */ = {
@@ -590,6 +695,59 @@
 			};
 			name = Release;
 		};
+		AFFCC08D290EDAFD0032F9B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H65T22SG4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Listopadov.by.SalvaFotoUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalvaFoto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SalvaFoto";
+			};
+			name = Debug;
+		};
+		AFFCC08E290EDAFD0032F9B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H65T22SG4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Listopadov.by.SalvaFotoUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalvaFoto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SalvaFoto";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -607,6 +765,15 @@
 			buildConfigurations = (
 				AFE286E12897171100865470 /* Debug */,
 				AFE286E22897171100865470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFFCC08F290EDAFD0032F9B1 /* Build configuration list for PBXNativeTarget "SalvaFotoUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFCC08D290EDAFD0032F9B1 /* Debug */,
+				AFFCC08E290EDAFD0032F9B1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

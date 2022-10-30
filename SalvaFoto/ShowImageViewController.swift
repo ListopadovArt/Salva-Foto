@@ -394,3 +394,10 @@ extension ShowImageViewController {
         }
     }
 }
+
+// MARK: Unit testing
+extension ShowImageViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+}

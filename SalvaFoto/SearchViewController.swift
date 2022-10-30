@@ -245,3 +245,10 @@ extension SearchViewController {
         imageArray = []
     }
 }
+
+// MARK: Unit testing
+extension SearchViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+}

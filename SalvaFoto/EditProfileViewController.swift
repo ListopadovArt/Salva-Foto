@@ -306,3 +306,10 @@ extension EditProfileViewController {
         }
     }
 }
+
+// MARK: Unit testing
+extension EditProfileViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+}

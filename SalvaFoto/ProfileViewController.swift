@@ -392,3 +392,10 @@ extension ProfileViewController {
         navigationController?.pushViewController(controller, animated: true)
     }
 }
+
+// MARK: Unit testing
+extension ProfileViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+}

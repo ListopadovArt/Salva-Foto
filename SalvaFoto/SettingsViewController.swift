@@ -254,3 +254,10 @@ extension SettingsViewController {
         }
     }
 }
+
+// MARK: Unit testing
+extension SettingsViewController {
+    func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
+        return titleAndMessage(for: error)
+    }
+}
