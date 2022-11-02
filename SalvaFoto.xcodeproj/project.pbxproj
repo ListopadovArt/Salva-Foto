@@ -1,0 +1,784 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */; };
+		AF0E4043289AF60A0016217D /* SearchManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0E4042289AF60A0016217D /* SearchManager.swift */; };
+		AF120C4028F1FF9D00C8D5D7 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF120C3F28F1FF9D00C8D5D7 /* EditProfileViewController.swift */; };
+		AF120C4228F2038B00C8D5D7 /* EditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF120C4128F2038B00C8D5D7 /* EditCell.swift */; };
+		AF1C4C3328E96EA000B8A107 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */; };
+		AF1C9F5928CFAA23006BADFE /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5828CFAA23006BADFE /* Photo.swift */; };
+		AF1C9F5B28CFAA44006BADFE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5A28CFAA44006BADFE /* User.swift */; };
+		AF1C9F5D28CFAA63006BADFE /* Generics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5C28CFAA63006BADFE /* Generics.swift */; };
+		AF1C9F5F28CFAA6D006BADFE /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F5E28CFAA6D006BADFE /* Collections.swift */; };
+		AF1C9F6128CFAA82006BADFE /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F6028CFAA82006BADFE /* Statistics.swift */; };
+		AF1C9F6328CFAA9A006BADFE /* Searches.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C9F6228CFAA9A006BADFE /* Searches.swift */; };
+		AF203D7828BFF66F000BD4D7 /* ProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */; };
+		AF203D7A28BFF706000BD4D7 /* FavoriteManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */; };
+		AF203D7C28BFF884000BD4D7 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF203D7B28BFF884000BD4D7 /* Errors.swift */; };
+		AF31B99B28D4AB9E00A4885E /* InformPhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF31B99A28D4AB9E00A4885E /* InformPhotoViewController.swift */; };
+		AF783EE628C13A3100650D68 /* Authenticator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF783EE528C13A3100650D68 /* Authenticator.swift */; };
+		AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8925012899ABDD006ED79F /* ImageCell.swift */; };
+		AF93A2DB289EEE2200AEC85B /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF93A2DA289EEE2200AEC85B /* Buttons.swift */; };
+		AFA46A2E28C7CF29004141A7 /* ShowManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFA46A2D28C7CF29004141A7 /* ShowManager.swift */; };
+		AFACDF1E28E09AE1006191BC /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFACDF1D28E09AE1006191BC /* Date+Utils.swift */; };
+		AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */; };
+		AFC2856D28BEABEA00916141 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFC2856C28BEABEA00916141 /* LoginViewController.swift */; };
+		AFD27AA128B02ED300E45A54 /* BlurHashLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFD27AA028B02ED300E45A54 /* BlurHashLoadable.swift */; };
+		AFE286D02897170F00865470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286CF2897170F00865470 /* AppDelegate.swift */; };
+		AFE286D42897170F00865470 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286D32897170F00865470 /* MainViewController.swift */; };
+		AFE286D92897171100865470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFE286D82897171100865470 /* Assets.xcassets */; };
+		AFE286DC2897171100865470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AFE286DA2897171100865470 /* LaunchScreen.storyboard */; };
+		AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286E528971CAF00865470 /* UIViewController+Utils.swift */; };
+		AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EA28971F3F00865470 /* SearchViewController.swift */; };
+		AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EC28971F5300865470 /* FavoriteViewController.swift */; };
+		AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE286EE28971F7D00865470 /* ProfileViewController.swift */; };
+		AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE56984289D390800F285F0 /* ShowImageViewController.swift */; };
+		AFEC839D28EA08A000E37985 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEC839C28EA08A000E37985 /* SettingsCell.swift */; };
+		AFFCC092290EDE240032F9B1 /* SearchViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC091290EDE240032F9B1 /* SearchViewControllerTests.swift */; };
+		AFFCC094290EE28B0032F9B1 /* ShowImageViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC093290EE28B0032F9B1 /* ShowImageViewControllerTests.swift */; };
+		AFFCC096290EE2E10032F9B1 /* FavoriteViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC095290EE2E10032F9B1 /* FavoriteViewControllerTests.swift */; };
+		AFFCC098290EE3350032F9B1 /* ProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC097290EE3350032F9B1 /* ProfileViewControllerTests.swift */; };
+		AFFCC09A290EE3E20032F9B1 /* SettingsViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC099290EE3E20032F9B1 /* SettingsViewControllerTests.swift */; };
+		AFFCC09C290EE4520032F9B1 /* EditProfileViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFCC09B290EE4520032F9B1 /* EditProfileViewControllerTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AFFCC08B290EDAFD0032F9B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = AFE286C42897170F00865470 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AFE286CB2897170F00865470;
+			remoteInfo = SalvaFoto;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.release.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.release.xcconfig"; sourceTree = "<group>"; };
+		9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SalvaFoto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF0E4042289AF60A0016217D /* SearchManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchManager.swift; sourceTree = "<group>"; };
+		AF120C3F28F1FF9D00C8D5D7 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		AF120C4128F2038B00C8D5D7 /* EditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditCell.swift; sourceTree = "<group>"; };
+		AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		AF1C9F5828CFAA23006BADFE /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		AF1C9F5A28CFAA44006BADFE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		AF1C9F5C28CFAA63006BADFE /* Generics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Generics.swift; sourceTree = "<group>"; };
+		AF1C9F5E28CFAA6D006BADFE /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		AF1C9F6028CFAA82006BADFE /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
+		AF1C9F6228CFAA9A006BADFE /* Searches.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Searches.swift; sourceTree = "<group>"; };
+		AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileManager.swift; sourceTree = "<group>"; };
+		AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteManager.swift; sourceTree = "<group>"; };
+		AF203D7B28BFF884000BD4D7 /* Errors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
+		AF31B99A28D4AB9E00A4885E /* InformPhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InformPhotoViewController.swift; sourceTree = "<group>"; };
+		AF783EE528C13A3100650D68 /* Authenticator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authenticator.swift; sourceTree = "<group>"; };
+		AF8925012899ABDD006ED79F /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		AF93A2DA289EEE2200AEC85B /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		AFA46A2D28C7CF29004141A7 /* ShowManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowManager.swift; sourceTree = "<group>"; };
+		AFACDF1D28E09AE1006191BC /* Date+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
+		AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Utils.swift"; sourceTree = "<group>"; };
+		AFC2856C28BEABEA00916141 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AFD27AA028B02ED300E45A54 /* BlurHashLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurHashLoadable.swift; sourceTree = "<group>"; };
+		AFE286CC2897170F00865470 /* SalvaFoto.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SalvaFoto.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFE286CF2897170F00865470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AFE286D32897170F00865470 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AFE286D82897171100865470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AFE286DB2897171100865470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		AFE286DD2897171100865470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AFE286E528971CAF00865470 /* UIViewController+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Utils.swift"; sourceTree = "<group>"; };
+		AFE286EA28971F3F00865470 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		AFE286EC28971F5300865470 /* FavoriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewController.swift; sourceTree = "<group>"; };
+		AFE286EE28971F7D00865470 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		AFE56984289D390800F285F0 /* ShowImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewController.swift; sourceTree = "<group>"; };
+		AFEC839C28EA08A000E37985 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
+		AFFCC087290EDAFD0032F9B1 /* SalvaFotoUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SalvaFotoUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AFFCC091290EDE240032F9B1 /* SearchViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC093290EE28B0032F9B1 /* ShowImageViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowImageViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC095290EE2E10032F9B1 /* FavoriteViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC097290EE3350032F9B1 /* ProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC099290EE3E20032F9B1 /* SettingsViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewControllerTests.swift; sourceTree = "<group>"; };
+		AFFCC09B290EE4520032F9B1 /* EditProfileViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewControllerTests.swift; sourceTree = "<group>"; };
+		B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SalvaFoto.debug.xcconfig"; path = "Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AFE286C92897170F00865470 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				43B17B8E85560AD49D2D90F4 /* Pods_SalvaFoto.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFCC084290EDAFD0032F9B1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		6E9AE7354B63322C23C05818 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */,
+				902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		937A6359D4F12D68956FC0E2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A537AF3373BB753ECFA8FB7 /* Pods_SalvaFoto.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF0E403D289AF4900016217D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EA28971F3F00865470 /* SearchViewController.swift */,
+				AFE56984289D390800F285F0 /* ShowImageViewController.swift */,
+				AF31B99A28D4AB9E00A4885E /* InformPhotoViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		AF0E403E289AF49E0016217D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF8925012899ABDD006ED79F /* ImageCell.swift */,
+				AFD27AA028B02ED300E45A54 /* BlurHashLoadable.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		AF0E403F289AF4A60016217D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C9F5828CFAA23006BADFE /* Photo.swift */,
+				AF1C9F5A28CFAA44006BADFE /* User.swift */,
+				AF1C9F5C28CFAA63006BADFE /* Generics.swift */,
+				AF1C9F5E28CFAA6D006BADFE /* Collections.swift */,
+				AF1C9F6028CFAA82006BADFE /* Statistics.swift */,
+				AF1C9F6228CFAA9A006BADFE /* Searches.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		AF120C3C28F1FF6400C8D5D7 /* EditProfile */ = {
+			isa = PBXGroup;
+			children = (
+				AF120C3F28F1FF9D00C8D5D7 /* EditProfileViewController.swift */,
+				AF120C4128F2038B00C8D5D7 /* EditCell.swift */,
+			);
+			name = EditProfile;
+			sourceTree = "<group>";
+		};
+		AF203D7628BFF5F0000BD4D7 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				AF0E4042289AF60A0016217D /* SearchManager.swift */,
+				AF203D7928BFF706000BD4D7 /* FavoriteManager.swift */,
+				AFA46A2D28C7CF29004141A7 /* ShowManager.swift */,
+				AF203D7728BFF66F000BD4D7 /* ProfileManager.swift */,
+				AF203D7B28BFF884000BD4D7 /* Errors.swift */,
+				AF783EE528C13A3100650D68 /* Authenticator.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		AFE286C32897170F00865470 = {
+			isa = PBXGroup;
+			children = (
+				AFE286CE2897170F00865470 /* SalvaFoto */,
+				AFFCC088290EDAFD0032F9B1 /* SalvaFotoUnitTests */,
+				AFE286CD2897170F00865470 /* Products */,
+				6E9AE7354B63322C23C05818 /* Pods */,
+				937A6359D4F12D68956FC0E2 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		AFE286CD2897170F00865470 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286CC2897170F00865470 /* SalvaFoto.app */,
+				AFFCC087290EDAFD0032F9B1 /* SalvaFotoUnitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AFE286CE2897170F00865470 /* SalvaFoto */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286E428971C9700865470 /* Utils */,
+				AFE286E32897172B00865470 /* Files */,
+				AFE286CF2897170F00865470 /* AppDelegate.swift */,
+				AFE286D32897170F00865470 /* MainViewController.swift */,
+				AFE286E728971E4000865470 /* Search */,
+				AFE286E828971E6D00865470 /* Favorite */,
+				AFE286E928971E7E00865470 /* Profile */,
+				AF203D7628BFF5F0000BD4D7 /* Networking */,
+			);
+			path = SalvaFoto;
+			sourceTree = "<group>";
+		};
+		AFE286E32897172B00865470 /* Files */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286D82897171100865470 /* Assets.xcassets */,
+				AFE286DA2897171100865470 /* LaunchScreen.storyboard */,
+				AFE286DD2897171100865470 /* Info.plist */,
+			);
+			name = Files;
+			sourceTree = "<group>";
+		};
+		AFE286E428971C9700865470 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286E528971CAF00865470 /* UIViewController+Utils.swift */,
+				AF93A2DA289EEE2200AEC85B /* Buttons.swift */,
+				AFAE22FC2898663F00970AB5 /* UIColor+Utils.swift */,
+				AFACDF1D28E09AE1006191BC /* Date+Utils.swift */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
+		AFE286E728971E4000865470 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				AF0E403F289AF4A60016217D /* Model */,
+				AF0E403E289AF49E0016217D /* View */,
+				AF0E403D289AF4900016217D /* Controller */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		AFE286E828971E6D00865470 /* Favorite */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EC28971F5300865470 /* FavoriteViewController.swift */,
+			);
+			name = Favorite;
+			sourceTree = "<group>";
+		};
+		AFE286E928971E7E00865470 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				AFE286EE28971F7D00865470 /* ProfileViewController.swift */,
+				AFC2856C28BEABEA00916141 /* LoginViewController.swift */,
+				AFEC839B28EA078300E37985 /* Settings */,
+				AF120C3C28F1FF6400C8D5D7 /* EditProfile */,
+			);
+			name = Profile;
+			sourceTree = "<group>";
+		};
+		AFEC839B28EA078300E37985 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C4C3228E96EA000B8A107 /* SettingsViewController.swift */,
+				AFEC839C28EA08A000E37985 /* SettingsCell.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		AFFCC088290EDAFD0032F9B1 /* SalvaFotoUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFCC090290EDD730032F9B1 /* ViewControllerTests */,
+			);
+			path = SalvaFotoUnitTests;
+			sourceTree = "<group>";
+		};
+		AFFCC090290EDD730032F9B1 /* ViewControllerTests */ = {
+			isa = PBXGroup;
+			children = (
+				AFFCC091290EDE240032F9B1 /* SearchViewControllerTests.swift */,
+				AFFCC093290EE28B0032F9B1 /* ShowImageViewControllerTests.swift */,
+				AFFCC095290EE2E10032F9B1 /* FavoriteViewControllerTests.swift */,
+				AFFCC097290EE3350032F9B1 /* ProfileViewControllerTests.swift */,
+				AFFCC099290EE3E20032F9B1 /* SettingsViewControllerTests.swift */,
+				AFFCC09B290EE4520032F9B1 /* EditProfileViewControllerTests.swift */,
+			);
+			path = ViewControllerTests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AFE286CB2897170F00865470 /* SalvaFoto */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFE286E02897171100865470 /* Build configuration list for PBXNativeTarget "SalvaFoto" */;
+			buildPhases = (
+				C321F23F914C4FC522B435F3 /* [CP] Check Pods Manifest.lock */,
+				AFE286C82897170F00865470 /* Sources */,
+				AFE286C92897170F00865470 /* Frameworks */,
+				AFE286CA2897170F00865470 /* Resources */,
+				9E596C95A5385D7638BC2573 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SalvaFoto;
+			productName = SalvaFoto;
+			productReference = AFE286CC2897170F00865470 /* SalvaFoto.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AFFCC086290EDAFD0032F9B1 /* SalvaFotoUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AFFCC08F290EDAFD0032F9B1 /* Build configuration list for PBXNativeTarget "SalvaFotoUnitTests" */;
+			buildPhases = (
+				AFFCC083290EDAFD0032F9B1 /* Sources */,
+				AFFCC084290EDAFD0032F9B1 /* Frameworks */,
+				AFFCC085290EDAFD0032F9B1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AFFCC08C290EDAFD0032F9B1 /* PBXTargetDependency */,
+			);
+			name = SalvaFotoUnitTests;
+			productName = SalvaFotoUnitTests;
+			productReference = AFFCC087290EDAFD0032F9B1 /* SalvaFotoUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AFE286C42897170F00865470 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1400;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					AFE286CB2897170F00865470 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+					AFFCC086290EDAFD0032F9B1 = {
+						CreatedOnToolsVersion = 14.0;
+						LastSwiftMigration = 1400;
+						TestTargetID = AFE286CB2897170F00865470;
+					};
+				};
+			};
+			buildConfigurationList = AFE286C72897170F00865470 /* Build configuration list for PBXProject "SalvaFoto" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AFE286C32897170F00865470;
+			productRefGroup = AFE286CD2897170F00865470 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AFE286CB2897170F00865470 /* SalvaFoto */,
+				AFFCC086290EDAFD0032F9B1 /* SalvaFotoUnitTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AFE286CA2897170F00865470 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE286DC2897171100865470 /* LaunchScreen.storyboard in Resources */,
+				AFE286D92897171100865470 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFCC085290EDAFD0032F9B1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9E596C95A5385D7638BC2573 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SalvaFoto/Pods-SalvaFoto-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C321F23F914C4FC522B435F3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SalvaFoto-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AFE286C82897170F00865470 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFE286EF28971F7D00865470 /* ProfileViewController.swift in Sources */,
+				AF203D7828BFF66F000BD4D7 /* ProfileManager.swift in Sources */,
+				AFE286D42897170F00865470 /* MainViewController.swift in Sources */,
+				AFD27AA128B02ED300E45A54 /* BlurHashLoadable.swift in Sources */,
+				AF1C9F5928CFAA23006BADFE /* Photo.swift in Sources */,
+				AFE286D02897170F00865470 /* AppDelegate.swift in Sources */,
+				AF1C9F5F28CFAA6D006BADFE /* Collections.swift in Sources */,
+				AF93A2DB289EEE2200AEC85B /* Buttons.swift in Sources */,
+				AF120C4028F1FF9D00C8D5D7 /* EditProfileViewController.swift in Sources */,
+				AFE286EB28971F3F00865470 /* SearchViewController.swift in Sources */,
+				AF31B99B28D4AB9E00A4885E /* InformPhotoViewController.swift in Sources */,
+				AFE56985289D390800F285F0 /* ShowImageViewController.swift in Sources */,
+				AFAE22FD2898663F00970AB5 /* UIColor+Utils.swift in Sources */,
+				AFC2856D28BEABEA00916141 /* LoginViewController.swift in Sources */,
+				AFA46A2E28C7CF29004141A7 /* ShowManager.swift in Sources */,
+				AFEC839D28EA08A000E37985 /* SettingsCell.swift in Sources */,
+				AF203D7A28BFF706000BD4D7 /* FavoriteManager.swift in Sources */,
+				AF8925022899ABDD006ED79F /* ImageCell.swift in Sources */,
+				AF203D7C28BFF884000BD4D7 /* Errors.swift in Sources */,
+				AFE286E628971CAF00865470 /* UIViewController+Utils.swift in Sources */,
+				AFACDF1E28E09AE1006191BC /* Date+Utils.swift in Sources */,
+				AF0E4043289AF60A0016217D /* SearchManager.swift in Sources */,
+				AFE286ED28971F5300865470 /* FavoriteViewController.swift in Sources */,
+				AF1C9F6328CFAA9A006BADFE /* Searches.swift in Sources */,
+				AF1C9F5D28CFAA63006BADFE /* Generics.swift in Sources */,
+				AF783EE628C13A3100650D68 /* Authenticator.swift in Sources */,
+				AF1C9F6128CFAA82006BADFE /* Statistics.swift in Sources */,
+				AF120C4228F2038B00C8D5D7 /* EditCell.swift in Sources */,
+				AF1C9F5B28CFAA44006BADFE /* User.swift in Sources */,
+				AF1C4C3328E96EA000B8A107 /* SettingsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AFFCC083290EDAFD0032F9B1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AFFCC09A290EE3E20032F9B1 /* SettingsViewControllerTests.swift in Sources */,
+				AFFCC098290EE3350032F9B1 /* ProfileViewControllerTests.swift in Sources */,
+				AFFCC092290EDE240032F9B1 /* SearchViewControllerTests.swift in Sources */,
+				AFFCC096290EE2E10032F9B1 /* FavoriteViewControllerTests.swift in Sources */,
+				AFFCC09C290EE4520032F9B1 /* EditProfileViewControllerTests.swift in Sources */,
+				AFFCC094290EE28B0032F9B1 /* ShowImageViewControllerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AFFCC08C290EDAFD0032F9B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AFE286CB2897170F00865470 /* SalvaFoto */;
+			targetProxy = AFFCC08B290EDAFD0032F9B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		AFE286DA2897171100865470 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AFE286DB2897171100865470 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AFE286DE2897171100865470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AFE286DF2897171100865470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AFE286E12897171100865470 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B4CAB0630BDD83093467376A /* Pods-SalvaFoto.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H65T22SG4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SalvaFoto/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save photos to your gallery";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = SalvaFoto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		AFE286E22897171100865470 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 902E138AC59B8FCAA9CA5C2B /* Pods-SalvaFoto.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H65T22SG4;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SalvaFoto/Info.plist;
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "We want to save photos to your gallery";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = SalvaFoto;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		AFFCC08D290EDAFD0032F9B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H65T22SG4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Listopadov.by.SalvaFotoUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalvaFoto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SalvaFoto";
+			};
+			name = Debug;
+		};
+		AFFCC08E290EDAFD0032F9B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 6H65T22SG4;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "Artem-Listopadov.by.SalvaFotoUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SalvaFoto.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SalvaFoto";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AFE286C72897170F00865470 /* Build configuration list for PBXProject "SalvaFoto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFE286DE2897171100865470 /* Debug */,
+				AFE286DF2897171100865470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFE286E02897171100865470 /* Build configuration list for PBXNativeTarget "SalvaFoto" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFE286E12897171100865470 /* Debug */,
+				AFE286E22897171100865470 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AFFCC08F290EDAFD0032F9B1 /* Build configuration list for PBXNativeTarget "SalvaFotoUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AFFCC08D290EDAFD0032F9B1 /* Debug */,
+				AFFCC08E290EDAFD0032F9B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AFE286C42897170F00865470 /* Project object */;
+}
