@@ -88,7 +88,7 @@ extension ProfileViewController {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.font = UIFont.preferredFont(forTextStyle: .title2)
         titleLabel.textColor = .white
-        titleLabel.numberOfLines = 1
+        titleLabel.numberOfLines = 2
         
         // Image
         avatarImage.translatesAutoresizingMaskIntoConstraints = false
@@ -278,6 +278,7 @@ extension ProfileViewController {
     }
 }
 
+// MARK: - Configure
 extension ProfileViewController: LoginViewDelegate {
     
     func configureProfile(with profile: User) {
@@ -289,7 +290,7 @@ extension ProfileViewController: LoginViewDelegate {
         }
         // Title Label
         if let name = profile.name {
-            titleLabel.text = "\(name)"
+            titleLabel.attributedText = makeText(text: "\(name)")
         }
         // Bio Label
         if let bio = profile.bio {
@@ -315,6 +316,22 @@ extension ProfileViewController: LoginViewDelegate {
         if let collection = profile.totalCollections {
             collectionLabel.text = "\(collection)"
         }
+    }
+    
+    func makeText(text: String) -> NSMutableAttributedString {
+        let onUnsplash = "\non Unsplash"
+        
+        var textAttributes = [NSAttributedString.Key: AnyObject]()
+        textAttributes[.font] = UIFont.preferredFont(forTextStyle: .title2)
+        
+        var unsplashTextAttributes = [NSAttributedString.Key: AnyObject]()
+        unsplashTextAttributes[.font] = UIFont.preferredFont(forTextStyle: .body)
+        unsplashTextAttributes[.foregroundColor] = UIColor.systemGray
+        
+        let text = NSMutableAttributedString(string: text, attributes: textAttributes)
+        text.append(NSAttributedString(string: onUnsplash, attributes: unsplashTextAttributes))
+        
+        return text
     }
 }
 
