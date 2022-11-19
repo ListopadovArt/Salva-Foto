@@ -18,13 +18,6 @@ class SearchViewController: UIViewController {
         return collection
     }()
     
-    // Error alert
-    lazy var errorAlert: UIAlertController = {
-        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        return alert
-    }()
-    
     var imageArray = [Photo]()
     
     let refreshControl = UIRefreshControl()
@@ -215,16 +208,6 @@ extension SearchViewController {
             message = "Ensure you are connected to the internet. Please try again."
         }
         return (title, message)
-    }
-    
-    private func showErrorAlert(title: String, message: String) {
-        errorAlert.title = title
-        errorAlert.message = message
-        
-        // Don't present one error if another has already been presented
-        if !errorAlert.isBeingPresented {
-            present(errorAlert, animated: true, completion: nil)
-        }
     }
 }
 

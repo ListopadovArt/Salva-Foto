@@ -33,13 +33,6 @@ class EditProfileViewController: UIViewController {
     let keychain = Keychain(service: "storage")
     let accessTokenKey = KeychainKey<String>(key: "key")
     
-    // Error alert
-    lazy var errorAlert: UIAlertController = {
-        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        return alert
-    }()
-    
     var activityView: UIActivityIndicatorView?
     
     // MARK: - View Life Cycle
@@ -299,16 +292,6 @@ extension EditProfileViewController {
             message = "Ensure you are connected to the internet. Please try again."
         }
         return (title, message)
-    }
-    
-    private func showErrorAlert(title: String, message: String) {
-        errorAlert.title = title
-        errorAlert.message = message
-        
-        // Don't present one error if another has already been presented
-        if !errorAlert.isBeingPresented {
-            present(errorAlert, animated: true, completion: nil)
-        }
     }
 }
 

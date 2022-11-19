@@ -27,13 +27,6 @@ class SettingsViewController: UIViewController {
                                            SettingsMenuModel(header: "Other", tags: [0, 1, 2]),
     ]
     
-    // Error alert
-    private lazy var errorAlert: UIAlertController = {
-        let alert =  UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        return alert
-    }()
-    
     var profile: User? = nil
     
     // MARK: - View Life Cycle
@@ -242,16 +235,6 @@ extension SettingsViewController {
             message = "Ensure you are connected to the internet. Please try again."
         }
         return (title, message)
-    }
-    
-    private func showErrorAlert(title: String, message: String) {
-        errorAlert.title = title
-        errorAlert.message = message
-        
-        // Don't present one error if another has already been presented
-        if !errorAlert.isBeingPresented {
-            present(errorAlert, animated: true, completion: nil)
-        }
     }
 }
 
