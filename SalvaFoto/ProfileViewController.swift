@@ -9,7 +9,7 @@ import UIKit
 import SwiftyKeychainKit
 import Kingfisher
 
-class ProfileViewController: UIViewController {
+final class ProfileViewController: UIViewController {
     
     // Profile
     let profile: User? = nil

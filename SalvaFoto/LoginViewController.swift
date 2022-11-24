@@ -12,7 +12,7 @@ protocol LoginViewDelegate: AnyObject {
     func configureProfile(with profile: User)
 }
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     // Keychain
     let keychain = Keychain(service: "storage")
@@ -92,31 +92,12 @@ extension LoginViewController {
 
 extension LoginViewController {
     @objc func signInTapped(sender: UIButton){
-        login()
+        authorization()
     }
     
-    private func login() {
-        let bundleIdentifier = Bundle.main.bundleIdentifier!
-        let host = "https://unsplash.com"
-        let authorizeURL = "\(host)/oauth/authorize"
-        let tokenURL = "\(host)/oauth/token"
-        let clientId = "f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
-        let clientSecret = "7FHZh8Q_0E0B19tj8X6ywRYRzQFEdOFtC4sDgzmBook"
-        let redirectUri = "\(bundleIdentifier)://localhost/redirect"
-        
-        let parameters = OAuthParameters(authorizeUrl: authorizeURL,
-                                         tokenUrl:tokenURL,
-                                         clientId: clientId,
-                                         clientSecret: clientSecret,
-                                         redirectUri: redirectUri,
-                                         callbackURLScheme: bundleIdentifier)
-        
-        authorization(parameters: parameters)
-    }
-    
-    private func authorization(parameters: OAuthParameters){
+    private func authorization(){
         let authenticator = Authenticator()
-        authenticator.authenticate(parameters: parameters) { result in
+        authenticator.authenticate() { result in
             var message: String = ""
             switch result {
             case .success(let accessTokenResponse):

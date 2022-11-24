@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SettingsCell: UITableViewCell {
+final class SettingsCell: UITableViewCell {
     
     let titleImage = UIImageView()
     let titleLabel = UILabel()

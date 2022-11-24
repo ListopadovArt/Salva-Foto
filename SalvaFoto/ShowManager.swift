@@ -13,7 +13,7 @@ class ShowManager {
     
     init() {}
     
-    func getPhoto(id: String, token: String, completion: @escaping (Result<Photo,NetworkError>) -> Void){
+    func getPhoto(id: String, token: String, completion: @escaping GenericCompletionManager<Photo>){
         var request = URLRequest(url: URL(string: "https://api.unsplash.com/photos/\(id)")!,timeoutInterval: Double.infinity)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
@@ -38,7 +38,7 @@ class ShowManager {
         task.resume()
     }
     
-    func setLikeToPhoto(id: String, token: String, user: User, photo: Photo, completion: @escaping (Result<Like,NetworkError>) -> Void) {
+    func setLikeToPhoto(id: String, token: String, user: User, photo: Photo, completion: @escaping GenericCompletionManager<Like>){
         var photo = photo
         photo.likedByUser = true
         let uploadDataModel = Like(photo: photo, user: user)
@@ -70,7 +70,7 @@ class ShowManager {
         task.resume()
     }
     
-    func removeLikeFromPhoto(id: String, token: String, completion: @escaping (Result<Like,NetworkError>) -> Void) {
+    func removeLikeFromPhoto(id: String, token: String, completion: @escaping GenericCompletionManager<Like>){
         
         var request = URLRequest(url: URL(string: "https://api.unsplash.com/photos/\(id)/like")!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -97,7 +97,7 @@ class ShowManager {
         task.resume()
     }
     
-    func downloadLocation(id: String, token: String, completion: @escaping (Result<Download,NetworkError>) -> Void){
+    func downloadLocation(id: String, token: String, completion: @escaping GenericCompletionManager<Download>){
         
         var request = URLRequest(url: URL(string: "https://api.unsplash.com/photos/\(id)/download")!,timeoutInterval: Double.infinity)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")

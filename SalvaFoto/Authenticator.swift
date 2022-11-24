@@ -8,33 +8,7 @@
 import Foundation
 import AuthenticationServices
 
-public enum AuthenticatorError: LocalizedError {
-    case authRequestFailed(Error)
-    case authorizeResponseNoUrl
-    case authorizeResponseNoCode
-    case tokenRequestFailed(Error)
-    case tokenResponseNoData
-    case tokenResponseInvalidData(String)
-    
-    var localizedDescription: String {
-        switch self {
-        case .authRequestFailed(let error):
-            return "authorization request failed: \(error.localizedDescription)"
-        case .authorizeResponseNoUrl:
-            return "authorization response does not include a url"
-        case .authorizeResponseNoCode:
-            return "authorization response does not include a code"
-        case .tokenRequestFailed(let error):
-            return "token request failed: \(error.localizedDescription)"
-        case .tokenResponseNoData:
-            return "no data received as part of token response"
-        case .tokenResponseInvalidData(let reason):
-            return "invalid data received as part of token response: \(reason)"
-        }
-    }
-}
-
-public struct OAuthParameters {
+private struct OAuthParameters {
     public var authorizeUrl: String
     public var tokenUrl: String
     public var clientId: String
@@ -57,7 +31,22 @@ public struct AccessTokenResponse: Codable {
 
 public class Authenticator: NSObject {
     
-    public func authenticate(parameters: OAuthParameters, completion: @escaping (Result<AccessTokenResponse, AuthenticatorError>) -> Void) {
+    public func authenticate(completion: @escaping GenericCompletionAuthenticator<AccessTokenResponse>){
+        
+        let bundleIdentifier = Bundle.main.bundleIdentifier!
+        let host = "https://unsplash.com"
+        let authorizeURL = "\(host)/oauth/authorize"
+        let tokenURL = "\(host)/oauth/token"
+        let clientId = "f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
+        let clientSecret = "7FHZh8Q_0E0B19tj8X6ywRYRzQFEdOFtC4sDgzmBook"
+        let redirectUri = "\(bundleIdentifier)://localhost/redirect"
+        
+        let parameters = OAuthParameters(authorizeUrl: authorizeURL,
+                                         tokenUrl:tokenURL,
+                                         clientId: clientId,
+                                         clientSecret: clientSecret,
+                                         redirectUri: redirectUri,
+                                         callbackURLScheme: bundleIdentifier)
         
         let authenticationSession = ASWebAuthenticationSession(
             url: URL(string: "\(parameters.authorizeUrl)?response_type=code&client_id=\(parameters.clientId)&redirect_uri=\(parameters.redirectUri)&scope=public+read_user+write_user+read_photos+write_photos+write_likes+read_collections+write_collections")!,
@@ -79,7 +68,7 @@ public class Authenticator: NSObject {
         authenticationSession.start()
     }
     
-    private func getAccessToken(authCode: String, parameters: OAuthParameters, completion: @escaping (Result<AccessTokenResponse, AuthenticatorError>) -> Void) {
+    private func getAccessToken(authCode: String, parameters: OAuthParameters, completion: @escaping GenericCompletionAuthenticator<AccessTokenResponse>){
         
         let url = URL(string: "\(parameters.tokenUrl)?client_id=\(parameters.clientId)&client_secret=\(parameters.clientSecret)&redirect_uri=\(parameters.redirectUri)&code=\(authCode)&grant_type=authorization_code")!
         
@@ -138,7 +127,7 @@ private extension URL {
     }
 }
 
-extension UIApplication {
+private extension UIApplication {
     var keyWindow: UIWindow? {
         return UIApplication.shared.connectedScenes
             .filter { $0.activationState == .foregroundActive }

@@ -13,7 +13,7 @@ class FavoriteManager {
     
     init() {}
     
-    func fetchFavoritePhotos(username: String, token: String, completion: @escaping (Result<[Photo],NetworkError>) -> Void){
+    func fetchFavoritePhotos(username: String, token: String, completion: @escaping GenericCompletionManager<[Photo]>){
         var request = URLRequest(url: URL(string: "https://api.unsplash.com/users/\(username)/likes")!,timeoutInterval: Double.infinity)
         request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"

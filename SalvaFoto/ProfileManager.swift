@@ -13,7 +13,7 @@ class ProfileManager {
     
     init() {}
     
-    func fetchProfile(with urlString: String, completion: @escaping (Result<User,NetworkError>) -> Void){
+    func fetchProfile(with urlString: String, completion: @escaping GenericCompletionManager<User>){
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url){ data, response, error in
@@ -36,7 +36,7 @@ class ProfileManager {
         }
     }
     
-    func updateProfile(with urlString: String, profile: User?, completion: @escaping (Result<User,NetworkError>) -> Void) {
+    func updateProfile(with urlString: String, profile: User?, completion: @escaping GenericCompletionManager<User>){
         var request = URLRequest(url: URL(string: urlString)!,timeoutInterval: Double.infinity)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "PUT"
