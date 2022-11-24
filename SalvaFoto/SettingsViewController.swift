@@ -14,7 +14,7 @@ struct SettingsMenuModel {
     var tags: [Int]?
 }
 
-class SettingsViewController: UIViewController {
+final class SettingsViewController: UIViewController {
     
     // Keychain
     let keychain = Keychain(service: "storage")

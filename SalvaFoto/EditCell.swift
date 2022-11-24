@@ -16,7 +16,7 @@ enum TextFieldData: Int {
     case location = 4
 }
 
-class EditCell: UITableViewCell {
+final class EditCell: UITableViewCell {
     
     let titleTextField = UITextField()
     

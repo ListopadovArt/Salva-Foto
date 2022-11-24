@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ImageCell: UICollectionViewCell {
+final class ImageCell: UICollectionViewCell {
     
     var itemImage = UIImageView()
     let nameLabel = UILabel()

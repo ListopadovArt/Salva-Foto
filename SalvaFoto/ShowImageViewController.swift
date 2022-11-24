@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import SwiftyKeychainKit
 
-class ShowImageViewController: UIViewController {
+final class ShowImageViewController: UIViewController {
     
     var image: Photo!
     let itemImage = UIImageView()

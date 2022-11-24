@@ -8,7 +8,7 @@
 import UIKit
 import SwiftyKeychainKit
 
-class EditProfileViewController: UIViewController {
+final class EditProfileViewController: UIViewController {
     
     var profile: User? = nil
     
