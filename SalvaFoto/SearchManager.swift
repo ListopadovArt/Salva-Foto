@@ -13,7 +13,11 @@ class SearchManager {
     
     init() {}
     
-    func performRandomPhotosRequest(with urlString: String, completion: @escaping GenericCompletionManager<[Photo]>){
+    let accessKey = "&client_id=f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
+    let host = "https://api.unsplash.com/"
+    
+    func performRandomPhotosRequest(completion: @escaping GenericCompletionManager<[Photo]>){
+        let urlString = "\(host)photos/random/?count=30\(accessKey)"
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
@@ -36,7 +40,8 @@ class SearchManager {
         }
     }
     
-    func performPhotoSearchRequest(with urlString: String, completion: @escaping GenericCompletionManager<Search>){
+    func performPhotoSearchRequest(with word: String, completion: @escaping GenericCompletionManager<Search>){
+        let urlString = "\(host)search/photos?per_page=100&query=\(word)\(accessKey)"
         if let url = URL(string: urlString) {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { data, response, error in
