@@ -22,12 +22,6 @@ final class SearchViewController: UIViewController {
     
     let refreshControl = UIRefreshControl()
     
-    // https://unsplash.com/documentation#get-a-random-photo
-    let accessKey = "&client_id=f9U4wUpQbGa7KBTGQp-J8umBGGWBLaTJfiaKcOkBfn0"
-    let host = "https://api.unsplash.com/"
-    let randomPhotos = "photos/random/?count=30"
-    let searchPhotos = "search/photos?per_page=100"
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         style()
@@ -157,7 +151,7 @@ extension SearchViewController: UICollectionViewDelegate, UICollectionViewDataSo
 // MARK: - Networking
 extension SearchViewController {
     private func fetchData() {
-        SearchManager.shared.performRandomPhotosRequest(with: "\(host)\(randomPhotos)\(accessKey)") { result in
+        SearchManager.shared.performRandomPhotosRequest() { result in
             switch result {
             case .success(let images):
                 self.imageArray = images
@@ -176,7 +170,7 @@ extension SearchViewController {
     }
     
     private func fetchSearchData(_ word: String) {
-        SearchManager.shared.performPhotoSearchRequest(with: "\(host)\(searchPhotos)&query=\(word)\(accessKey)") { result in
+        SearchManager.shared.performPhotoSearchRequest(with: word) { result in
             switch result {
             case .success(let images):
                 if let photos = images.photos {
