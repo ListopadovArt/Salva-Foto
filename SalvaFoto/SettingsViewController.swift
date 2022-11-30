@@ -151,6 +151,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.section {
         case 0:
             print("Give us Feedback")
+            // TODO: Actually implement the logic for this method
         case 1:
             let controller = EditProfileViewController()
             controller.modalTransitionStyle = .crossDissolve
@@ -160,11 +161,13 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
             switch indexPath.row {
             case 0:
                 print("Privacy Policy")
+                // TODO: Actually implement the logic for this method
             case 1:
                 try? keychain.remove(accessTokenKey)
                 self.navigationController?.popToRootViewController(animated: false)
             default:
                 print("Delete account")
+                // TODO: Actually implement the logic for this method
             }
         }
     }
@@ -242,5 +245,9 @@ extension SettingsViewController {
 extension SettingsViewController {
     func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
         return titleAndMessage(for: error)
+    }
+    
+    func tableModelForTesting() -> [SettingsMenuModel] {
+        self.tableModel
     }
 }
