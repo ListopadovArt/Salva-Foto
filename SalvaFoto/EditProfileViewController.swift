@@ -300,4 +300,8 @@ extension EditProfileViewController {
     func titleAndMessageForTesting(for error: NetworkError) -> (String, String) {
         return titleAndMessage(for: error)
     }
+    
+    func tableModelForTesting() -> [SettingsMenuModel] {
+        self.tableModel
+    }
 }
